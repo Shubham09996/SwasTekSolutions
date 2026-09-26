@@ -2,7 +2,6 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import CustomCursor from './components/CustomCursor'
 import ScrollToTop from './components/ScrollToTop'
 
 // Pages
@@ -35,7 +34,6 @@ export default function App() {
 
   return (
     <>
-      <CustomCursor />
       <ScrollToTop />
       <Navbar />
       <AnimatePresence mode="wait">

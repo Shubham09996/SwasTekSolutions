@@ -257,9 +257,8 @@ export default function Home() {
   const [hoveredWork, setHoveredWork] = useState<number | null>(null)
   const heroRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
-  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '22%'])
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
-  const heroScale = useTransform(scrollYProgress, [0, 0.6], [1, 0.96])
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.1])
+  const heroScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.98])
 
   // Word-by-word reveal for headline
 
@@ -271,7 +270,7 @@ export default function Home() {
       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
       <section
         ref={heroRef}
-        className="relative min-h-screen flex flex-col justify-center overflow-hidden grain-overlay"
+        className="relative overflow-hidden grain-overlay"
         style={{ background: '#050C17' }}
       >
         {/* Radial glow blobs */}
@@ -291,8 +290,8 @@ export default function Home() {
         <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(22,141,255,0.5) 30%, rgba(22,185,243,0.5) 70%, transparent 100%)' }} />
 
         <motion.div
-          className="container-wide relative z-10 pt-36 pb-20"
-          style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
+          className="container-wide relative z-10 pt-32 md:pt-40 pb-20 md:pb-24"
+          style={{ opacity: heroOpacity, scale: heroScale }}
         >
           {/* Eyebrow */}
           <motion.div
@@ -388,11 +387,11 @@ export default function Home() {
 
           {/* Proof row */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-wrap items-center gap-8 mt-16 pt-10 border-t"
-            style={{ borderColor: 'rgba(255,255,255,0.07)' }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-wrap items-center gap-8 lg:gap-12 mt-16 pt-10 border-t"
+            style={{ borderColor: 'rgba(255,255,255,0.12)' }}
           >
             {[
               { n: '8+', l: 'Service areas' },
@@ -400,35 +399,35 @@ export default function Home() {
               { n: '100%', l: 'Bespoke builds' },
             ].map((s) => (
               <div key={s.l}>
-                <div className="text-xl font-bold text-white mb-0.5" style={{ fontFamily: 'Sora, sans-serif' }}>{s.n}</div>
-                <div className="text-xs" style={{ color: '#3E5168', fontFamily: 'Manrope, sans-serif' }}>{s.l}</div>
+                <div className="text-2xl lg:text-3xl font-bold text-white mb-1 tracking-tight" style={{ fontFamily: 'Sora, sans-serif' }}>{s.n}</div>
+                <div className="text-xs font-semibold" style={{ color: '#94A3B8', fontFamily: 'Manrope, sans-serif' }}>{s.l}</div>
               </div>
             ))}
-            <div className="h-8 w-px ml-2" style={{ background: 'rgba(255,255,255,0.07)' }} />
-            <div className="flex items-center gap-2">
+            <div className="hidden sm:block h-8 w-px" style={{ background: 'rgba(255,255,255,0.12)' }} />
+            <div className="flex items-center gap-3">
               <div className="flex -space-x-2">
                 {['A', 'M', 'R', 'S'].map((l, i) => (
-                  <div key={l} className="w-7 h-7 rounded-full border-2 flex items-center justify-center text-[10px] font-bold text-white" style={{ background: `hsl(${210 + i * 20}, 70%, 45%)`, borderColor: '#050C17' }}>
+                  <div key={l} className="w-7 h-7 rounded-full border-2 flex items-center justify-center text-[10px] font-bold text-white shadow-sm" style={{ background: `hsl(${210 + i * 20}, 75%, 48%)`, borderColor: '#050C17' }}>
                     {l}
                   </div>
                 ))}
               </div>
-              <p className="text-xs" style={{ color: '#3E5168', fontFamily: 'Manrope, sans-serif' }}>Trusted by growing businesses</p>
+              <p className="text-xs font-semibold" style={{ color: '#94A3B8', fontFamily: 'Manrope, sans-serif' }}>Trusted by growing businesses</p>
             </div>
           </motion.div>
         </motion.div>
-
-        {/* Bottom marquee â€” services */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 border-t" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
-          <MarqueeRow items={ticker1} dimmed />
-        </div>
       </section>
 
       {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-          DOUBLE TICKER â€” industries
       â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */}
-      <section className="py-0 border-b overflow-hidden" style={{ background: '#0B1A2E', borderColor: 'rgba(255,255,255,0.06)' }}>
-        <MarqueeRow items={ticker2} reverse />
+      {/* Double ticker strip: services and industries */}
+      <section className="border-t border-b overflow-hidden" style={{ background: "#081220", borderColor: "rgba(255,255,255,0.08)" }}>
+        <div className="border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+          <MarqueeRow items={ticker1} dimmed />
+        </div>
+        <div>
+          <MarqueeRow items={ticker2} reverse />
+        </div>
       </section>
 
       {/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
