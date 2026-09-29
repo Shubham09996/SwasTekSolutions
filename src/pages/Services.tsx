@@ -1,31 +1,28 @@
-﻿import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+// Services page — SwasTek Solutions (ULTRA-PREMIUM REDESIGN)
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowUpRight, Globe, Settings2, Zap, ShoppingBag, Palette, Compass, Target, Smartphone, BarChart3 } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 
 const services = [
-  { title: 'Website Development', href: '/services/web-development', desc: 'Fast, responsive and thoughtfully designed websites built around your brand, audience and business goals.', tag: 'Web' },
-  { title: 'Custom Software', href: '/services/custom-software', desc: 'Purpose-built business software for operations, workflows and internal tools â€” designed for the way you work.', tag: 'Software' },
-  { title: 'CRM Development', href: '/services/crm-development', desc: 'A CRM built around your sales process, not the other way around. Lead management, pipelines, tasks and analytics.', tag: 'CRM' },
-  { title: 'SaaS Development', href: '/services/saas-development', desc: 'From product idea to scalable SaaS â€” architecture, authentication, subscriptions, dashboards and deployment.', tag: 'SaaS' },
-  { title: 'Web Applications', href: '/services/web-applications', desc: 'Customer portals, booking systems, admin platforms and browser-based tools for real operational use.', tag: 'Apps' },
-  { title: 'ERP / Business Systems', href: '/services/custom-software', desc: 'Business management systems that bring your finance, operations, HR and logistics into a single platform.', tag: 'ERP' },
-  { title: 'Admin Dashboards', href: '/services/web-applications', desc: 'Operational dashboards with the data, reports and controls your team actually needs.', tag: 'Dashboards' },
-  { title: 'Business Automation', href: '/services/business-automation', desc: 'Remove repetitive manual steps. Automate approvals, notifications, data sync and operational workflows.', tag: 'Automation' },
-  { title: 'API & Integrations', href: '/services/api-integrations', desc: 'Connect your platforms, integrate third-party services and build reliable data flows between systems.', tag: 'API' },
-  { title: 'E-commerce', href: '/services/ecommerce', desc: 'Custom storefronts, checkout experiences, product management and order operations for online retail.', tag: 'E-commerce' },
-  { title: 'AI Integrations', href: '/services/ai-solutions', desc: 'Practical AI features integrated into your operations â€” document processing, search, chat and automation.', tag: 'AI' },
-  { title: 'UI/UX Design', href: '/services/web-development', desc: 'User interface and experience design that serves real users, not just looks good in a mockup.', tag: 'Design' },
-  { title: 'Maintenance & Support', href: '/contact', desc: 'Ongoing technical support, updates and improvements for software already in production.', tag: 'Support' },
+  { num: '01', title: 'Web Design', href: '/services/web-design', desc: 'Modern, high-converting visual web layouts, bespoke typography, and distinct digital brand identity.', tag: 'Design', icon: Palette, color: '#1558D4' },
+  { num: '02', title: 'UX/UI Design', href: '/services/ui-ux-design', desc: 'Human-centered user research, intuitive wireframing, interactive Figma prototypes, and scalable design systems.', tag: 'UI/UX', icon: Compass, color: '#0BC4E3' },
+  { num: '03', title: 'IT Strategy Consulting', href: '/services/it-strategy-consulting', desc: 'Strategic technology advisory, system architecture roadmaps, legacy modernization, and IT audits.', tag: 'Strategy', icon: Target, color: '#5B3CF5' },
+  { num: '04', title: 'Custom Software Development', href: '/services/custom-software', desc: 'Purpose-built enterprise platforms, internal team tools, and operational workflows tailored to your business.', tag: 'Software', icon: Settings2, color: '#1558D4' },
+  { num: '05', title: 'CRM Development', href: '/services/crm-development', desc: 'Custom CRM systems tailored to your sales pipeline, client onboarding, and lead management.', tag: 'CRM', icon: BarChart3, color: '#0BC4E3' },
+  { num: '06', title: 'Web Development', href: '/services/web-development', desc: 'High-performance, secure web applications and portals engineered with modern fullstack technologies.', tag: 'Web Dev', icon: Globe, color: '#1558D4' },
+  { num: '07', title: 'Mobile App Development', href: '/services/mobile-app-development', desc: 'Cross-platform iOS and Android apps with 60fps native performance, offline sync, and biometric security.', tag: 'Mobile', icon: Smartphone, color: '#5B3CF5' },
+  { num: '08', title: 'E-Commerce Development', href: '/services/ecommerce', desc: 'Custom digital storefronts, friction-free checkout funnels, inventory sync, and payment integrations.', tag: 'E-Commerce', icon: ShoppingBag, color: '#1558D4' },
 ]
 
 function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.55, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      transition={{ duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
@@ -33,70 +30,218 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 export default function Services() {
-  return (
-    <PageTransition title="Services | SwasTek Solutions" description="From business websites to custom software and CRM platforms, we build digital products around the way your business works.">
-      {/* Hero */}
-      <section className="pt-32 pb-20" style={{ background: 'linear-gradient(160deg, #EFF4FA 0%, #ffffff 60%)' }}>
-        <div className="container-wide">
-          <FadeUp>
-            <p className="section-label">Services</p>
-            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
-              What can we<br />build for you?
-            </h1>
-            <p className="text-lg max-w-2xl leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
-              From business websites to custom software and CRM platforms, we build digital products around the way your business works.
-            </p>
-          </FadeUp>
-        </div>
-      </section>
+  const [activeService, setActiveService] = useState<number | null>(null)
 
-      {/* Services grid */}
-      <section className="page-section bg-white">
-        <div className="container-wide">
-          <div className="border-t" style={{ borderColor: '#E4EDF7' }}>
-            {services.map((s, i) => (
-              <FadeUp key={s.title} delay={i * 0.04}>
-                <Link
-                  to={s.href}
-                  className="group grid md:grid-cols-[80px_1fr_auto] gap-6 items-center py-8 border-b transition-colors duration-200 hover:bg-gray-50 px-3 -mx-3 rounded-lg"
-                  style={{ borderColor: '#E4EDF7' }}
+  return (
+    <PageTransition
+      title="Services | SwasTek Solutions"
+      description="From business websites to custom software and CRM platforms, we build digital products around the way your business works."
+    >
+      {/* ═══════════════════════════════════════════════════════
+          DARK HERO
+      ═══════════════════════════════════════════════════════ */}
+      <section className="relative pt-32 pb-20 overflow-hidden grain-overlay" style={{ background: 'var(--void)' }}>
+        <div className="absolute inset-0 hero-grid opacity-100" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="orb-1 absolute" style={{ width: 700, height: 700, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,88,212,0.20) 0%, transparent 68%)', top: '-15%', left: '-5%', filter: 'blur(80px)' }} />
+          <div className="orb-2 absolute" style={{ width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(11,196,227,0.12) 0%, transparent 70%)', bottom: '0%', right: '15%', filter: 'blur(100px)' }} />
+        </div>
+        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.7) 30%, rgba(11,196,227,0.7) 70%, transparent 100%)' }} />
+
+        <div className="container-wide relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="flex items-center gap-2 mb-10"
+          >
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ background: 'rgba(21,88,212,0.12)', border: '1px solid rgba(21,88,212,0.22)' }}>
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'DM Mono, monospace' }}>
+                What We Build
+              </span>
+            </div>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-14 items-end">
+            <div>
+              <div className="overflow-hidden mb-1">
+                <motion.h1
+                  initial={{ y: '105%' }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="leading-none text-white"
+                  style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 4.5vw, 4.5rem)', letterSpacing: '-0.04em' }}
                 >
-                  <div>
-                    <span className="text-xs font-semibold px-2 py-1 rounded-full" style={{ background: '#EBF4FF', color: '#1860D4', fontFamily: 'Manrope, sans-serif' }}>
-                      {s.tag}
-                    </span>
-                  </div>
-                  <div>
-                    <h2 className="font-heading font-bold text-xl mb-1.5 transition-colors group-hover:text-blue-600" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
-                      {s.title}
-                    </h2>
-                    <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>{s.desc}</p>
-                  </div>
-                  <div>
-                    <ArrowUpRight size={20} className="transition-all duration-200 opacity-30 group-hover:opacity-100" style={{ color: '#1860D4' }} />
-                  </div>
-                </Link>
-              </FadeUp>
-            ))}
+                  What can we
+                </motion.h1>
+              </div>
+              <div className="overflow-hidden">
+                <motion.h1
+                  initial={{ y: '105%' }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 1, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                  style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 4.5vw, 4.5rem)', letterSpacing: '-0.04em', lineHeight: 1.05 }}
+                >
+                  <span style={{ background: 'linear-gradient(135deg, #2570E8 0%, #0BC4E3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                    build for you?
+                  </span>
+                </motion.h1>
+              </div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="flex flex-col justify-end"
+            >
+              <p className="text-lg leading-relaxed mb-8" style={{ color: 'rgba(160,175,194,0.88)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                From business websites to custom software and CRM platforms, we build digital products around the way your business works.
+              </p>
+              <Link to="/contact" data-cta className="btn-primary text-sm self-start">
+                <Zap size={14} />
+                Start a Project
+                <ArrowUpRight size={14} />
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="page-section-sm" style={{ background: '#EFF4FA' }}>
-        <div className="container-tight text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
-            Not sure what you need?
-          </h2>
-          <p className="text-base mb-8" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
-            Tell us about your business and what you're trying to achieve. We'll help you figure out the right approach.
-          </p>
-          <Link to="/contact" data-cta className="btn-primary">
-            Have a conversation <ArrowUpRight size={14} />
-          </Link>
+      {/* ═══════════════════════════════════════════════════════
+          SERVICES — editorial large-number list
+      ═══════════════════════════════════════════════════════ */}
+      <section className="bg-white py-0">
+        <div className="container-wide">
+          <div className="border-t-2" style={{ borderColor: '#07111F' }}>
+            {services.map((s, i) => {
+              const Icon = s.icon
+              return (
+                <motion.div
+                  key={s.num}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true, margin: '-40px' }}
+                  transition={{ duration: 0.4, delay: i * 0.03 }}
+                >
+                  <Link
+                    to={s.href}
+                    className="group block border-b relative overflow-hidden"
+                    style={{ borderColor: '#E2EBF5' }}
+                    onMouseEnter={() => setActiveService(i)}
+                    onMouseLeave={() => setActiveService(null)}
+                  >
+                    {/* Hover fill */}
+                    <motion.div
+                      className="absolute inset-0"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: activeService === i ? 1 : 0 }}
+                      transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                      style={{ background: 'var(--void)', transformOrigin: 'left' }}
+                    />
+
+                    <div className="relative z-10 grid grid-cols-[80px_1fr_auto] md:grid-cols-[120px_auto_1fr_280px_auto] items-center gap-6 py-7 px-2">
+                      {/* Number */}
+                      <span
+                        className="font-bold leading-none transition-colors duration-350"
+                        style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.4rem, 2.8vw, 2.2rem)', color: activeService === i ? 'rgba(21,136,255,0.3)' : '#E2EBF5', letterSpacing: '-0.04em' }}
+                      >
+                        {s.num}
+                      </span>
+
+                      {/* Icon */}
+                      <div
+                        className="hidden md:flex w-10 h-10 rounded-xl items-center justify-center transition-all duration-300"
+                        style={{ background: activeService === i ? `${s.color}20` : 'rgba(226,235,245,0.5)', border: `1px solid ${activeService === i ? `${s.color}35` : 'transparent'}` }}
+                      >
+                        <Icon size={18} style={{ color: activeService === i ? s.color : '#8DA3B8' }} className="transition-colors duration-300" />
+                      </div>
+
+                      {/* Title */}
+                      <h3
+                        className="font-bold text-xl md:text-2xl transition-colors duration-300"
+                        style={{ color: activeService === i ? '#ffffff' : '#07111F', fontFamily: 'Sora, sans-serif', letterSpacing: '-0.025em' }}
+                      >
+                        {s.title}
+                      </h3>
+
+                      {/* Description (desktop) */}
+                      <AnimatePresence>
+                        {activeService === i && (
+                          <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="hidden md:block text-sm leading-relaxed"
+                            style={{ color: 'rgba(160,175,194,0.7)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                          >
+                            {s.desc}
+                          </motion.p>
+                        )}
+                        {activeService !== i && (
+                          <span
+                            key="tag"
+                            className="hidden md:inline-flex text-xs px-3 py-1 rounded-full"
+                            style={{ background: '#EEF3FA', color: '#536880', fontFamily: 'DM Mono, monospace', letterSpacing: '0.04em' }}
+                          >
+                            {s.tag}
+                          </span>
+                        )}
+                      </AnimatePresence>
+
+                      {/* Arrow */}
+                      <motion.div
+                        animate={{ x: activeService === i ? 3 : 0, y: activeService === i ? -3 : 0 }}
+                        transition={{ duration: 0.25 }}
+                      >
+                        <ArrowUpRight
+                          size={20}
+                          className="flex-shrink-0 transition-colors duration-300"
+                          style={{ color: activeService === i ? '#1558D4' : '#CBD5E1' }}
+                        />
+                      </motion.div>
+                    </div>
+                  </Link>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          CTA
+      ═══════════════════════════════════════════════════════ */}
+      <section className="py-24 md:py-32" style={{ background: '#F7FAFD' }}>
+        <div className="container-tight">
+          <FadeUp>
+            <div
+              className="relative rounded-3xl p-12 md:p-20 overflow-hidden text-center"
+              style={{ background: 'linear-gradient(145deg, #03080F 0%, #071424 60%, #0D1E34 100%)', border: '1px solid rgba(255,255,255,0.06)' }}
+            >
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div style={{ width: 600, height: 300, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(21,88,212,0.18) 0%, transparent 70%)', filter: 'blur(40px)' }} />
+              </div>
+              <div className="relative z-10">
+                <p className="section-label mb-4">Not sure what you need?</p>
+                <h2
+                  className="font-bold text-white mb-5"
+                  style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(1.8rem, 4vw, 3rem)', letterSpacing: '-0.04em', lineHeight: 1.08 }}
+                >
+                  Tell us about your business.<br />We'll figure out the right approach.
+                </h2>
+                <p className="text-base mb-10" style={{ color: 'rgba(160,175,194,0.7)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                  Every engagement starts with understanding your business — not picking a technology.
+                </p>
+                <Link to="/contact" data-cta className="btn-primary-white">
+                  Have a conversation <ArrowUpRight size={14} />
+                </Link>
+              </div>
+            </div>
+          </FadeUp>
         </div>
       </section>
     </PageTransition>
   )
 }
-

@@ -3,19 +3,28 @@ import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import CustomCursor from './components/CustomCursor'
+import ScrollProgress from './components/ScrollProgress'
 
 // Pages
 import Home from './pages/Home'
 import Services from './pages/Services'
-import WebDevelopment from './pages/services/WebDevelopment'
+import WebDesign from './pages/services/WebDesign'
+import UiUxDesign from './pages/services/UiUxDesign'
+import ItStrategyConsulting from './pages/services/ItStrategyConsulting'
 import CustomSoftware from './pages/services/CustomSoftware'
+import WebDevelopment from './pages/services/WebDevelopment'
+import MobileAppDevelopment from './pages/services/MobileAppDevelopment'
+import Ecommerce from './pages/services/Ecommerce'
+
+// Secondary / Legacy service routes
 import CRMDevelopment from './pages/services/CRMDevelopment'
 import SaaSDevelopment from './pages/services/SaaSDevelopment'
 import WebApplications from './pages/services/WebApplications'
 import BusinessAutomation from './pages/services/BusinessAutomation'
 import ApiIntegrations from './pages/services/ApiIntegrations'
-import Ecommerce from './pages/services/Ecommerce'
 import AiSolutions from './pages/services/AiSolutions'
+
 import Industries from './pages/Industries'
 import IndustryDetail from './pages/IndustryDetail'
 import Work from './pages/Work'
@@ -34,21 +43,32 @@ export default function App() {
 
   return (
     <>
+      <CustomCursor />
+      <ScrollProgress />
       <ScrollToTop />
       <Navbar />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/services/web-development" element={<WebDevelopment />} />
+
+          {/* 7 Core Services */}
+          <Route path="/services/web-design" element={<WebDesign />} />
+          <Route path="/services/ui-ux-design" element={<UiUxDesign />} />
+          <Route path="/services/it-strategy-consulting" element={<ItStrategyConsulting />} />
           <Route path="/services/custom-software" element={<CustomSoftware />} />
+          <Route path="/services/web-development" element={<WebDevelopment />} />
+          <Route path="/services/mobile-app-development" element={<MobileAppDevelopment />} />
+          <Route path="/services/ecommerce" element={<Ecommerce />} />
+
+          {/* Additional / Legacy Service Routes */}
           <Route path="/services/crm-development" element={<CRMDevelopment />} />
           <Route path="/services/saas-development" element={<SaaSDevelopment />} />
           <Route path="/services/web-applications" element={<WebApplications />} />
           <Route path="/services/business-automation" element={<BusinessAutomation />} />
           <Route path="/services/api-integrations" element={<ApiIntegrations />} />
-          <Route path="/services/ecommerce" element={<Ecommerce />} />
           <Route path="/services/ai-solutions" element={<AiSolutions />} />
+
           <Route path="/industries" element={<Industries />} />
           <Route path="/industries/:slug" element={<IndustryDetail />} />
           <Route path="/work" element={<Work />} />
