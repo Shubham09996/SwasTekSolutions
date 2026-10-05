@@ -1,11 +1,15 @@
 // Scroll Progress + Back-to-Top — SwasTek Solutions
 import { useEffect, useState } from 'react'
-import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, useSpring, useTransform, AnimatePresence } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
 
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
+
+  // Initial visible segment (~2.5% visible right from the start)
+  const scaleX = useTransform(smoothProgress, [0, 1], [0.025, 1])
+  const scaleY = useTransform(smoothProgress, [0, 1], [0.025, 1])
   const [showTop, setShowTop] = useState(false)
 
   useEffect(() => {
@@ -18,7 +22,22 @@ export default function ScrollProgress() {
 
   return (
     <>
-      {/* Scroll progress bar */}
+      {/* ── TOP THIN LINE ── */}
+      {/* Full top baseline track visible starting se hi */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 2,
+          background: 'linear-gradient(90deg, rgba(21,88,212,0.4) 0%, rgba(11,196,227,0.4) 100%)',
+          boxShadow: '0 0 6px rgba(11, 196, 227, 0.25)',
+          zIndex: 99996,
+          pointerEvents: 'none',
+        }}
+      />
+      {/* Top active glowing progress line */}
       <motion.div
         style={{
           scaleX,
@@ -26,9 +45,42 @@ export default function ScrollProgress() {
           top: 0,
           left: 0,
           right: 0,
-          height: 2,
+          height: 2.5,
           transformOrigin: '0%',
-          background: 'linear-gradient(90deg, #1558D4, #0BC4E3)',
+          background: 'linear-gradient(90deg, #1558D4 0%, #0BC4E3 100%)',
+          boxShadow: '0 0 10px rgba(11, 196, 227, 0.8), 0 0 4px rgba(21, 88, 212, 0.6)',
+          zIndex: 99997,
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* ── SIDE (RIGHT) THIN LINE ── */}
+      {/* Full side baseline track visible starting se hi */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          bottom: 0,
+          right: 0,
+          width: 2.5,
+          background: 'linear-gradient(180deg, rgba(21,88,212,0.4) 0%, rgba(11,196,227,0.4) 100%)',
+          boxShadow: '-1px 0 6px rgba(11, 196, 227, 0.25)',
+          zIndex: 99996,
+          pointerEvents: 'none',
+        }}
+      />
+      {/* Side active glowing progress line */}
+      <motion.div
+        style={{
+          scaleY,
+          position: 'fixed',
+          top: 0,
+          bottom: 0,
+          right: 0,
+          width: 2.5,
+          transformOrigin: '0% 0%',
+          background: 'linear-gradient(180deg, #1558D4 0%, #0BC4E3 100%)',
+          boxShadow: '0 0 10px rgba(11, 196, 227, 0.8), -1px 0 6px rgba(21, 88, 212, 0.6)',
           zIndex: 99997,
           pointerEvents: 'none',
         }}
@@ -71,4 +123,3 @@ export default function ScrollProgress() {
     </>
   )
 }
-

@@ -95,14 +95,16 @@
     color: #ffffff;
   }
 
-  /* Premium Scrollbar */
-  ::-webkit-scrollbar { width: 4px; height: 4px; }
-  ::-webkit-scrollbar-track { background: var(--void); }
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--blue-600), var(--cyan));
-    border-radius: 4px;
+  /* Hide native browser scrollbar (handled by custom ScrollProgress) */
+  html, body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
-  ::-webkit-scrollbar-thumb:hover { background: var(--blue-400); }
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+    height: 0px;
+  }
 
   .no-scrollbar::-webkit-scrollbar {
     display: none;
