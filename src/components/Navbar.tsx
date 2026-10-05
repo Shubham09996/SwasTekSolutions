@@ -177,39 +177,72 @@ export default function Navbar() {
     setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev))
   })
 
-  useEffect(() => { setMobileOpen(false); setMegaOpen(null) }, [location.pathname])
+  // Passive window scroll fallback for guaranteed instant detection
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
-  const openMega = (key: string) => { if (closeTimer.current) clearTimeout(closeTimer.current); setMegaOpen(key) }
-  const closeMega = () => { closeTimer.current = setTimeout(() => setMegaOpen(null), 180) }
-  const keepMega  = () => { if (closeTimer.current) clearTimeout(closeTimer.current) }
+  useEffect(() => {
+    setMobileOpen(false)
+    setMegaOpen(null)
+  }, [location.pathname])
+
+  const openMega = (key: string) => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    setMegaOpen(key)
+  }
+  const closeMega = () => {
+    closeTimer.current = setTimeout(() => setMegaOpen(null), 180)
+  }
+  const keepMega = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+  }
+
+  // When not scrolled and mega menu is closed, keep transparent for dark hero.
+  // When scrolled OR when mega menu is open, show the crisp white glass navbar.
+  const transparent = !scrolled && !megaOpen
+  const linkBase = transparent ? "text-white/80 hover:text-white" : "text-[#3D5168] hover:text-[#0A1828]"
 
   return (
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-[#020710]/95 backdrop-blur-2xl border-b border-white/10 shadow-2xl shadow-black/80"
-            : "bg-[#020710]/60 backdrop-blur-lg border-b border-white/5"
+          transparent
+            ? "bg-transparent border-b border-transparent"
+            : "nav-glass border-b border-[#E2EBF5]"
         }`}
         style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
         aria-label="Main navigation"
       >
-        {/* Top gradient line */}
-        <div
-          className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: "linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.7) 30%, rgba(11,196,227,0.7) 70%, transparent 100%)" }}
-        />
+        {/* Top gradient line (only when at top transparent) */}
+        {transparent && (
+          <div
+            className="absolute top-0 left-0 right-0 h-px"
+            style={{ background: "linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.7) 30%, rgba(11,196,227,0.7) 70%, transparent 100%)" }}
+          />
+        )}
 
         <div className="container-wide">
           <div className="flex items-center justify-between h-[68px] lg:h-[72px]">
 
-            {/* Logo (Crisp White Logo) */}
+            {/* Logo (White at top, Dark when scrolled) */}
             <Link to="/" className="relative flex items-center h-10 transition-all duration-300 group">
-              <div className="transition-transform duration-200 hover:scale-[1.03]">
+              <div className="relative flex items-center h-10 transition-transform duration-200 hover:scale-[1.03]">
                 <img
                   src="/logo-white.png"
                   alt="SwasTek Solutions"
-                  className="h-9 lg:h-10 w-auto object-contain"
+                  className={`h-9 lg:h-10 w-auto object-contain transition-opacity duration-300 ${transparent ? "opacity-100" : "opacity-0 absolute pointer-events-none"}`}
+                  style={{ maxWidth: 180 }}
+                />
+                <img
+                  src="/logo.png"
+                  alt="SwasTek Solutions"
+                  className={`h-9 lg:h-10 w-auto object-contain transition-opacity duration-300 ${!transparent ? "opacity-100" : "opacity-0 absolute pointer-events-none"}`}
                   style={{ maxWidth: 180 }}
                 />
               </div>
@@ -236,9 +269,9 @@ export default function Navbar() {
                     }}
                     className={({ isActive }) =>
                       `relative flex items-center gap-1.5 px-3.5 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 ${
-                        isActive && (!link.hasMega || megaOpen === link.hasMega)
-                          ? "text-cyan-300"
-                          : "text-slate-300 hover:text-white"
+                        isActive
+                          ? transparent ? "text-white" : "text-[#1558D4]"
+                          : linkBase
                       }`
                     }
                   >
@@ -248,21 +281,32 @@ export default function Navbar() {
                         {link.hasMega && (
                           <ChevronDown
                             size={12}
-                            className={`transition-transform duration-200 ${megaOpen === link.hasMega ? "rotate-180 text-cyan-400" : "text-slate-400"}`}
+                            className={`transition-transform duration-200 ${
+                              megaOpen === link.hasMega
+                                ? "rotate-180 text-blue-500"
+                                : transparent ? "text-white/70" : "text-slate-400"
+                            }`}
                           />
                         )}
-                        {isActive && (!link.hasMega || megaOpen === link.hasMega) && (
+                        {isActive && (
                           <motion.span
                             layoutId="nav-pill"
                             className="absolute inset-0 rounded-xl -z-10"
-                            style={{ background: "rgba(11,196,227,0.12)", border: "1px solid rgba(11,196,227,0.25)" }}
+                            style={{
+                              background: transparent ? "rgba(255,255,255,0.08)" : "rgba(21,88,212,0.07)",
+                              border: transparent ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(21,88,212,0.12)"
+                            }}
                             transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                           />
                         )}
-                        {isActive && (!link.hasMega || megaOpen === link.hasMega) && (
+                        {isActive && (
                           <motion.span
                             layoutId="nav-dot"
-                            className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-cyan-400 shadow-[0_0_6px_rgba(56,189,248,0.8)]"
+                            className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
+                            style={{
+                              background: transparent ? "#38bdf8" : "#1558D4",
+                              boxShadow: transparent ? "0 0 6px rgba(56,189,248,0.8)" : "0 0 6px rgba(21,88,212,0.5)"
+                            }}
                             transition={{ type: "spring", bounce: 0.3, duration: 0.4 }}
                           />
                         )}
@@ -286,7 +330,9 @@ export default function Navbar() {
 
             {/* Mobile toggle */}
             <motion.button
-              className="lg:hidden p-2 rounded-xl transition-colors text-slate-200 hover:bg-white/10"
+              className={`lg:hidden p-2 rounded-xl transition-colors ${
+                transparent ? "text-white hover:bg-white/10" : "text-[#07111F] hover:bg-slate-100"
+              }`}
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle navigation"
               whileTap={{ scale: 0.92 }}
@@ -306,7 +352,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Next-Level Dark Opaque Mega Menu Dropdown */}
+        {/* Mega Menu Dropdown */}
         <AnimatePresence>
           {megaOpen && (
             <>
@@ -316,7 +362,7 @@ export default function Navbar() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="fixed inset-0 top-[68px] lg:top-[72px] bg-black/70 backdrop-blur-sm z-40"
+                className="fixed inset-0 top-[68px] lg:top-[72px] bg-black/40 backdrop-blur-xs z-40"
                 onClick={() => setMegaOpen(null)}
               />
 
@@ -327,19 +373,18 @@ export default function Navbar() {
                 transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                 style={{
                   transformOrigin: "top",
-                  background: "#040C1A",
-                  borderColor: "rgba(11, 196, 227, 0.25)",
-                  boxShadow: "0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 40px rgba(11, 196, 227, 0.15)",
+                  background: "#ffffff",
+                  boxShadow: "0 25px 60px -15px rgba(7, 17, 31, 0.15), 0 0 0 1px rgba(7, 17, 31, 0.07)",
                 }}
-                className="absolute top-full left-0 right-0 border-b shadow-2xl z-50"
+                className="absolute top-full left-0 right-0 border-b border-slate-200/80 shadow-2xl z-50"
                 onMouseEnter={keepMega}
                 onMouseLeave={closeMega}
               >
                 <div className="container-wide max-w-5xl mx-auto py-7 px-4 sm:px-6">
-                  <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-white/10">
+                  <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-slate-100">
                     <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                      <span className="text-xs font-bold tracking-[0.16em] uppercase text-cyan-300" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                      <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                      <span className="text-xs font-bold tracking-[0.16em] uppercase text-blue-600" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
                         {megaOpen === "services" ? "Full-Cycle Services" : "Custom Industry Solutions"}
                       </span>
                     </div>
@@ -356,7 +401,7 @@ export default function Navbar() {
                           key={item.href + item.label}
                           to={item.href}
                           onClick={() => setMegaOpen(null)}
-                          className="group flex items-start gap-3.5 p-3.5 rounded-2xl transition-all duration-200 bg-white/[0.02] hover:bg-white/[0.07] border border-white/5 hover:border-cyan-400/40 hover:shadow-lg hover:shadow-cyan-500/10"
+                          className="group flex items-start gap-3.5 p-3.5 rounded-2xl transition-all duration-200 hover:bg-[#F4F8FD] border border-transparent hover:border-[#D9E6F7]"
                         >
                           {/* Icon Container with hover effect */}
                           <div
@@ -370,17 +415,17 @@ export default function Navbar() {
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between gap-1 mb-0.5">
                               <p
-                                className="font-bold text-sm text-white group-hover:text-cyan-300 transition-colors duration-200 truncate"
+                                className="font-bold text-sm text-slate-900 group-hover:text-blue-600 transition-colors duration-200 truncate"
                                 style={{ fontFamily: "Sora, sans-serif" }}
                               >
                                 {item.label}
                               </p>
                               <ArrowUpRight
                                 size={13}
-                                className="opacity-0 group-hover:opacity-100 text-cyan-400 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0"
+                                className="opacity-0 group-hover:opacity-100 text-blue-600 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0"
                               />
                             </div>
-                            <p className="text-xs text-slate-300 leading-snug line-clamp-2" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                            <p className="text-xs text-slate-500 leading-snug line-clamp-2" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
                               {item.desc}
                             </p>
                           </div>
@@ -404,7 +449,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="fixed inset-0 bg-[#03080F]/75 backdrop-blur-md z-40 lg:hidden"
+              className="fixed inset-0 bg-[#03080F]/60 backdrop-blur-md z-40 lg:hidden"
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
@@ -412,14 +457,14 @@ export default function Navbar() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0.5 }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 bottom-0 w-[min(320px,88vw)] z-50 lg:hidden overflow-y-auto border-l border-white/10"
-              style={{ background: "#040C1A", boxShadow: "-20px 0 60px rgba(0,0,0,0.8)" }}
+              className="fixed top-0 right-0 bottom-0 w-[min(320px,88vw)] z-50 lg:hidden overflow-y-auto"
+              style={{ background: "#ffffff", boxShadow: "-20px 0 60px rgba(7,17,31,0.15)" }}
             >
-              <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
-                <Link to="/" className="flex items-center">
-                  <img src="/logo-white.png" alt="SwasTek Solutions" className="h-9 w-auto object-contain" style={{ maxWidth: 160 }} />
+              <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "#E2EBF5" }}>
+                <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center">
+                  <img src="/logo.png" alt="SwasTek Solutions" className="h-9 w-auto object-contain" style={{ maxWidth: 160 }} />
                 </Link>
-                <button onClick={() => setMobileOpen(false)} className="p-2 rounded-xl hover:bg-white/10 text-slate-300 hover:text-white transition-colors">
+                <button onClick={() => setMobileOpen(false)} className="p-2 rounded-xl hover:bg-[#EEF3FA] transition-colors" style={{ color: "#6B7E94" }}>
                   <X size={20} />
                 </button>
               </div>
@@ -434,14 +479,14 @@ export default function Navbar() {
                     {link.hasMega ? (
                       <>
                         <button
-                          className="w-full flex items-center justify-between py-3 px-4 text-sm font-semibold rounded-2xl transition-colors text-slate-200 hover:bg-white/10 hover:text-white"
-                          style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+                          className="w-full flex items-center justify-between py-3 px-4 text-sm font-semibold rounded-2xl transition-colors hover:bg-[#EEF3FA]"
+                          style={{ color: "#07111F", fontFamily: "Plus Jakarta Sans, sans-serif" }}
                           onClick={() => setMobileSubmenu(mobileSubmenu === link.hasMega ? null : (link.hasMega || null))}
                         >
                           <span>{link.label}</span>
                           <ChevronDown
                             size={14}
-                            className={`transition-transform duration-300 ${mobileSubmenu === link.hasMega ? "rotate-180 text-cyan-400" : "text-slate-400"}`}
+                            className={`transition-transform duration-300 ${mobileSubmenu === link.hasMega ? "rotate-180 text-blue-600" : "text-slate-400"}`}
                           />
                         </button>
                         <AnimatePresence>
@@ -460,8 +505,9 @@ export default function Navbar() {
                                     <Link
                                       key={s.href + s.label}
                                       to={s.href}
-                                      className="flex items-center gap-3 py-2 px-3 text-sm rounded-xl transition-colors text-slate-300 hover:text-cyan-300 hover:bg-white/5 group"
-                                      style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+                                      onClick={() => setMobileOpen(false)}
+                                      className="flex items-center gap-3 py-2 px-3 text-sm rounded-xl transition-colors hover:bg-[#EEF3FA] group"
+                                      style={{ color: "#1E293B", fontFamily: "Plus Jakarta Sans, sans-serif" }}
                                     >
                                       <div
                                         className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
@@ -470,7 +516,7 @@ export default function Navbar() {
                                         <Icon size={14} />
                                       </div>
                                       <div className="flex-1 min-w-0">
-                                        <p className="font-semibold text-xs text-slate-200 group-hover:text-cyan-300 transition-colors truncate">
+                                        <p className="font-semibold text-xs text-slate-800 group-hover:text-blue-600 transition-colors truncate">
                                           {s.label}
                                         </p>
                                       </div>
@@ -485,8 +531,9 @@ export default function Navbar() {
                     ) : (
                       <NavLink
                         to={link.href}
+                        onClick={() => setMobileOpen(false)}
                         className={({ isActive }) =>
-                          `flex py-3 px-4 text-sm font-semibold rounded-2xl transition-colors ${isActive ? "text-cyan-300 bg-cyan-950/40 border border-cyan-500/30" : "text-slate-200 hover:bg-white/10 hover:text-white"}`
+                          `flex py-3 px-4 text-sm font-semibold rounded-2xl transition-colors ${isActive ? "text-[#1558D4] bg-[#EEF3FA]" : "text-[#07111F] hover:bg-[#EEF3FA]"}`
                         }
                         style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
                       >
@@ -496,12 +543,13 @@ export default function Navbar() {
                   </motion.div>
                 ))}
                 <motion.div
-                  className="pt-5 mt-2 border-t border-white/10"
+                  className="pt-5 mt-2 border-t"
+                  style={{ borderColor: "#E2EBF5" }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.35 }}
                 >
-                  <Link to="/contact" data-cta className="btn-primary w-full justify-center">
+                  <Link to="/contact" onClick={() => setMobileOpen(false)} data-cta className="btn-primary w-full justify-center">
                     <Zap size={14} />
                     <span>Start a Project</span>
                     <ArrowUpRight size={14} />
