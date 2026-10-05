@@ -1,7 +1,7 @@
 // Home page — SwasTek Solutions (ULTRA-PREMIUM NEXT LEVEL)
 import { useState, useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, AnimatePresence, useInView, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import {
   ArrowUpRight,
   ArrowRight,
@@ -388,39 +388,55 @@ function MarqueeRow({ items, reverse = false, dimmed = false }: { items: string[
   )
 }
 
-// Star field canvas
+// Star field canvas (Optimized & Pauses off-screen)
 function StarField() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d', { alpha: true })
     if (!ctx) return
+
+    let isVisible = true
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting
+        if (isVisible && !raf) {
+          draw()
+        }
+      },
+      { threshold: 0 }
+    )
+    observer.observe(canvas)
 
     const resize = () => {
       canvas.width = canvas.offsetWidth
       canvas.height = canvas.offsetHeight
     }
     resize()
-    window.addEventListener('resize', resize)
+    window.addEventListener('resize', resize, { passive: true })
 
-    const stars = Array.from({ length: 90 }, () => ({
+    const stars = Array.from({ length: 40 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      r: Math.random() * 1.2 + 0.2,
-      alpha: Math.random(),
-      speed: Math.random() * 0.006 + 0.002,
+      r: Math.random() * 1.1 + 0.3,
+      speed: Math.random() * 0.005 + 0.002,
       phase: Math.random() * Math.PI * 2,
     }))
 
     let frame = 0
-    let raf: number
+    let raf: number | null = null
+
     const draw = () => {
+      if (!isVisible) {
+        raf = null
+        return
+      }
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       const t = frame * 0.015
-      stars.forEach(s => {
-        const a = 0.1 + 0.55 * Math.abs(Math.sin(t * s.speed * 60 + s.phase))
+      stars.forEach((s) => {
+        const a = 0.12 + 0.55 * Math.abs(Math.sin(t * s.speed * 60 + s.phase))
         ctx.beginPath()
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2)
         ctx.fillStyle = `rgba(180,210,255,${a})`
@@ -430,7 +446,12 @@ function StarField() {
       raf = requestAnimationFrame(draw)
     }
     draw()
-    return () => { window.removeEventListener('resize', resize); cancelAnimationFrame(raf) }
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', resize)
+      if (raf) cancelAnimationFrame(raf)
+    }
   }, [])
 
   return (
@@ -737,11 +758,6 @@ export default function Home() {
   const [processViewMode, setProcessViewMode] = useState<'stepper' | 'grid'>('stepper')
 
   const heroRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0])
-  const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
-  const heroScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.97])
-  const smoothY = useSpring(heroY, { stiffness: 60, damping: 20 })
 
   return (
     <PageTransition title="SwasTek Solutions | From Ideas to Digital Solutions" description="We design and build websites, custom software, CRM platforms and digital systems around the way your business works.">
@@ -777,10 +793,7 @@ export default function Home() {
         <div className="absolute inset-0 hero-scanlines opacity-100 pointer-events-none" style={{ zIndex: 2 }} />
 
         {/* Content — two column: left text, right lottie */}
-        <motion.div
-          className="container-wide relative z-10 pt-8 md:pt-10 lg:pt-12 pb-6 md:pb-8"
-          style={{ opacity: heroOpacity, scale: heroScale, y: smoothY }}
-        >
+        <div className="container-wide relative z-10 pt-8 md:pt-10 lg:pt-12 pb-6 md:pb-8">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_440px] lg:grid-cols-[1fr_560px] xl:grid-cols-[1fr_620px] gap-6 xl:gap-10 items-center">
 
             {/* ── LEFT: Text content ── */}
@@ -949,7 +962,7 @@ export default function Home() {
             </motion.div>
 
           </div>
-        </motion.div>
+        </div>
 
         {/* ── Scroll indicator ── */}
         <motion.div

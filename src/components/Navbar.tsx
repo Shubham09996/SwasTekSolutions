@@ -173,7 +173,8 @@ export default function Navbar() {
   const { scrollY } = useScroll()
 
   useMotionValueEvent(scrollY, "change", (y) => {
-    setScrolled(y > 20)
+    const isScrolled = y > 20
+    setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev))
   })
 
   useEffect(() => { setMobileOpen(false); setMegaOpen(null) }, [location.pathname])

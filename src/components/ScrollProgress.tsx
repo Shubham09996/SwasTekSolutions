@@ -5,11 +5,14 @@ import { ArrowUp } from 'lucide-react'
 
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, { stiffness: 200, damping: 30 })
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
   const [showTop, setShowTop] = useState(false)
 
   useEffect(() => {
-    const unsub = scrollYProgress.on('change', v => setShowTop(v > 0.12))
+    const unsub = scrollYProgress.on('change', v => {
+      const isTop = v > 0.12
+      setShowTop(prev => (prev !== isTop ? isTop : prev))
+    })
     return unsub
   }, [scrollYProgress])
 
