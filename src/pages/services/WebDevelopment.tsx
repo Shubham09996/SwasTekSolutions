@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import {
+  ArrowUpRight,
+  Zap,
+  Gauge,
+  ShieldCheck,
+  ArrowRight
+} from 'lucide-react'
 import PageTransition from '../../components/PageTransition'
 
 function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -8,161 +14,349 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.55, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
   )
 }
 
-// Browser mockup component
-function BrowserMockup({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="rounded-xl overflow-hidden shadow-2xl border" style={{ borderColor: '#E4EDF7' }}>
-      <div className="flex items-center gap-2 px-4 py-3" style={{ background: '#EFF4FA', borderBottom: '1px solid #E4EDF7' }}>
-        <span className="w-2.5 h-2.5 rounded-full bg-red-400/60"></span>
-        <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/60"></span>
-        <span className="w-2.5 h-2.5 rounded-full bg-green-400/60"></span>
-        <div className="flex-1 mx-4">
-          <div className="bg-white rounded-md px-3 py-1 text-xs flex items-center gap-2" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-            <span className="w-2 h-2 rounded-full" style={{ background: '#22c55e' }}></span>
-            swastek.com/client-preview
-          </div>
-        </div>
-      </div>
-      {children}
-    </div>
-  )
-}
-
-const websiteTypes = [
-  { name: 'Business Websites', desc: 'Your main online presence â€” fast, credible and built for conversion.' },
-  { name: 'Corporate Websites', desc: 'Multi-page corporate sites for investors, partners and enterprise audiences.' },
-  { name: 'Landing Pages', desc: 'Focused pages designed to convert a specific audience or campaign.' },
-  { name: 'E-commerce', desc: 'Storefronts with checkout, product management and order systems.' },
-  { name: 'Web Portals', desc: 'Client portals, member areas and authenticated user experiences.' },
-  { name: 'Marketing Websites', desc: 'Campaign-driven sites with CMS, analytics and conversion tracking.' },
+const webSolutions = [
+  {
+    title: 'High-Converting Business Platforms',
+    desc: 'Prestige corporate websites engineered to convert enterprise prospects, articulate market leadership, and rank high on organic search.',
+    tag: 'Corporate & B2B',
+  },
+  {
+    title: 'Fullstack Web Applications',
+    desc: 'Dynamic, database-backed web applications with authentication, customer portals, custom dashboards, and real-time state synchronization.',
+    tag: 'Web Apps & Portals',
+  },
+  {
+    title: 'Edge-Rendered Next.js Architectures',
+    desc: 'Sub-second page transitions, automated server-side rendering (SSR), and worldwide CDN caching for uncompromising speed.',
+    tag: 'Speed & Edge',
+  },
+  {
+    title: 'Custom API Integrations & Webhooks',
+    desc: 'Flawless communication between your frontend web platform and internal ERPs, CRMs, Stripe/Razorpay payments, and transactional email.',
+    tag: 'Integrations',
+  },
+  {
+    title: 'Technical SEO & Core Web Vitals',
+    desc: 'Semantic HTML5 structure, automated JSON-LD schema markup, dynamic sitemaps, and green 95+ Google Lighthouse scores out of the box.',
+    tag: 'SEO & Performance',
+  },
+  {
+    title: 'Client Portals & Member Gateways',
+    desc: 'Secure, authenticated client zones where customers can manage files, review invoices, track project progress, and submit requests.',
+    tag: 'Portals & Auth',
+  },
 ]
 
 export default function WebDevelopment() {
   return (
-    <PageTransition title="Website Development | SwasTek Solutions" description="Fast, responsive and thoughtfully designed websites built around your brand, audience and business goals.">
-      {/* Hero */}
-      <section className="pt-32 pb-20 bg-white border-b" style={{ borderColor: '#E4EDF7' }}>
-        <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+    <PageTransition
+      title="Web Development Services | SwasTek Solutions"
+      description="High-performance, secure web applications, corporate web portals, and fullstack platforms built for speed and conversion."
+    >
+      <div className="min-h-screen text-slate-100 overflow-hidden" style={{ background: 'var(--void)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+
+        {/* ═══════════════════════════════════════════════════════
+            HERO SECTION — ULTRA-PREMIUM DARK
+        ═══════════════════════════════════════════════════════ */}
+        <section className="relative pt-36 pb-20 md:pt-40 md:pb-28 overflow-hidden grain-overlay">
+          {/* Ambient Glows & Grid */}
+          <div className="absolute inset-0 hero-grid opacity-100 pointer-events-none" />
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div
+              className="orb-1 absolute"
+              style={{
+                width: 750,
+                height: 750,
+                borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(21,88,212,0.22) 0%, transparent 68%)',
+                top: '-15%',
+                left: '-10%',
+                filter: 'blur(90px)',
+              }}
+            />
+            <div
+              className="orb-2 absolute"
+              style={{
+                width: 600,
+                height: 600,
+                borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(11,196,227,0.16) 0%, transparent 70%)',
+                bottom: '-5%',
+                right: '5%',
+                filter: 'blur(100px)',
+              }}
+            />
+          </div>
+          <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.7) 30%, rgba(11,196,227,0.7) 70%, transparent 100%)' }} />
+
+          <div className="container-wide relative z-10">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              
+              {/* Left Column: Headline & Value Prop */}
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="flex items-center gap-2 mb-6"
+                >
+                  <div
+                    className="flex items-center gap-2 px-3.5 py-1.5 rounded-full"
+                    style={{ background: 'rgba(21,88,212,0.14)', border: '1px solid rgba(21,88,212,0.25)' }}
+                  >
+                    <span className="relative flex h-2 w-2">
+                      <span className="pulse-ring absolute inline-flex h-full w-full rounded-full opacity-75 bg-cyan-400" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
+                    </span>
+                    <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-cyan-300">
+                      Fullstack Engineering · SwasTek
+                    </span>
+                  </div>
+                </motion.div>
+
+                <motion.h1
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+                  className="text-white font-extrabold mb-6 leading-[1.08] tracking-tight"
+                  style={{
+                    fontFamily: 'Sora, sans-serif',
+                    fontSize: 'clamp(2.3rem, 4.2vw, 4rem)',
+                  }}
+                >
+                  Websites that do more than<br />
+                  <span style={{ background: 'linear-gradient(135deg, #2570E8 0%, #0BC4E3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                    look beautiful.
+                  </span>
+                </motion.h1>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="text-base sm:text-lg leading-relaxed text-slate-300 mb-8 max-w-xl"
+                >
+                  Ultra-fast, responsive, and secure fullstack web platforms engineered around your brand identity, business workflows, and aggressive revenue targets.
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="flex flex-wrap items-center gap-4"
+                >
+                  <Link to="/contact" data-cta className="btn-primary">
+                    Build My Web Platform <ArrowUpRight size={15} />
+                  </Link>
+                  <Link to="/work" className="btn-secondary">
+                    View Live Production Work
+                  </Link>
+                </motion.div>
+
+                {/* Trust Metrics */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.45 }}
+                  className="grid grid-cols-3 gap-4 pt-8 mt-8 border-t border-white/10"
+                >
+                  <div>
+                    <p className="text-xl sm:text-2xl font-bold text-white font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>99/100</p>
+                    <p className="text-xs text-slate-400">Google Lighthouse Score</p>
+                  </div>
+                  <div>
+                    <p className="text-xl sm:text-2xl font-bold text-cyan-400 font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>&lt; 0.6s</p>
+                    <p className="text-xs text-slate-400">First Contentful Paint</p>
+                  </div>
+                  <div>
+                    <p className="text-xl sm:text-2xl font-bold text-emerald-400 font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>100%</p>
+                    <p className="text-xs text-slate-400">Responsive Across Devices</p>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Right Column: Interactive Browser & Edge Metrics Console */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative"
+              >
+                <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-blue-600/30 to-cyan-500/20 blur-xl opacity-70 pointer-events-none" />
+
+                <div
+                  className="relative rounded-2xl overflow-hidden shadow-2xl border"
+                  style={{
+                    background: 'linear-gradient(180deg, #07111F 0%, #03080F 100%)',
+                    borderColor: 'rgba(21,136,255,0.25)',
+                    boxShadow: '0 25px 60px -15px rgba(0,0,0,0.8), 0 0 40px rgba(21,88,212,0.15)',
+                  }}
+                >
+                  {/* Browser Chrome Bar */}
+                  <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-[#040C1A]">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                    <div className="flex-1 mx-3">
+                      <div className="bg-white/5 border border-white/10 rounded-md px-3 py-1 text-xs flex items-center justify-between text-slate-300 font-mono">
+                        <span className="flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                          https://swastek.solutions/platform
+                        </span>
+                        <span className="text-[10px] text-cyan-400">SSL 256-bit</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Browser Body / Performance Radar */}
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                      <div>
+                        <p className="text-xs text-slate-400">Architecture Performance</p>
+                        <p className="text-sm font-bold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
+                          Edge-Optimized Fullstack Web App
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold">
+                        <Gauge size={13} /> 99 Grade
+                      </div>
+                    </div>
+
+                    {/* Metric Bars */}
+                    <div className="grid grid-cols-3 gap-2 text-center">
+                      <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10">
+                        <p className="text-[10px] text-slate-400 mb-0.5">Performance</p>
+                        <p className="text-base font-extrabold text-emerald-400">99</p>
+                        <span className="text-[9px] text-slate-400">Core Web Vitals</span>
+                      </div>
+                      <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10">
+                        <p className="text-[10px] text-slate-400 mb-0.5">Accessibility</p>
+                        <p className="text-base font-extrabold text-cyan-400">100</p>
+                        <span className="text-[9px] text-slate-400">WCAG Compliant</span>
+                      </div>
+                      <div className="p-3 rounded-xl bg-white/[0.03] border border-white/10">
+                        <p className="text-[10px] text-slate-400 mb-0.5">Best Practices</p>
+                        <p className="text-base font-extrabold text-blue-400">100</p>
+                        <span className="text-[9px] text-slate-400">Security Ready</span>
+                      </div>
+                    </div>
+
+                    {/* Edge deployment node preview */}
+                    <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-slate-300 font-medium">Server Response Time (TTFB)</span>
+                        <span className="text-emerald-400 font-mono font-bold">42ms</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-blue-500 to-emerald-400 rounded-full w-[94%]" />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2 text-xs">
+                      <div className="p-2.5 rounded-lg bg-white/[0.02] border border-white/5 flex items-center gap-2">
+                        <ShieldCheck size={14} className="text-cyan-400" />
+                        <span className="text-slate-300 text-[11px]">CSRF & XSS Hardened</span>
+                      </div>
+                      <div className="p-2.5 rounded-lg bg-white/[0.02] border border-white/5 flex items-center gap-2">
+                        <Zap size={14} className="text-emerald-400" />
+                        <span className="text-slate-300 text-[11px]">Global CDN Caching</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Window Bottom */}
+                  <div className="flex items-center justify-between px-4 py-2 bg-[#02060E] border-t border-white/10 text-[11px] text-slate-400">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      React / Next.js / Tailwind Stack
+                    </span>
+                    <span>100% Responsive</span>
+                  </div>
+                </div>
+              </motion.div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════
+            SOLUTIONS SECTION
+        ═══════════════════════════════════════════════════════ */}
+        <section className="py-24 sm:py-28 relative border-t border-white/10 bg-[#030914]">
+          <div className="container-wide">
             <FadeUp>
-              <p className="section-label">Website Development</p>
-              <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
-                Websites that do more than look good.
-              </h1>
-              <p className="text-lg leading-relaxed mb-8" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                Fast, responsive and thoughtfully designed websites built around your brand, audience and business goals.
-              </p>
-              <Link to="/contact" data-cta className="btn-primary">
-                Build My Website <ArrowUpRight size={14} />
-              </Link>
+              <div className="max-w-2xl mb-14">
+                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-cyan-400 mb-3">
+                  Web Architecture
+                </p>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
+                  Every layer of your web platform.
+                </h2>
+                <p className="text-base text-slate-300 leading-relaxed">
+                  From high-converting corporate portals to dynamic web apps with complex backends, we build production software that scales.
+                </p>
+              </div>
             </FadeUp>
-            <FadeUp delay={0.15}>
-              <BrowserMockup>
-                <div className="p-6" style={{ background: '#ffffff', minHeight: '300px' }}>
-                  {/* Nav */}
-                  <div className="flex items-center justify-between mb-8 pb-4 border-b" style={{ borderColor: '#E4EDF7' }}>
-                    <div className="font-bold text-sm" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>ClientCo</div>
-                    <div className="flex gap-6">
-                      {['About', 'Services', 'Work', 'Contact'].map(n => (
-                        <span key={n} className="text-xs" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{n}</span>
-                      ))}
-                    </div>
-                  </div>
-                  {/* Hero */}
-                  <div className="text-center py-8">
-                    <div className="text-2xl font-bold mb-3" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
-                      The simplest way to <span style={{ color: '#1860D4' }}>grow.</span>
-                    </div>
-                    <p className="text-xs mb-5 max-w-xs mx-auto" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                      A clear, focused website for a growing business.
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {webSolutions.map((item, i) => (
+                <FadeUp key={item.title} delay={i * 0.07}>
+                  <div
+                    className="p-7 rounded-2xl transition-all duration-300 hover:-translate-y-1 group"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(7, 17, 31, 0.7) 0%, rgba(10, 25, 48, 0.4) 100%)',
+                      border: '1px solid rgba(255, 255, 255, 0.08)',
+                    }}
+                  >
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-400 px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/20 inline-block mb-4">
+                      {item.tag}
+                    </span>
+                    <h3 className="text-lg font-bold text-white mb-2.5 font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-slate-300 leading-relaxed">
+                      {item.desc}
                     </p>
-                    <div className="flex justify-center gap-3">
-                      <div className="px-4 py-2 rounded-full text-xs font-semibold text-white" style={{ background: '#1860D4', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Get Started</div>
-                      <div className="px-4 py-2 rounded-full text-xs font-semibold border" style={{ borderColor: '#E4EDF7', color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Learn more</div>
-                    </div>
                   </div>
-                </div>
-              </BrowserMockup>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════
+            CTA SECTION
+        ═══════════════════════════════════════════════════════ */}
+        <section className="py-20 relative border-t border-white/10 bg-gradient-to-b from-[#030914] to-[#02050B]">
+          <div className="container-tight text-center relative z-10">
+            <FadeUp>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5" style={{ fontFamily: 'Sora, sans-serif' }}>
+                Ready to build an exceptional web platform?
+              </h2>
+              <p className="text-base sm:text-lg text-slate-300 mb-8 max-w-xl mx-auto leading-relaxed">
+                Tell us about your business goals, target audience, and feature roadmap. We'll architect and build a web platform that outpaces your market.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <Link to="/contact" data-cta className="btn-primary">
+                  Build My Web Platform <ArrowRight size={15} />
+                </Link>
+                <Link to="/services" className="btn-secondary">
+                  Explore All Capabilities
+                </Link>
+              </div>
             </FadeUp>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Website types */}
-      <section className="page-section" style={{ background: '#EFF4FA' }}>
-        <div className="container-wide">
-          <FadeUp>
-            <p className="section-label">Website types</p>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-12" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
-              We build every type of business website.
-            </h2>
-          </FadeUp>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {websiteTypes.map((t, i) => (
-              <FadeUp key={t.name} delay={i * 0.07}>
-                <div className="p-6 bg-white rounded-xl border" style={{ borderColor: '#E4EDF7' }}>
-                  <h3 className="font-heading font-bold text-base mb-2" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>{t.name}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{t.desc}</p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Design process */}
-      <section className="page-section bg-white">
-        <div className="container-wide">
-          <FadeUp>
-            <p className="section-label">Our process</p>
-            <h2 className="font-heading text-3xl md:text-4xl font-bold mb-12" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
-              From brand to live website.
-            </h2>
-          </FadeUp>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { step: '01', title: 'UX Research', desc: 'We understand your users and what actions they need to take on your website.' },
-              { step: '02', title: 'UI Design', desc: 'Clean, on-brand interface design that communicates trust and clarity.' },
-              { step: '03', title: 'Development', desc: 'Built with modern frameworks for speed, maintainability and scalability.' },
-              { step: '04', title: 'Performance', desc: 'Optimised for fast load times, Core Web Vitals and mobile devices.' },
-              { step: '05', title: 'SEO Readiness', desc: 'Semantic markup, meta data and technical SEO foundations from day one.' },
-              { step: '06', title: 'Responsive Design', desc: 'Works perfectly across all screen sizes â€” from 320px to widescreen.' },
-            ].map((item, i) => (
-              <FadeUp key={item.step} delay={i * 0.07}>
-                <div className="border-l-2 pl-5 py-2" style={{ borderColor: '#1860D4' }}>
-                  <p className="text-xs font-semibold mb-1" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.step}</p>
-                  <h3 className="font-heading font-bold text-base mb-1.5" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>{item.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.desc}</p>
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="page-section-sm" style={{ background: 'linear-gradient(135deg, #060E1C 0%, #0B1A2E 100%)' }}>
-        <div className="container-tight text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
-            Ready to build your website?
-          </h2>
-          <p className="text-base sm:text-lg mb-8 text-slate-200" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-            Tell us about your business, your audience and your goals. We'll design and build a website that works.
-          </p>
-          <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">
-            Build My Website <ArrowUpRight size={14} />
-          </Link>
-        </div>
-      </section>
+      </div>
     </PageTransition>
   )
 }
-

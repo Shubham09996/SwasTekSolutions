@@ -1,6 +1,17 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import {
+  ArrowUpRight,
+  Code2,
+  Database,
+  Layers,
+  ShieldCheck,
+  Server,
+  Zap,
+  Cpu,
+  ArrowRight
+} from 'lucide-react'
 import PageTransition from '../../components/PageTransition'
 
 function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -8,177 +19,389 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.55, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
   )
 }
 
-const sections = [
+const enterpriseCapabilities = [
   {
-    title: 'Software that fits the way you work.',
-    desc: 'Off-the-shelf software makes assumptions about how businesses operate. Custom software is built around the specific way your business actually runs.',
-    visual: 'dashboard',
+    icon: Code2,
+    title: 'Custom Business Logic & Workflows',
+    desc: 'Proprietary calculation engines, multi-tiered approvals, and tailored automation that perfectly match how your operations team functions.',
   },
   {
-    title: 'Internal tools your team will actually use.',
-    desc: 'Generic software gets avoided or worked around. Software built for your team gets adopted â€” because it matches how they think about their work.',
-    visual: 'users',
+    icon: Layers,
+    title: 'Internal Operations & ERP Systems',
+    desc: 'Centralized platforms unifying inventory, client orders, field operations, employee dispatch, and financial reconciliation in real time.',
   },
   {
-    title: 'Operations you can see and control.',
-    desc: 'Reports, dashboards and controls that give you real visibility into your business operations â€” not just raw data tables.',
-    visual: 'reports',
+    icon: ShieldCheck,
+    title: 'Granular Role-Based User Access (RBAC)',
+    desc: 'Strict permission hierarchies, tenant isolation, and detailed activity audit logs ensuring data governance and full regulatory compliance.',
   },
-]
-
-function DashboardPreview() {
-  return (
-    <div className="rounded-xl overflow-hidden border shadow-xl" style={{ background: '#0F1923', borderColor: 'rgba(255,255,255,0.08)' }}>
-      <div className="flex items-center gap-2 px-4 py-3 border-b" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
-        <span className="w-2 h-2 rounded-full bg-red-500/60"></span>
-        <span className="w-2 h-2 rounded-full bg-yellow-500/60"></span>
-        <span className="w-2 h-2 rounded-full bg-green-500/60"></span>
-        <span className="ml-2 text-xs" style={{ color: '#6B7A8D', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Operations Platform</span>
-      </div>
-      <div className="flex h-64">
-        <div className="w-36 border-r p-3" style={{ background: '#0A1118', borderColor: 'rgba(255,255,255,0.06)' }}>
-          {['Dashboard', 'Operations', 'Team', 'Reports', 'Settings'].map((item, i) => (
-            <div key={item} className="flex items-center gap-2 px-2.5 py-2 rounded-md mb-0.5 text-xs" style={{ background: i === 0 ? '#1860D4' : 'transparent', color: i === 0 ? '#fff' : '#4B5A6B', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: i === 0 ? '#fff' : '#3A4A5C' }}></span>
-              {item}
-            </div>
-          ))}
-        </div>
-        <div className="flex-1 p-4">
-          <p className="text-xs font-bold text-white mb-3" style={{ fontFamily: 'Sora' }}>Dashboard</p>
-          <div className="grid grid-cols-3 gap-2 mb-3">
-            {[{ l: 'Tasks today', v: '14' }, { l: 'Pending', v: '8' }, { l: 'Done', v: '32' }].map((s) => (
-              <div key={s.l} className="p-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <p className="text-[10px] mb-1" style={{ color: '#6B7A8D', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{s.l}</p>
-                <p className="text-sm font-bold text-white" style={{ fontFamily: 'Sora' }}>{s.v}</p>
-              </div>
-            ))}
-          </div>
-          <div className="rounded-lg p-3" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}>
-            <div className="flex items-end gap-0.5 h-8">
-              {[40, 60, 45, 70, 55, 80, 75].map((h, i) => (
-                <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: i === 6 ? '#1860D4' : 'rgba(22,141,255,0.2)' }} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-const capabilities = [
-  'Custom business logic and workflows',
-  'Internal operations tools',
-  'Role-based user access',
-  'Reporting and analytics',
-  'Third-party API integrations',
-  'Automated notifications',
-  'Document management',
-  'Audit trails and compliance logging',
+  {
+    icon: Database,
+    title: 'PostgreSQL & Real-Time Data Pipelines',
+    desc: 'Scalable relational database architecture, automated backups, encrypted storage, and microsecond query indexing for mission-critical reliability.',
+  },
+  {
+    icon: Zap,
+    title: 'Bi-Directional Third-Party API Integration',
+    desc: 'Seamless real-time synchronization with banking APIs, payment gateways (Stripe/Razorpay), accounting tools, ERPs, and custom webhooks.',
+  },
+  {
+    icon: Server,
+    title: 'High-Availability Dedicated Cloud Hosting',
+    desc: 'Containerized Docker/Kubernetes deployment on dedicated private AWS or GCP infrastructure with 99.99% uptime and zero vendor lock-in.',
+  },
 ]
 
 export default function CustomSoftware() {
-  return (
-    <PageTransition title="Custom Software Development | SwasTek Solutions" description="Purpose-built business software, internal tools and operations platforms designed around how your business actually works.">
-      {/* Hero */}
-      <section className="pt-32 pb-20 bg-white border-b" style={{ borderColor: '#E4EDF7' }}>
-        <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <FadeUp>
-              <p className="section-label">Custom Software Development</p>
-              <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
-                Software that fits the way you work.
-              </h1>
-              <p className="text-lg leading-relaxed mb-8" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                Internal tools, operations platforms and workflow systems built around how your team actually works â€” not around off-the-shelf assumptions.
-              </p>
-              <Link to="/contact" data-cta className="btn-primary">
-                Build Custom Software <ArrowUpRight size={14} />
-              </Link>
-            </FadeUp>
-            <FadeUp delay={0.15}>
-              <DashboardPreview />
-            </FadeUp>
-          </div>
-        </div>
-      </section>
+  const [activeConsoleTab, setActiveConsoleTab] = useState<'architecture' | 'schema' | 'api'>('architecture')
 
-      {/* Sticky scroll sections */}
-      <section className="page-section bg-white">
-        <div className="container-wide">
-          <div className="space-y-24">
-            {sections.map((s, i) => (
-              <FadeUp key={s.title} delay={0.1}>
-                <div className={`grid lg:grid-cols-2 gap-16 items-center ${i % 2 !== 0 ? 'lg:[&>*:first-child]:order-last' : ''}`}>
-                  <div>
-                    <h2 className="font-heading text-3xl md:text-4xl font-bold mb-5" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
-                      {s.title}
-                    </h2>
-                    <p className="text-base leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                      {s.desc}
-                    </p>
+  return (
+    <PageTransition
+      title="Custom Software Development | SwasTek Solutions"
+      description="Bespoke enterprise software, internal operations platforms, and custom business tools engineered around how you actually work."
+    >
+      <div className="min-h-screen text-slate-100 overflow-hidden" style={{ background: 'var(--void)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+
+        {/* ═══════════════════════════════════════════════════════
+            HERO SECTION — ULTRA-PREMIUM DARK
+        ═══════════════════════════════════════════════════════ */}
+        <section className="relative pt-36 pb-20 md:pt-40 md:pb-28 overflow-hidden grain-overlay">
+          {/* Ambient Glows & Grid */}
+          <div className="absolute inset-0 hero-grid opacity-100 pointer-events-none" />
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div
+              className="orb-1 absolute"
+              style={{
+                width: 750,
+                height: 750,
+                borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(21,88,212,0.22) 0%, transparent 68%)',
+                top: '-15%',
+                left: '-10%',
+                filter: 'blur(90px)',
+              }}
+            />
+            <div
+              className="orb-2 absolute"
+              style={{
+                width: 600,
+                height: 600,
+                borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(11,196,227,0.16) 0%, transparent 70%)',
+                bottom: '-5%',
+                right: '5%',
+                filter: 'blur(100px)',
+              }}
+            />
+          </div>
+          <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.7) 30%, rgba(11,196,227,0.7) 70%, transparent 100%)' }} />
+
+          <div className="container-wide relative z-10">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              
+              {/* Left Column: Headline & Value Prop */}
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="flex items-center gap-2 mb-6"
+                >
+                  <div
+                    className="flex items-center gap-2 px-3.5 py-1.5 rounded-full"
+                    style={{ background: 'rgba(21,88,212,0.14)', border: '1px solid rgba(21,88,212,0.25)' }}
+                  >
+                    <span className="relative flex h-2 w-2">
+                      <span className="pulse-ring absolute inline-flex h-full w-full rounded-full opacity-75 bg-blue-400" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500" />
+                    </span>
+                    <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-cyan-300">
+                      Bespoke Enterprise Engineering · SwasTek
+                    </span>
                   </div>
-                  <div className="rounded-xl h-48" style={{ background: 'linear-gradient(135deg, #EBF4FF, #EFF4FA)', border: '1px solid #E4EDF7', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <p className="text-sm font-semibold" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>[ {s.visual} preview ]</p>
+                </motion.div>
+
+                <motion.h1
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
+                  className="text-white font-extrabold mb-6 leading-[1.08] tracking-tight"
+                  style={{
+                    fontFamily: 'Sora, sans-serif',
+                    fontSize: 'clamp(2.3rem, 4.2vw, 4rem)',
+                  }}
+                >
+                  Software that fits the way<br />
+                  <span style={{ background: 'linear-gradient(135deg, #2570E8 0%, #0BC4E3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                    your business works.
+                  </span>
+                </motion.h1>
+
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="text-base sm:text-lg leading-relaxed text-slate-300 mb-8 max-w-xl"
+                >
+                  Off-the-shelf software forces your operations to conform to generic templates. We architect bespoke internal systems, workflow platforms, and operational dashboards engineered around your actual team.
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="flex flex-wrap items-center gap-4"
+                >
+                  <Link to="/contact" data-cta className="btn-primary">
+                    Build Custom Software <ArrowUpRight size={15} />
+                  </Link>
+                  <Link to="/work" className="btn-secondary">
+                    View Architecture Case Studies
+                  </Link>
+                </motion.div>
+
+                {/* Trust Metrics */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.45 }}
+                  className="grid grid-cols-3 gap-4 pt-8 mt-8 border-t border-white/10"
+                >
+                  <div>
+                    <p className="text-xl sm:text-2xl font-bold text-white font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>100%</p>
+                    <p className="text-xs text-slate-400">Proprietary IP Handover</p>
+                  </div>
+                  <div>
+                    <p className="text-xl sm:text-2xl font-bold text-cyan-400 font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>0</p>
+                    <p className="text-xs text-slate-400">Per-Seat License Fees</p>
+                  </div>
+                  <div>
+                    <p className="text-xl sm:text-2xl font-bold text-emerald-400 font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>99.99%</p>
+                    <p className="text-xs text-slate-400">Cloud SLA Uptime</p>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Right Column: Live Enterprise Software Architecture Console */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative"
+              >
+                <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-blue-600/30 to-cyan-500/20 blur-xl opacity-70 pointer-events-none" />
+
+                <div
+                  className="relative rounded-2xl overflow-hidden shadow-2xl border"
+                  style={{
+                    background: 'linear-gradient(180deg, #07111F 0%, #03080F 100%)',
+                    borderColor: 'rgba(21,136,255,0.25)',
+                    boxShadow: '0 25px 60px -15px rgba(0,0,0,0.8), 0 0 40px rgba(21,88,212,0.15)',
+                  }}
+                >
+                  {/* Chrome Header */}
+                  <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-[#040C1A]">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
+                      <span className="ml-2 text-xs font-semibold text-slate-300 tracking-wide" style={{ fontFamily: 'Sora, sans-serif' }}>
+                        Enterprise System Kernel · v4.1
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-1 bg-white/5 rounded-lg p-0.5 border border-white/10 text-xs">
+                      {(['architecture', 'schema', 'api'] as const).map((tab) => (
+                        <button
+                          key={tab}
+                          onClick={() => setActiveConsoleTab(tab)}
+                          className={`px-2.5 py-1 rounded-md capitalize font-semibold transition-colors ${
+                            activeConsoleTab === tab ? 'bg-cyan-500/20 text-cyan-300' : 'text-slate-400 hover:text-white'
+                          }`}
+                        >
+                          {tab}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Console Body */}
+                  <div className="p-6 min-h-[350px]">
+                    {activeConsoleTab === 'architecture' && (
+                      <div className="space-y-3">
+                        <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center border border-blue-500/20">
+                              <Cpu size={16} />
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold text-white font-heading">Core Business Logic Layer</p>
+                              <p className="text-[10px] text-slate-400">Node / TypeScript Enterprise Microservice</p>
+                            </div>
+                          </div>
+                          <span className="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                            Active · 4ms
+                          </span>
+                        </div>
+
+                        <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center border border-cyan-500/20">
+                              <Database size={16} />
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold text-white font-heading">PostgreSQL Enterprise Cluster</p>
+                              <p className="text-[10px] text-slate-400">Encrypted at rest · Automated hourly snapshots</p>
+                            </div>
+                          </div>
+                          <span className="text-[10px] text-cyan-400 font-bold bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">
+                            Replica Synced
+                          </span>
+                        </div>
+
+                        <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center border border-indigo-500/20">
+                              <ShieldCheck size={16} />
+                            </div>
+                            <div>
+                              <p className="text-xs font-bold text-white font-heading">Zero-Trust Role Access (RBAC)</p>
+                              <p className="text-[10px] text-slate-400">JWT Authentication · MFA · Tenant Isolation</p>
+                            </div>
+                          </div>
+                          <span className="text-[10px] text-indigo-300 font-bold bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
+                            Enforced
+                          </span>
+                        </div>
+                      </div>
+                    )}
+
+                    {activeConsoleTab === 'schema' && (
+                      <div className="bg-[#020710] p-4 rounded-xl border border-white/10 font-mono text-[11px] text-slate-300 leading-relaxed overflow-x-auto">
+                        <p className="text-cyan-400">// PostgreSQL Domain Model</p>
+                        <p className="text-slate-400">CREATE TABLE operational_workflows &#123;</p>
+                        <p className="pl-4 text-emerald-300">id UUID PRIMARY KEY DEFAULT gen_random_uuid(),</p>
+                        <p className="pl-4 text-blue-300">tenant_id VARCHAR(64) NOT NULL INDEX,</p>
+                        <p className="pl-4 text-indigo-300">pipeline_stage VARCHAR(32) NOT NULL,</p>
+                        <p className="pl-4 text-slate-300">metadata JSONB NOT NULL DEFAULT '&#123;&#125;',</p>
+                        <p className="pl-4 text-amber-300">sla_threshold_hours INT DEFAULT 24,</p>
+                        <p className="pl-4 text-cyan-300">created_at TIMESTAMPTZ DEFAULT NOW()</p>
+                        <p className="text-slate-400">&#125;;</p>
+                      </div>
+                    )}
+
+                    {activeConsoleTab === 'api' && (
+                      <div className="bg-[#020710] p-4 rounded-xl border border-white/10 font-mono text-[11px] text-slate-300 leading-relaxed">
+                        <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/10">
+                          <span className="text-emerald-400 font-bold">POST /api/v2/dispatch-job</span>
+                          <span className="text-[10px] text-slate-400">200 OK · 18ms</span>
+                        </div>
+                        <p className="text-slate-400">&#123;</p>
+                        <p className="pl-4 text-cyan-300">"status": "dispatched",</p>
+                        <p className="pl-4 text-cyan-300">"job_id": "job_9482_enterprise",</p>
+                        <p className="pl-4 text-cyan-300">"webhook_triggers": ["slack", "email", "database_log"],</p>
+                        <p className="pl-4 text-emerald-400">"sla_guarantee": "active_monitoring"</p>
+                        <p className="text-slate-400">&#125;</p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Window Bottom Bar */}
+                  <div className="flex items-center justify-between px-4 py-2.5 bg-[#02060E] border-t border-white/10 text-[11px] text-slate-400">
+                    <span className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      100% Client-Owned Source Code
+                    </span>
+                    <span>Zero Vendor Lock-in</span>
                   </div>
                 </div>
-              </FadeUp>
-            ))}
-          </div>
-        </div>
-      </section>
+              </motion.div>
 
-      {/* Capabilities */}
-      <section className="page-section" style={{ background: '#EFF4FA' }}>
-        <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <FadeUp>
-              <p className="section-label">Capabilities</p>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
-                Built to handle the complexity of real business.
-              </h2>
-              <p className="text-base leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                Real businesses have edge cases, compliance requirements, integrations and internal logic that generic software never accounts for. We build software that handles them all.
-              </p>
-            </FadeUp>
-            <div className="grid grid-cols-2 gap-3">
-              {capabilities.map((c, i) => (
-                <FadeUp key={c} delay={i * 0.06}>
-                  <div className="flex items-start gap-2.5 p-4 bg-white rounded-xl border" style={{ borderColor: '#E4EDF7' }}>
-                    <span className="w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0" style={{ background: '#1860D4' }} />
-                    <span className="text-sm" style={{ color: '#0B1A2E', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{c}</span>
-                  </div>
-                </FadeUp>
-              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA */}
-      <section className="page-section-sm" style={{ background: 'linear-gradient(135deg, #060E1C 0%, #0B1A2E 100%)' }}>
-        <div className="container-tight text-center">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
-            Your business is unique. Your software should be too.
-          </h2>
-          <p className="text-base sm:text-lg mb-8 text-slate-200" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-            Tell us about your operations and what you need to improve. We'll build the software around it.
-          </p>
-          <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">
-            Start the Conversation <ArrowUpRight size={14} />
-          </Link>
-        </div>
-      </section>
+        {/* ═══════════════════════════════════════════════════════
+            CAPABILITIES SECTION
+        ═══════════════════════════════════════════════════════ */}
+        <section className="py-24 sm:py-28 relative border-t border-white/10 bg-[#030914]">
+          <div className="container-wide">
+            <FadeUp>
+              <div className="max-w-2xl mb-14">
+                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-cyan-400 mb-3">
+                  System Architecture
+                </p>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
+                  Built for the complexity of real business.
+                </h2>
+                <p className="text-base text-slate-300 leading-relaxed">
+                  Real operations have edge cases, compliance mandates, external APIs, and internal logic that off-the-shelf software ignores. We engineer platforms that master every requirement.
+                </p>
+              </div>
+            </FadeUp>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {enterpriseCapabilities.map((item, i) => {
+                const Icon = item.icon
+                return (
+                  <FadeUp key={item.title} delay={i * 0.07}>
+                    <div
+                      className="p-7 rounded-2xl transition-all duration-300 hover:-translate-y-1 group"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(7, 17, 31, 0.7) 0%, rgba(10, 25, 48, 0.4) 100%)',
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                      }}
+                    >
+                      <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-110 transition-transform">
+                        <Icon size={22} />
+                      </div>
+                      <h3 className="text-lg font-bold text-white mb-2.5 font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-slate-300 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </FadeUp>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════
+            CTA SECTION
+        ═══════════════════════════════════════════════════════ */}
+        <section className="py-20 relative border-t border-white/10 bg-gradient-to-b from-[#030914] to-[#02050B]">
+          <div className="container-tight text-center relative z-10">
+            <FadeUp>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5" style={{ fontFamily: 'Sora, sans-serif' }}>
+                Stop working around software compromises.
+              </h2>
+              <p className="text-base sm:text-lg text-slate-300 mb-8 max-w-xl mx-auto leading-relaxed">
+                Tell us about your team's workflow and bottlenecks. We will engineer a custom operational platform that scales your business cleanly.
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <Link to="/contact" data-cta className="btn-primary">
+                  Engineer Custom Software <ArrowRight size={15} />
+                </Link>
+                <Link to="/services" className="btn-secondary">
+                  Explore All Services
+                </Link>
+              </div>
+            </FadeUp>
+          </div>
+        </section>
+
+      </div>
     </PageTransition>
   )
 }
-
