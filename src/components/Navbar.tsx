@@ -226,9 +226,17 @@ export default function Navbar() {
                 >
                   <NavLink
                     to={link.href}
+                    end={link.href === "/services"}
+                    onClick={() => {
+                      if (link.hasMega) {
+                        setMegaOpen(megaOpen === link.hasMega ? null : link.hasMega)
+                      } else {
+                        setMegaOpen(null)
+                      }
+                    }}
                     className={({ isActive }) =>
                       `relative flex items-center gap-1.5 px-3.5 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 ${
-                        isActive
+                        isActive && (!link.hasMega || megaOpen === link.hasMega)
                           ? "text-cyan-300"
                           : "text-slate-300 hover:text-white"
                       }`
@@ -243,7 +251,7 @@ export default function Navbar() {
                             className={`transition-transform duration-200 ${megaOpen === link.hasMega ? "rotate-180 text-cyan-400" : "text-slate-400"}`}
                           />
                         )}
-                        {isActive && (
+                        {isActive && (!link.hasMega || megaOpen === link.hasMega) && (
                           <motion.span
                             layoutId="nav-pill"
                             className="absolute inset-0 rounded-xl -z-10"
@@ -251,7 +259,7 @@ export default function Navbar() {
                             transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                           />
                         )}
-                        {isActive && (
+                        {isActive && (!link.hasMega || megaOpen === link.hasMega) && (
                           <motion.span
                             layoutId="nav-dot"
                             className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-cyan-400 shadow-[0_0_6px_rgba(56,189,248,0.8)]"
@@ -298,77 +306,91 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Next-Level Dark Glass Mega Menu Dropdown */}
+        {/* Next-Level Dark Opaque Mega Menu Dropdown */}
         <AnimatePresence>
           {megaOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -6, scale: 0.99 }}
-              animate={{ opacity: 1,  y: 0,  scale: 1 }}
-              exit={{ opacity: 0, y: -6,  scale: 0.99 }}
-              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                transformOrigin: "top",
-                borderColor: "rgba(11, 196, 227, 0.25)",
-                boxShadow: "0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(11, 196, 227, 0.1)",
-              }}
-              className="absolute left-0 right-0 bg-[#040C1A]/96 backdrop-blur-3xl border-b shadow-2xl"
-              onMouseEnter={keepMega}
-              onMouseLeave={closeMega}
-            >
-              <div className="container-wide max-w-5xl mx-auto py-7 px-4 sm:px-6">
-                <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-white/10">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                    <span className="text-xs font-bold tracking-[0.16em] uppercase text-cyan-300" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
-                      {megaOpen === "services" ? "Full-Cycle Services" : "Custom Industry Solutions"}
+            <>
+              {/* Dark backdrop overlay to dim page content and prevent text clash */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 top-[68px] lg:top-[72px] bg-black/70 backdrop-blur-sm z-40"
+                onClick={() => setMegaOpen(null)}
+              />
+
+              <motion.div
+                initial={{ opacity: 0, y: -6, scale: 0.99 }}
+                animate={{ opacity: 1,  y: 0,  scale: 1 }}
+                exit={{ opacity: 0, y: -6,  scale: 0.99 }}
+                transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                style={{
+                  transformOrigin: "top",
+                  background: "#040C1A",
+                  borderColor: "rgba(11, 196, 227, 0.25)",
+                  boxShadow: "0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 40px rgba(11, 196, 227, 0.15)",
+                }}
+                className="absolute top-full left-0 right-0 border-b shadow-2xl z-50"
+                onMouseEnter={keepMega}
+                onMouseLeave={closeMega}
+              >
+                <div className="container-wide max-w-5xl mx-auto py-7 px-4 sm:px-6">
+                  <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-white/10">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                      <span className="text-xs font-bold tracking-[0.16em] uppercase text-cyan-300" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                        {megaOpen === "services" ? "Full-Cycle Services" : "Custom Industry Solutions"}
+                      </span>
+                    </div>
+                    <span className="text-xs text-slate-400 font-medium" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                      {megaOpen === "services" ? "8 Core Engineering Divisions" : "6 Purpose-Built Architectures"}
                     </span>
                   </div>
-                  <span className="text-xs text-slate-400 font-medium" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
-                    {megaOpen === "services" ? "8 Core Engineering Divisions" : "6 Purpose-Built Architectures"}
-                  </span>
-                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {(megaOpen === "services" ? servicesData : solutionsData).map((item) => {
-                    const Icon = item.icon
-                    return (
-                      <Link
-                        key={item.href + item.label}
-                        to={item.href}
-                        className="group flex items-start gap-3.5 p-3.5 rounded-2xl transition-all duration-200 hover:bg-white/5 border border-white/5 hover:border-cyan-400/30 hover:shadow-lg hover:shadow-cyan-500/10"
-                      >
-                        {/* Icon Container with hover effect */}
-                        <div
-                          className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-110 group-hover:rotate-2 shadow-xs"
-                          style={{ background: item.bgSoft, color: item.color }}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {(megaOpen === "services" ? servicesData : solutionsData).map((item) => {
+                      const Icon = item.icon
+                      return (
+                        <Link
+                          key={item.href + item.label}
+                          to={item.href}
+                          onClick={() => setMegaOpen(null)}
+                          className="group flex items-start gap-3.5 p-3.5 rounded-2xl transition-all duration-200 bg-white/[0.02] hover:bg-white/[0.07] border border-white/5 hover:border-cyan-400/40 hover:shadow-lg hover:shadow-cyan-500/10"
                         >
-                          <Icon size={18} />
-                        </div>
-
-                        {/* Content */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between gap-1 mb-0.5">
-                            <p
-                              className="font-bold text-sm text-white group-hover:text-cyan-300 transition-colors duration-200 truncate"
-                              style={{ fontFamily: "Sora, sans-serif" }}
-                            >
-                              {item.label}
-                            </p>
-                            <ArrowUpRight
-                              size={13}
-                              className="opacity-0 group-hover:opacity-100 text-cyan-400 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0"
-                            />
+                          {/* Icon Container with hover effect */}
+                          <div
+                            className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-110 group-hover:rotate-2 shadow-xs"
+                            style={{ background: item.bgSoft, color: item.color }}
+                          >
+                            <Icon size={18} />
                           </div>
-                          <p className="text-xs text-slate-300 leading-snug line-clamp-2" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
-                            {item.desc}
-                          </p>
-                        </div>
-                      </Link>
-                    )
-                  })}
+
+                          {/* Content */}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between gap-1 mb-0.5">
+                              <p
+                                className="font-bold text-sm text-white group-hover:text-cyan-300 transition-colors duration-200 truncate"
+                                style={{ fontFamily: "Sora, sans-serif" }}
+                              >
+                                {item.label}
+                              </p>
+                              <ArrowUpRight
+                                size={13}
+                                className="opacity-0 group-hover:opacity-100 text-cyan-400 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0"
+                              />
+                            </div>
+                            <p className="text-xs text-slate-300 leading-snug line-clamp-2" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                              {item.desc}
+                            </p>
+                          </div>
+                        </Link>
+                      )
+                    })}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </nav>
