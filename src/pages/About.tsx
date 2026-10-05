@@ -1,252 +1,294 @@
-// About page — SwasTek Solutions (ULTRA-PREMIUM REDESIGN)
-import { useRef } from 'react'
+// About page — SwasTek Solutions (MINIMAL & NEXT-LEVEL DESIGN)
 import { Link } from 'react-router-dom'
-import { motion, useInView } from 'framer-motion'
-import { ArrowUpRight, Zap, Shield, Users, Code2, Layers, Brain } from 'lucide-react'
+import { motion } from 'framer-motion'
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Zap,
+  Code2,
+  Layers,
+  Globe,
+  Workflow,
+  Lock,
+  TrendingUp,
+  ShieldCheck,
+} from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 
 function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
   )
 }
 
-const principles = [
+const stats = [
+  { value: '100%', label: 'Bespoke Builds', sublabel: 'Tailored to your workflow' },
+  { value: '3x', label: 'Faster Time-to-Market', sublabel: 'Rapid milestone delivery' },
+  { value: '0%', label: 'Vendor Lock-In', sublabel: '100% Client-owned code & IP' },
+  { value: 'Delhi, IN', label: 'Global Delivery', sublabel: 'US, UK, EU & APAC overlap' },
+]
+
+const pillars = [
   {
     num: '01',
-    icon: Brain,
-    title: 'Understand the business, then the technology.',
-    desc: "The best solution isn't always the most technically impressive one. It's the one that solves the actual business problem clearly and reliably.",
+    icon: TrendingUp,
+    title: 'Business ROI First',
+    desc: 'Every system, interface, and automated pipeline is engineered to eliminate costly manual overhead, accelerate sales cycles, and generate measurable business returns.',
   },
   {
     num: '02',
-    icon: Layers,
-    title: 'Design is problem-solving, not decoration.',
-    desc: 'We design interfaces that make complex operations simple — for the specific people who will use them every day.',
+    icon: Lock,
+    title: '100% Client Ownership',
+    desc: 'Your business permanently owns all custom source code, Figma design assets, databases, and deployment keys. No proprietary lock-in, no recurring licensing fees.',
   },
   {
     num: '03',
-    icon: Shield,
-    title: "Good software doesn't surprise you.",
-    desc: "It does what it's supposed to do, reliably, every time. That's what we build toward.",
+    icon: ShieldCheck,
+    title: 'Direct Senior Engineering',
+    desc: 'Work directly with principal architects and fullstack engineers. Zero account manager delays, weekly live staging builds, and guaranteed < 24h SLA communication.',
+  },
+]
+
+const coreCapabilities = [
+  {
+    icon: Code2,
+    title: 'Custom Software & SaaS Platforms',
+    desc: 'Purpose-built web platforms engineered around your exact operations — eliminating off-the-shelf software compromises and scaling cleanly as your business grows.',
+    tags: ['Fullstack Web Apps', 'PostgreSQL & APIs', 'Multi-Tenant SaaS'],
+  },
+  {
+    icon: Workflow,
+    title: 'CRM & Operational Workflow Automation',
+    desc: 'Replace chaotic spreadsheets with automated lead intake, WhatsApp & email notifications, multi-tier deal pipelines, and real-time executive reporting dashboards.',
+    tags: ['Automated Lead Intake', 'Custom Deal Pipelines', 'WhatsApp & Email Webhooks'],
+  },
+  {
+    icon: Layers,
+    title: 'High-Conversion UI/UX Systems',
+    desc: 'Bespoke digital interfaces and design systems engineered for instant market authority, higher customer conversion velocity, and effortless user adoption.',
+    tags: ['Interactive Figma Systems', 'CRO User Journeys', 'Mobile-First Responsive'],
+  },
+  {
+    icon: Globe,
+    title: 'Cloud Infrastructure & Scaling',
+    desc: 'High-performance cloud architectures, database optimization, and legacy modernization engineered for 99.99% uptime and zero-downtime deployments.',
+    tags: ['AWS / Cloudflare Edge', 'Zero-Downtime Migration', 'API Performance Tuning'],
+  },
+]
+
+const deliverySteps = [
+  {
+    num: '01',
+    title: 'Discovery & Audit',
+    desc: 'We analyze your operational bottlenecks, customer touchpoints, and revenue targets to define a clear technical roadmap.',
+  },
+  {
+    num: '02',
+    title: 'Architecture & UX',
+    desc: 'We engineer clickable Figma prototypes and database schemas before writing code, validating the solution with your team.',
+  },
+  {
+    num: '03',
+    title: 'Sprint Development',
+    desc: 'Bi-weekly development sprints with live staging builds, giving you complete visibility into engineering progress.',
   },
   {
     num: '04',
-    icon: Users,
-    title: 'Long-term partnerships over one-off projects.',
-    desc: 'Your software needs to evolve as your business does. We work best with clients who see us as a long-term technology partner.',
+    title: 'Launch & Evolution',
+    desc: 'Zero-downtime production deployment, complete source code handover, and ongoing dedicated architectural support.',
   },
-]
-
-const capabilities = [
-  {
-    title: 'Design',
-    icon: Layers,
-    items: ['UX Research', 'UI Design', 'Interaction Design', 'Design Systems', 'Prototyping'],
-  },
-  {
-    title: 'Engineering',
-    icon: Code2,
-    items: ['Frontend Development', 'Backend Development', 'API Development', 'Database Architecture', 'Cloud Deployment'],
-  },
-  {
-    title: 'Strategy',
-    icon: Brain,
-    items: ['Technical Planning', 'Product Strategy', 'Architecture Review', 'Integration Planning', 'Digital Transformation'],
-  },
-]
-
-const stats = [
-  { value: '8+', label: 'Service Areas' },
-  { value: '10+', label: 'Industries Served' },
-  { value: '100%', label: 'Custom Builds' },
-  { value: '7-Step', label: 'Proven Process' },
 ]
 
 export default function About() {
-  const statsRef = useRef<HTMLDivElement>(null)
-  const statsInView = useInView(statsRef, { once: true, margin: '-80px' })
-
   return (
     <PageTransition
-      title="About | SwasTek Solutions"
-      description="We're a software development and digital solutions company that understands business problems and builds practical digital solutions."
+      title="About Us | SwasTek Solutions — Business Software & Digital Engineering"
+      description="We design and build bespoke software, CRM platforms, and digital systems around the way your business works. Headquartered in Delhi, India."
     >
-      {/* ═══════════════════════════════════════════════════════
-          DARK HERO
-      ═══════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden grain-overlay" style={{ background: 'var(--void)' }}>
-        {/* Grid */}
-        <div className="absolute inset-0 hero-grid opacity-100" />
-        {/* Orbs */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="orb-1 absolute" style={{ width: 800, height: 800, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,88,212,0.18) 0%, transparent 68%)', top: '-20%', left: '-8%', filter: 'blur(80px)' }} />
-          <div className="orb-2 absolute" style={{ width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(11,196,227,0.12) 0%, transparent 70%)', bottom: '0%', right: '10%', filter: 'blur(100px)' }} />
-        </div>
-        {/* Top accent line */}
-        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.7) 30%, rgba(11,196,227,0.7) 70%, transparent 100%)' }} />
+      <div className="min-h-screen text-slate-100 overflow-hidden" style={{ background: 'var(--void)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+        
+        {/* ═══════════════════════════════════════════════════════
+            HERO SECTION — MINIMAL, CLEAN & EXECUTIVE
+        ═══════════════════════════════════════════════════════ */}
+        <section className="relative pt-36 pb-20 md:pt-40 md:pb-28 overflow-hidden grain-overlay">
+          {/* Ambient Glows & Grid */}
+          <div className="absolute inset-0 hero-grid opacity-100 pointer-events-none" />
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div
+              className="orb-1 absolute"
+              style={{
+                width: 800,
+                height: 800,
+                borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(21,88,212,0.22) 0%, transparent 68%)',
+                top: '-15%',
+                left: '-10%',
+                filter: 'blur(90px)',
+              }}
+            />
+            <div
+              className="orb-2 absolute"
+              style={{
+                width: 600,
+                height: 600,
+                borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(11,196,227,0.14) 0%, transparent 70%)',
+                bottom: '-5%',
+                right: '5%',
+                filter: 'blur(100px)',
+              }}
+            />
+          </div>
+          <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.7) 30%, rgba(11,196,227,0.7) 70%, transparent 100%)' }} />
 
-        <div className="container-wide relative z-10 pt-36 pb-24">
-          <div className="grid lg:grid-cols-[1fr_1fr] gap-16 items-center">
-            {/* Left */}
-            <div>
+          <div className="container-wide relative z-10">
+            <div className="max-w-3xl">
+              {/* Eyebrow Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="flex items-center gap-2 mb-10"
+                transition={{ duration: 0.6 }}
+                className="flex items-center gap-2 mb-6"
               >
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ background: 'rgba(21,88,212,0.12)', border: '1px solid rgba(21,88,212,0.22)' }}>
+                <div
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full"
+                  style={{ background: 'rgba(21,88,212,0.12)', border: '1px solid rgba(21,88,212,0.22)' }}
+                >
                   <span className="relative flex h-2 w-2">
                     <span className="pulse-ring absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: 'var(--blue-600)' }} />
                     <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: 'var(--blue-500)' }} />
                   </span>
-                  <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                    About SwasTek
+                  <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-blue-400">
+                    About SwasTek Solutions · Delhi, India
                   </span>
                 </div>
               </motion.div>
 
-              <div className="overflow-hidden mb-1">
-                <motion.h1
-                  initial={{ y: '105%' }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="leading-none text-white"
-                  style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 4rem)', letterSpacing: '-0.04em' }}
+              {/* Main Headline */}
+              <motion.h1
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="text-white font-extrabold mb-6 leading-[1.08] tracking-tight"
+                style={{
+                  fontFamily: 'Sora, sans-serif',
+                  fontSize: 'clamp(2.5rem, 5vw, 4.4rem)',
+                  letterSpacing: '-0.04em',
+                }}
+              >
+                Digital systems built around{' '}
+                <span
+                  className="shimmer-text"
+                  style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800 }}
                 >
-                  We're here to make
-                </motion.h1>
-              </div>
-              <div className="overflow-hidden mb-8">
-                <motion.h1
-                  initial={{ y: '105%' }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 1, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 4rem)', letterSpacing: '-0.04em', lineHeight: 1.05 }}
-                >
-                  <span style={{ background: 'linear-gradient(135deg, #2570E8 0%, #0BC4E3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                    technology useful.
-                  </span>
-                </motion.h1>
-              </div>
+                  your
+                </span>{' '}
+                business.
+              </motion.h1>
 
+              {/* Subtitle */}
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-                className="text-lg leading-relaxed mb-10 max-w-lg"
-                style={{ color: 'rgba(160,175,194,0.88)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="text-base sm:text-lg text-slate-300 leading-relaxed mb-8 max-w-2xl"
               >
-                SwasTek Solutions is a software development and digital solutions company. We help businesses design, build and improve their digital products and internal systems.
+                Based in <strong>Delhi, India</strong>, SwasTek Solutions designs and builds custom web software, automated CRM platforms, and digital products shaped specifically around how your business operates and grows.
               </motion.p>
 
+              {/* Action Buttons */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.55 }}
-                className="flex flex-wrap gap-3"
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex flex-wrap items-center gap-4"
               >
-                <Link to="/contact" data-cta className="btn-primary text-sm">
-                  <Zap size={14} />
-                  Start a Project
-                  <ArrowUpRight size={14} />
+                <Link to="/contact" data-cta className="btn-primary text-sm shadow-xl shadow-blue-600/30">
+                  <Zap size={15} />
+                  <span>Start a Project</span>
+                  <ArrowRight size={15} />
                 </Link>
                 <Link
                   to="/work"
-                  className="inline-flex items-center gap-2.5 text-sm font-semibold px-8 py-4 rounded-full transition-all duration-300"
-                  style={{ border: '1.5px solid rgba(255,255,255,0.13)', color: 'rgba(255,255,255,0.65)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                  className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3.5 rounded-full transition-all duration-300 hover:bg-white/10 text-slate-200 border border-white/15"
                 >
-                  Our Work <ArrowUpRight size={14} />
+                  <span>View Our Work</span>
+                  <ArrowUpRight size={15} className="text-cyan-400" />
                 </Link>
               </motion.div>
             </div>
 
-            {/* Right — animated stat grid */}
+            {/* 4 Clean Stats Bar */}
             <motion.div
-              ref={statsRef}
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="grid grid-cols-2 gap-4"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-16 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6"
             >
-              {stats.map((s, i) => (
-                <motion.div
-                  key={s.label}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={statsInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.5 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="rounded-2xl p-7 relative overflow-hidden"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
-                >
-                  <div
-                    className="text-4xl font-bold mb-2 num-display"
-                    style={{ background: 'linear-gradient(135deg, #2570E8 0%, #0BC4E3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}
-                  >
+              {stats.map((s) => (
+                <div key={s.label}>
+                  <p className="text-2xl sm:text-3xl font-extrabold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
                     {s.value}
-                  </div>
-                  <div className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#536880', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                    {s.label}
-                  </div>
-                  <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #1558D4, transparent)' }} />
-                </motion.div>
+                  </p>
+                  <p className="text-xs sm:text-sm font-bold text-slate-200 mt-1" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{s.label}</p>
+                  <p className="text-xs text-slate-400 mt-0.5" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{s.sublabel}</p>
+                </div>
               ))}
             </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ═══════════════════════════════════════════════════════
-          PHILOSOPHY
-      ═══════════════════════════════════════════════════════ */}
-      <section className="py-28 md:py-40" style={{ background: '#F7FAFD' }}>
-        <div className="container-wide">
-          <div className="grid lg:grid-cols-[1fr_1.6fr] gap-20 items-start">
-            {/* Left sticky */}
-            <div className="lg:sticky lg:top-28">
-              <FadeUp>
-                <p className="section-label">How we think</p>
+        {/* ═══════════════════════════════════════════════════════
+            SECTION 2 — OUR 3 CORE BUSINESS PILLARS (CLEAN CRISP LIGHT)
+        ═══════════════════════════════════════════════════════ */}
+        <section className="py-20 md:py-28 relative border-t" style={{ background: '#F8FAFC', borderColor: '#E2EBF5' }}>
+          <div className="container-wide">
+            <FadeUp>
+              <div className="max-w-2xl mb-14">
+                <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-blue-600 mb-3 block" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                  Our Engineering Philosophy
+                </span>
                 <h2
-                  className="font-bold leading-tight mb-6"
-                  style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 3.2rem)', letterSpacing: '-0.04em' }}
+                  className="font-bold leading-tight"
+                  style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
                 >
-                  Technology is only as useful as the problem it solves.
+                  Built for measurable business outcomes.
                 </h2>
-                <p className="text-base leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                  A lot of software projects fail — not because the technology was wrong, but because nobody took the time to understand the problem properly before choosing the technology.
-                </p>
-              </FadeUp>
-            </div>
+              </div>
+            </FadeUp>
 
-            {/* Right — principle cards */}
-            <div className="space-y-4">
-              {principles.map((item, i) => {
+            <div className="grid md:grid-cols-3 gap-6">
+              {pillars.map((item, i) => {
                 const Icon = item.icon
                 return (
-                  <FadeUp key={item.num} delay={i * 0.09}>
+                  <FadeUp key={item.num} delay={i * 0.1}>
                     <div
-                      className="group flex gap-6 p-7 rounded-2xl border transition-all duration-500 hover:-translate-y-1"
-                      style={{ background: '#ffffff', borderColor: '#E2EBF5', boxShadow: '0 2px 16px rgba(7,17,31,0.04)' }}
+                      className="p-8 rounded-3xl border relative overflow-hidden group transition-all duration-300 hover:-translate-y-1 bg-white hover:border-blue-400 hover:shadow-xl h-full flex flex-col justify-between"
+                      style={{
+                        borderColor: '#E2EBF5',
+                        boxShadow: '0 4px 20px rgba(7, 17, 31, 0.04)',
+                      }}
                     >
-                      <div
-                        className="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-                        style={{ background: 'linear-gradient(135deg, rgba(21,88,212,0.1) 0%, rgba(11,196,227,0.1) 100%)', border: '1px solid rgba(21,88,212,0.12)' }}
-                      >
-                        <Icon size={20} style={{ color: '#1558D4' }} />
-                      </div>
                       <div>
-                        <div className="flex items-center gap-3 mb-2">
-                          <span className="text-[10px] font-bold tracking-[0.2em]" style={{ color: '#1558D4', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.num}</span>
-                          <h3 className="font-bold text-base leading-snug" style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', letterSpacing: '-0.02em' }}>{item.title}</h3>
+                        <div className="flex items-center justify-between mb-6">
+                          <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
+                            <Icon size={22} />
+                          </div>
+                          <span className="text-xs font-bold text-blue-600" style={{ fontFamily: 'Sora, sans-serif' }}>{item.num}</span>
                         </div>
-                        <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.desc}</p>
+                        <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors" style={{ fontFamily: 'Sora, sans-serif' }}>
+                          {item.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                          {item.desc}
+                        </p>
                       </div>
                     </div>
                   </FadeUp>
@@ -254,166 +296,181 @@ export default function About() {
               })}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* ═══════════════════════════════════════════════════════
-          CAPABILITIES
-      ═══════════════════════════════════════════════════════ */}
-      <section className="py-28 md:py-40 bg-white border-t border-b" style={{ borderColor: '#E2EBF5' }}>
-        <div className="container-wide">
-          <FadeUp>
-            <p className="section-label mb-3">What we do</p>
-            <h2
-              className="font-bold mb-16"
-              style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 4.5vw, 3.6rem)', letterSpacing: '-0.04em', lineHeight: 1.06 }}
-            >
-              Design and engineering<br />under one roof.
-            </h2>
-          </FadeUp>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {capabilities.map((cap, i) => {
-              const Icon = cap.icon
-              return (
-                <FadeUp key={cap.title} delay={i * 0.1}>
-                  <div
-                    className="relative p-8 rounded-3xl overflow-hidden group transition-all duration-500 hover:-translate-y-2"
-                    style={{ background: 'linear-gradient(145deg, #F7FAFD 0%, #EEF3FA 100%)', border: '1px solid #E2EBF5', boxShadow: '0 4px 24px rgba(7,17,31,0.04)' }}
-                  >
-                    {/* Corner glow */}
-                    <div className="absolute top-0 right-0 w-32 h-32 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'radial-gradient(circle at top right, rgba(21,88,212,0.08), transparent 70%)' }} />
-
-                    <div
-                      className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110"
-                      style={{ background: 'linear-gradient(135deg, #1558D4 0%, #0BC4E3 100%)', boxShadow: '0 8px 24px rgba(21,88,212,0.25)' }}
-                    >
-                      <Icon size={24} className="text-white" />
-                    </div>
-
-                    <h3 className="text-xl font-bold mb-6 pb-4 border-b" style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', letterSpacing: '-0.025em', borderColor: '#E2EBF5' }}>
-                      {cap.title}
-                    </h3>
-
-                    <ul className="space-y-3">
-                      {cap.items.map((item) => (
-                        <li key={item} className="flex items-center gap-3 text-sm" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                          <span className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center" style={{ background: 'rgba(21,88,212,0.08)' }}>
-                            <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#1558D4' }} />
-                          </span>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </FadeUp>
-              )
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════
-          TEAM — dark section
-      ═══════════════════════════════════════════════════════ */}
-      <section className="py-28 md:py-40 relative overflow-hidden grain-overlay" style={{ background: 'var(--void)' }}>
-        <div className="absolute inset-0 hero-grid opacity-60" />
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute" style={{ width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,88,212,0.12) 0%, transparent 68%)', top: '-10%', right: '0%', filter: 'blur(80px)' }} />
-        </div>
-
-        <div className="container-wide relative z-10">
-          <FadeUp>
-            <p className="section-label mb-3">Our team</p>
-            <h2
-              className="font-bold text-white mb-4 max-w-2xl"
-              style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 3.2rem)', letterSpacing: '-0.04em', lineHeight: 1.06 }}
-            >
-              A team that takes quality personally.
-            </h2>
-            <p className="text-base leading-relaxed mb-16 max-w-xl" style={{ color: 'rgba(160,175,194,0.7)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-              SwasTek is built around engineers, designers and strategists who care about the quality of what they produce — not just getting it done.
-            </p>
-          </FadeUp>
-
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
-            {[
-              { letter: 'A', gradient: 'linear-gradient(135deg, #1558D4 0%, #2570E8 100%)' },
-              { letter: 'M', gradient: 'linear-gradient(135deg, #0BC4E3 0%, #38D9F0 100%)' },
-              { letter: 'R', gradient: 'linear-gradient(135deg, #5B3CF5 0%, #7C5FF7 100%)' },
-              { letter: 'S', gradient: 'linear-gradient(135deg, #1558D4 0%, #0BC4E3 100%)' },
-            ].map((member, i) => (
-              <FadeUp key={member.letter} delay={i * 0.08}>
-                <div
-                  className="p-6 rounded-2xl text-center group transition-all duration-500 hover:-translate-y-2"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', backdropFilter: 'blur(12px)' }}
-                >
-                  <div
-                    className="w-16 h-16 rounded-2xl mx-auto mb-4 flex items-center justify-center text-xl font-bold text-white transition-all duration-300 group-hover:scale-110"
-                    style={{ background: member.gradient, boxShadow: '0 8px 24px rgba(21,88,212,0.3)', fontFamily: 'Sora, sans-serif' }}
-                  >
-                    {member.letter}
-                  </div>
-                  <div className="h-3 rounded-full mx-auto mb-2" style={{ background: 'rgba(255,255,255,0.08)', width: '70%' }} />
-                  <div className="h-2.5 rounded-full mx-auto" style={{ background: 'rgba(255,255,255,0.05)', width: '50%' }} />
-                </div>
-              </FadeUp>
-            ))}
-          </div>
-
-          <FadeUp delay={0.3}>
-            <p className="text-sm text-center" style={{ color: '#536880', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-              Team profiles coming soon.
-            </p>
-          </FadeUp>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════
-          CTA
-      ═══════════════════════════════════════════════════════ */}
-      <section className="py-24 md:py-32 bg-white">
-        <div className="container-tight">
-          <FadeUp>
-            <div
-              className="relative rounded-3xl p-12 md:p-20 overflow-hidden text-center shadow-2xl"
-              style={{
-                background: 'linear-gradient(135deg, rgba(16, 42, 85, 0.95) 0%, rgba(9, 24, 48, 0.98) 50%, rgba(5, 13, 26, 1) 100%)',
-                border: '1px solid rgba(11, 196, 227, 0.35)',
-                boxShadow: '0 24px 60px -15px rgba(0,0,0,0.7), 0 0 40px rgba(11, 196, 227, 0.12)'
-              }}
-            >
-              {/* Glow */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div style={{ width: 600, height: 300, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(21,88,212,0.35) 0%, transparent 70%)', filter: 'blur(50px)' }} />
-              </div>
-
-              <div className="relative z-10">
-                <span className="inline-block text-xs font-bold tracking-widest uppercase mb-4 text-cyan-400 px-3.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                  Let's build something
+        {/* ═══════════════════════════════════════════════════════
+            SECTION 3 — WHAT WE BUILD (4 CORE SPECIALIZATIONS — SOLID WHITE)
+        ═══════════════════════════════════════════════════════ */}
+        <section className="py-20 md:py-28 relative border-t" style={{ background: '#FFFFFF', borderColor: '#E2EBF5' }}>
+          <div className="container-wide">
+            <FadeUp>
+              <div className="max-w-2xl mb-14">
+                <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-blue-600 mb-3 block">
+                  Core Specializations
                 </span>
                 <h2
-                  className="font-bold text-white mb-5"
-                  style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(1.8rem, 4vw, 3.2rem)', letterSpacing: '-0.04em', lineHeight: 1.08 }}
+                  className="font-bold leading-tight"
+                  style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
                 >
-                  Work with a team that understands your business.
+                  Software tailored around how your company works.
                 </h2>
-                <p className="text-base sm:text-lg mb-10 text-slate-200 max-w-xl mx-auto leading-relaxed" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                  Start with a conversation about what you're trying to build.
-                </p>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">
-                    Start a Project <ArrowUpRight size={15} />
-                  </Link>
-                  <Link to="/work" className="btn-outline" style={{ borderColor: 'rgba(255,255,255,0.3)', color: '#FFFFFF', background: 'rgba(255,255,255,0.08)' }}>
-                    View Our Work <ArrowUpRight size={15} />
-                  </Link>
+              </div>
+            </FadeUp>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {coreCapabilities.map((cap, i) => {
+                const Icon = cap.icon
+                return (
+                  <FadeUp key={cap.title} delay={i * 0.1}>
+                    <div
+                      className="p-8 rounded-3xl border relative overflow-hidden group transition-all duration-300 hover:border-blue-400 hover:shadow-xl bg-white h-full flex flex-col justify-between"
+                      style={{
+                        borderColor: '#E2EBF5',
+                        boxShadow: '0 4px 20px rgba(7, 17, 31, 0.04)',
+                      }}
+                    >
+                      <div>
+                        <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                          <Icon size={22} />
+                        </div>
+                        <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors" style={{ fontFamily: 'Sora, sans-serif' }}>
+                          {cap.title}
+                        </h3>
+                        <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                          {cap.desc}
+                        </p>
+                      </div>
+
+                      <div className="pt-4 border-t border-slate-100 flex flex-wrap gap-2">
+                        {cap.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[11px] font-semibold px-3 py-1 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-700"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </FadeUp>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════
+            SECTION 4 — 4-STEP PREDICTABLE DELIVERY
+        ═══════════════════════════════════════════════════════ */}
+        <section className="py-20 md:py-28 relative border-t border-white/10" style={{ background: '#050D1C' }}>
+          <div className="container-wide">
+            <FadeUp>
+              <div className="max-w-2xl mb-14">
+                <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-cyan-400 mb-3 block">
+                  Execution Process
+                </span>
+                <h2
+                  className="font-bold text-white leading-tight"
+                  style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
+                >
+                  From requirements to production scale.
+                </h2>
+              </div>
+            </FadeUp>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {deliverySteps.map((step, i) => (
+                <FadeUp key={step.num} delay={i * 0.08}>
+                  <div className="p-7 rounded-3xl border bg-white/5 border-white/10 h-full flex flex-col justify-between">
+                    <div>
+                      <span className="text-2xl font-bold text-cyan-400 mb-4 block" style={{ fontFamily: 'Sora, sans-serif' }}>
+                        {step.num}
+                      </span>
+                      <h4 className="font-bold text-base text-white mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
+                        {step.title}
+                      </h4>
+                      <p className="text-xs text-slate-300 leading-relaxed">
+                        {step.desc}
+                      </p>
+                    </div>
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+
+            {/* Global Reach Bar */}
+            <FadeUp delay={0.2}>
+              <div className="mt-10 p-6 sm:p-8 rounded-3xl border border-white/10 bg-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-600/20 text-blue-400 flex items-center justify-center flex-shrink-0">
+                    <Globe size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-base text-white mb-0.5" style={{ fontFamily: 'Sora, sans-serif' }}>
+                      Headquartered in Delhi, India · Global Delivery
+                    </h4>
+                    <p className="text-xs text-slate-400">
+                      Seamless live communication across North American, European, UK, and APAC business hours.
+                    </p>
+                  </div>
+                </div>
+                <Link to="/contact" className="btn-primary text-xs px-6 py-3 shadow-lg whitespace-nowrap">
+                  <span>Contact Our Team</span>
+                  <ArrowRight size={13} />
+                </Link>
+              </div>
+            </FadeUp>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════
+            SECTION 5 — MINIMAL BOTTOM CTA BANNER
+        ═══════════════════════════════════════════════════════ */}
+        <section className="py-20 md:py-28 relative border-t border-white/10" style={{ background: 'var(--void)' }}>
+          <div className="container-tight">
+            <FadeUp>
+              <div
+                className="relative rounded-3xl p-10 sm:p-16 overflow-hidden text-center shadow-2xl border"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(16, 42, 85, 0.7) 0%, rgba(5, 13, 26, 0.95) 100%)',
+                  borderColor: 'rgba(21, 88, 212, 0.3)',
+                }}
+              >
+                <div className="relative z-10">
+                  <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-cyan-400 mb-3 block">
+                    Ready to build?
+                  </span>
+                  <h2
+                    className="font-bold text-white mb-4 leading-tight"
+                    style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
+                  >
+                    Let's engineer software around your business goals.
+                  </h2>
+                  <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto mb-8 leading-relaxed">
+                    Tell us what operational challenges you want to solve. We will review your requirements and outline a technical roadmap within 24 hours.
+                  </p>
+
+                  <div className="flex flex-wrap justify-center items-center gap-4">
+                    <Link to="/contact" data-cta className="btn-primary text-sm shadow-xl shadow-blue-600/30">
+                      <Zap size={15} />
+                      <span>Start a Project</span>
+                      <ArrowRight size={15} />
+                    </Link>
+                    <Link
+                      to="/work"
+                      className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3.5 rounded-full transition-all bg-white/5 hover:bg-white/10 text-white border border-white/15"
+                    >
+                      <span>Explore Case Studies</span>
+                      <ArrowUpRight size={15} className="text-cyan-400" />
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          </FadeUp>
-        </div>
-      </section>
+            </FadeUp>
+          </div>
+        </section>
+
+      </div>
     </PageTransition>
   )
 }

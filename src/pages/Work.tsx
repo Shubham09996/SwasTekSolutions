@@ -312,7 +312,7 @@ export default function Work() {
       {/* ═══════════════════════════════════════════════════════
           PROJECTS — full-bleed cards
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-0 bg-white border-t-2" style={{ borderColor: '#07111F' }}>
+      <section className="py-0 border-t" style={{ background: 'var(--void)', borderColor: 'rgba(255,255,255,0.08)' }}>
         {projects.map((p, i) => (
           <motion.div
             key={p.id}
@@ -323,7 +323,7 @@ export default function Work() {
           >
             <div
               className="block group relative border-b"
-              style={{ borderColor: p.isLight ? '#E2EBF5' : 'rgba(255,255,255,0.05)' }}
+              style={{ borderColor: p.isLight ? '#E2EBF5' : 'rgba(255,255,255,0.08)' }}
             >
               <div
                 className="min-h-[60vh] flex flex-col md:flex-row items-stretch relative overflow-hidden"
@@ -430,22 +430,27 @@ export default function Work() {
       {/* ═══════════════════════════════════════════════════════
           CTA
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-24 md:py-32" style={{ background: '#F7FAFD' }}>
-        <div className="container-tight">
+      <section className="relative py-24 md:py-32 overflow-hidden border-t" style={{ background: 'var(--void)', borderColor: 'rgba(255,255,255,0.06)' }}>
+        <div className="absolute inset-0 hero-grid opacity-25 pointer-events-none" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="orb-1 absolute" style={{ width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,88,212,0.15) 0%, transparent 70%)', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', filter: 'blur(80px)' }} />
+        </div>
+
+        <div className="container-tight relative z-10">
           <FadeUp>
             <div
-              className="relative rounded-3xl p-12 md:p-20 overflow-hidden text-center shadow-2xl"
+              className="relative rounded-3xl p-10 sm:p-14 md:p-20 overflow-hidden text-center shadow-2xl border"
               style={{
-                background: 'linear-gradient(135deg, rgba(16, 42, 85, 0.95) 0%, rgba(9, 24, 48, 0.98) 50%, rgba(5, 13, 26, 1) 100%)',
-                border: '1px solid rgba(11, 196, 227, 0.35)',
-                boxShadow: '0 24px 60px -15px rgba(0,0,0,0.7), 0 0 40px rgba(11, 196, 227, 0.12)'
+                background: 'linear-gradient(145deg, rgba(7, 19, 34, 0.85) 0%, rgba(3, 8, 15, 0.95) 100%)',
+                borderColor: 'rgba(11, 196, 227, 0.3)',
+                boxShadow: '0 24px 60px -15px rgba(0,0,0,0.8), 0 0 40px rgba(11, 196, 227, 0.12)'
               }}
             >
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div style={{ width: 600, height: 300, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(21,88,212,0.35) 0%, transparent 70%)', filter: 'blur(50px)' }} />
+                <div style={{ width: 500, height: 260, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(21,88,212,0.3) 0%, transparent 70%)', filter: 'blur(50px)' }} />
               </div>
               <div className="relative z-10">
-                <span className="inline-block text-xs font-bold tracking-widest uppercase mb-4 text-cyan-400 px-3.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                <span className="inline-block text-[11px] font-bold tracking-[0.2em] uppercase mb-4 text-cyan-400 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Next project
                 </span>
                 <h2
@@ -454,10 +459,10 @@ export default function Work() {
                 >
                   Have a project in mind?
                 </h2>
-                <p className="text-base sm:text-lg mb-10 text-slate-200 max-w-xl mx-auto leading-relaxed" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                <p className="text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed" style={{ color: 'rgba(160,175,194,0.88)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Tell us what you're trying to build and we'll help you figure out the approach.
                 </p>
-                <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">
+                <Link to="/contact" data-cta className="btn-primary inline-flex items-center gap-2 shadow-lg shadow-cyan-500/25">
                   <Zap size={15} />
                   Start a Project <ArrowUpRight size={15} />
                 </Link>

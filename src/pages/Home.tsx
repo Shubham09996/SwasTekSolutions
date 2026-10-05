@@ -340,7 +340,7 @@ function StatCounter({
       whileHover={{ y: -6, transition: { duration: 0.25 } }}
       transition={{ duration: 0.6, delay: delay / 1000, ease: [0.16, 1, 0.3, 1] }}
       className="relative p-7 rounded-2xl bg-white border transition-all duration-300 hover:shadow-xl hover:border-blue-300 group overflow-hidden"
-      style={{ borderColor: '#E2EBF5' }}
+      style={{ borderColor: '#E2EBF5', boxShadow: '0 2px 16px rgba(7,17,31,0.04)' }}
     >
       <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-100/40 to-transparent rounded-bl-full pointer-events-none transition-transform duration-500 group-hover:scale-125" />
       <div className="flex items-center justify-between mb-5">
@@ -354,7 +354,7 @@ function StatCounter({
           verified
         </span>
       </div>
-      <div className="num-display text-4xl lg:text-5xl font-extrabold mb-1.5 tabular-nums num-gradient tracking-tight">
+      <div className="num-display text-4xl lg:text-5xl font-extrabold mb-1.5 tabular-nums text-blue-600 tracking-tight">
         {count}{suffix}
       </div>
       <p className="text-base font-bold text-slate-900 mb-1" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{label}</p>
@@ -978,9 +978,9 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════
-          STAT COUNTERS
+          STAT COUNTERS (CLEAN CRISP LIGHT)
       ══════════════════════════════════════════════════════════ */}
-      <section className="py-14 bg-[#F8FAFC] border-b overflow-hidden" style={{ borderColor: '#E2EBF5' }}>
+      <section className="py-14 border-b overflow-hidden" style={{ background: '#F8FAFC', borderColor: '#E2EBF5' }}>
         <div className="container-wide">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <StatCounter value={8} suffix="+" label="Core service areas" sublabel="Web, mobile, software & cloud systems" icon={Layers} delay={0} />
@@ -992,14 +992,14 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════
-          WHAT WE BUILD — interactive bento capability cards
+          WHAT WE BUILD — interactive bento capability cards (CLEAN EDITORIAL WHITE)
       ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 md:py-32 bg-slate-50/50 relative overflow-hidden border-b" style={{ borderColor: '#E2EBF5' }}>
-        {/* Decorative ambient lighting */}
-        <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
-        <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-cyan-100/30 rounded-full blur-3xl pointer-events-none -z-10" />
+      <section className="py-24 md:py-32 relative overflow-hidden border-b" style={{ background: '#FFFFFF', borderColor: '#E2EBF5' }}>
+        {/* Subtle decorative background ambient lighting */}
+        <div className="absolute top-10 left-1/4 w-[500px] h-[500px] bg-blue-50/80 rounded-full blur-3xl pointer-events-none -z-10" />
+        <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-cyan-50/60 rounded-full blur-3xl pointer-events-none -z-10" />
 
-        <div className="container-wide">
+        <div className="container-wide relative z-10">
           {/* Header */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
             <motion.div
@@ -1009,7 +1009,7 @@ export default function Home() {
               transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-2xl"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3.5 bg-blue-50 border border-blue-200/60 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3.5 bg-blue-50 border border-blue-200/70 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
                 <span className="text-[11px] font-bold tracking-[0.16em] uppercase text-blue-600" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Fullstack Capabilities
@@ -1046,10 +1046,10 @@ export default function Home() {
               <button
                 key={cat.id}
                 onClick={() => setServiceCategory(cat.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 border ${
                   serviceCategory === cat.id
-                    ? 'bg-slate-900 text-white shadow-md scale-[1.02]'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50 hover:border-slate-300'
+                    ? 'bg-slate-900 text-white border-slate-900 shadow-md scale-[1.02]'
+                    : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
                 }`}
                 style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
               >
@@ -1084,7 +1084,7 @@ export default function Home() {
                     <Link
                       to={s.href}
                       className="group flex flex-col justify-between h-full p-7 rounded-2xl bg-white border transition-all duration-300 hover:shadow-2xl hover:border-blue-400 relative overflow-hidden"
-                      style={{ borderColor: '#E2EBF5' }}
+                      style={{ borderColor: '#E2EBF5', boxShadow: '0 4px 20px rgba(7, 17, 31, 0.04)' }}
                     >
                       {/* Top Accent Gradient Line on Hover */}
                       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-400 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -1198,17 +1198,17 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════════════
           FEATURED WORK
       ══════════════════════════════════════════════════════════ */}
-      <section className="py-0 bg-white border-t-2" style={{ borderColor: '#07111F' }}>
+      <section className="py-0 border-t" style={{ background: 'var(--void)', borderColor: 'rgba(255,255,255,0.08)' }}>
         {/* Section header */}
         <div className="container-wide py-16">
           <div className="flex items-end justify-between">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }}>
               <p className="section-label">Selected work</p>
-              <h2 style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(2.2rem, 5vw, 4rem)', letterSpacing: '-0.04em', lineHeight: 1.06 }}>
+              <h2 style={{ color: '#ffffff', fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(2.2rem, 5vw, 4rem)', letterSpacing: '-0.04em', lineHeight: 1.06 }}>
                 Projects we're<br />proud of.
               </h2>
             </motion.div>
-            <Link to="/work" className="hidden md:flex items-center gap-2 text-sm font-semibold group link-lift" style={{ color: '#1558D4', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+            <Link to="/work" className="hidden md:flex items-center gap-2 text-sm font-semibold group link-lift" style={{ color: '#0BC4E3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               <span className="underline-reveal">All projects</span>
               <ArrowUpRight size={14} />
             </Link>
@@ -1501,66 +1501,66 @@ export default function Home() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════
-          PROCESS — INTERACTIVE AGILE METHODOLOGY (NEXT-LEVEL)
+          PROCESS — INTERACTIVE AGILE METHODOLOGY (CLEAN EDITORIAL SOLID WHITE)
       ══════════════════════════════════════════════════════════ */}
-      <section className="py-28 md:py-36 bg-white border-t relative overflow-hidden" style={{ borderColor: '#E2EBF5' }}>
-        {/* Subtle decorative background gradients */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-50/60 rounded-full blur-3xl pointer-events-none -z-10" />
-        <div className="absolute bottom-10 left-1/4 w-96 h-96 bg-cyan-50/50 rounded-full blur-3xl pointer-events-none -z-10" />
+      <section className="py-28 md:py-36 relative overflow-hidden border-t" style={{ background: '#FFFFFF', borderColor: '#E2EBF5' }}>
+        {/* Subtle decorative background ambient lighting */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-50/80 rounded-full blur-3xl pointer-events-none -z-10" />
+        <div className="absolute bottom-10 left-1/4 w-96 h-96 bg-cyan-50/60 rounded-full blur-3xl pointer-events-none -z-10" />
 
-        <div className="container-wide">
+        <div className="container-wide relative z-10">
           {/* Header & Interactive View Toggle */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }}>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3 bg-blue-50 border border-blue-200/70 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-3 bg-blue-50 border border-blue-200/70 shadow-sm">
                 <span className="relative flex h-2 w-2">
-                  <span className="pulse-ring absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75" />
+                  <span className="pulse-ring absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600" />
                 </span>
-                <span className="text-[11px] font-bold text-blue-700 tracking-wider uppercase" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                <span className="text-[11px] font-bold text-blue-600 tracking-wider uppercase" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   7-Stage Delivery Methodology
                 </span>
               </div>
               <h2 style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(2.2rem, 4.5vw, 3.8rem)', letterSpacing: '-0.04em', lineHeight: 1.06 }}>
                 A process built for<br />real-world delivery.
               </h2>
-              <p className="text-slate-600 mt-4 max-w-xl text-base leading-relaxed" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+              <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                 Every sprint is structured for crystal-clear accountability, weekly live demonstrations, and continuous production readiness.
               </p>
             </motion.div>
 
             {/* View Mode Switcher + Full Process Link */}
             <div className="flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center p-1.5 rounded-2xl bg-slate-100 border border-slate-200 shadow-inner">
+              <div className="inline-flex items-center p-1.5 rounded-2xl bg-slate-100 border border-slate-200/80">
                 <button
                   onClick={() => setProcessViewMode('stepper')}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
                     processViewMode === 'stepper'
-                      ? 'bg-white text-blue-700 shadow-sm border border-slate-200/80 font-semibold'
+                      ? 'bg-slate-900 text-white shadow-md'
                       : 'text-slate-600 hover:text-slate-900'
                   }`}
                   style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
                 >
-                  <Sparkles size={14} className={processViewMode === 'stepper' ? 'text-blue-600' : 'text-slate-400'} />
+                  <Sparkles size={14} className={processViewMode === 'stepper' ? 'text-cyan-400' : 'text-slate-500'} />
                   <span>Interactive Explorer</span>
                 </button>
                 <button
                   onClick={() => setProcessViewMode('grid')}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 ${
                     processViewMode === 'grid'
-                      ? 'bg-white text-blue-700 shadow-sm border border-slate-200/80 font-semibold'
+                      ? 'bg-slate-900 text-white shadow-md'
                       : 'text-slate-600 hover:text-slate-900'
                   }`}
                   style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
                 >
-                  <Layers size={14} className={processViewMode === 'grid' ? 'text-blue-600' : 'text-slate-400'} />
+                  <Layers size={14} className={processViewMode === 'grid' ? 'text-cyan-400' : 'text-slate-500'} />
                   <span>8-Stage Bento Grid</span>
                 </button>
               </div>
 
               <Link
                 to="/process"
-                className="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-blue-200 bg-blue-50/50 hover:bg-blue-50 text-sm font-semibold text-blue-700 transition-all hover:gap-3 group"
+                className="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-blue-200 bg-blue-50/60 hover:bg-blue-100/60 text-sm font-semibold text-blue-700 transition-all hover:gap-3 group"
                 style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
               >
                 <span>Full Process Page</span>
@@ -1589,14 +1589,14 @@ export default function Home() {
                         onClick={() => setActiveProcessStep(idx)}
                         className={`p-3.5 rounded-2xl border text-left transition-all duration-300 relative group flex flex-col justify-between ${
                           isActive
-                            ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white border-blue-600 shadow-lg shadow-blue-500/25 scale-[1.02]'
-                            : 'bg-white text-slate-700 border-slate-200/80 hover:border-blue-300 hover:bg-slate-50/80'
+                            ? 'bg-slate-900 text-white border-slate-900 shadow-lg scale-[1.02]'
+                            : 'bg-white text-slate-700 border-slate-200 hover:border-blue-400 hover:bg-blue-50/40 shadow-sm'
                         }`}
                       >
                         <div className="flex items-center justify-between mb-2">
                           <span
                             className={`text-xs font-bold px-2 py-0.5 rounded-md ${
-                              isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600'
+                              isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-blue-600 group-hover:bg-blue-100/70'
                             }`}
                             style={{ fontFamily: 'Sora, sans-serif' }}
                           >
@@ -1605,22 +1605,22 @@ export default function Home() {
                           <StepIcon
                             size={16}
                             className={`transition-transform duration-300 group-hover:scale-110 ${
-                              isActive ? 'text-white' : 'text-slate-400 group-hover:text-blue-600'
+                              isActive ? 'text-cyan-400' : 'text-slate-400 group-hover:text-blue-600'
                             }`}
                           />
                         </div>
                         <div>
-                          <div className={`text-xs font-bold truncate ${isActive ? 'text-white' : 'text-slate-900 group-hover:text-blue-600'}`} style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                          <div className={`text-xs font-bold truncate ${isActive ? 'text-white' : 'text-slate-800 group-hover:text-blue-600'}`} style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                             {step.title}
                           </div>
-                          <div className={`text-[11px] font-semibold tracking-tight ${isActive ? 'text-blue-100' : 'text-slate-400'}`} style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                          <div className={`text-[11px] font-semibold tracking-tight ${isActive ? 'text-cyan-300' : 'text-slate-500'}`} style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                             {step.timeline}
                           </div>
                         </div>
                         {isActive && (
                           <motion.div
                             layoutId="activeProcessDot"
-                            className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-blue-600 rotate-45 rounded-sm z-10"
+                            className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-slate-900 rotate-45 rounded-sm z-10"
                           />
                         )}
                       </button>
@@ -1629,7 +1629,7 @@ export default function Home() {
                 </div>
 
                 {/* Single Sleek Progress bar line */}
-                <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden mt-2">
+                <div className="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden mt-2">
                   <motion.div
                     className="h-full bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600"
                     animate={{ width: `${((activeProcessStep + 1) / processSteps.length) * 100}%` }}
@@ -1638,7 +1638,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Spotlight Active Stage Display */}
+              {/* Spotlight Active Stage Display (High contrast cockpit) */}
               <AnimatePresence mode="wait">
                 {(() => {
                   const current = processSteps[activeProcessStep]
@@ -1650,10 +1650,11 @@ export default function Home() {
                       animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                       exit={{ opacity: 0, y: -16, filter: 'blur(4px)' }}
                       transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-                      className="p-8 lg:p-12 rounded-3xl bg-slate-900 text-white relative overflow-hidden border border-slate-800 shadow-2xl"
+                      className="p-8 lg:p-12 rounded-3xl text-white relative overflow-hidden border shadow-2xl"
                       style={{
-                        background: 'linear-gradient(135deg, #07111F 0%, #0A1E38 50%, #0B192C 100%)',
-                        boxShadow: '0 25px 60px -15px rgba(2, 6, 23, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                        background: 'linear-gradient(135deg, rgba(7, 19, 34, 0.98) 0%, rgba(3, 8, 15, 0.99) 100%)',
+                        borderColor: 'rgba(11, 196, 227, 0.35)',
+                        boxShadow: '0 25px 60px -15px rgba(2, 6, 23, 0.35), 0 10px 30px rgba(7, 17, 31, 0.08)',
                       }}
                     >
                       {/* Ambient background glow */}
@@ -1723,7 +1724,7 @@ export default function Home() {
                               className={`px-5 py-2.5 rounded-xl text-xs font-bold inline-flex items-center gap-2 transition-all ${
                                 activeProcessStep === processSteps.length - 1
                                   ? 'opacity-40 cursor-not-allowed bg-white/5 text-slate-400'
-                                  : 'bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30'
+                                  : 'bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white shadow-lg shadow-cyan-500/25'
                               }`}
                               style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
                             >
@@ -1755,8 +1756,8 @@ export default function Home() {
                             </div>
                           </div>
 
-                          <div className="p-4 rounded-xl bg-blue-950/40 border border-blue-500/20">
-                            <p className="text-[11px] font-bold text-blue-300 uppercase tracking-wider mb-1 flex items-center gap-1.5" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                          <div className="p-4 rounded-xl bg-cyan-950/40 border border-cyan-500/20">
+                            <p className="text-[11px] font-bold text-cyan-300 uppercase tracking-wider mb-1 flex items-center gap-1.5" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                               <Users size={12} /> Your Role & Collaboration
                             </p>
                             <p className="text-xs text-slate-300 leading-relaxed" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
@@ -1797,13 +1798,13 @@ export default function Home() {
                     <h4 className="text-sm font-bold text-slate-900" style={{ fontFamily: 'Sora, sans-serif' }}>
                       Ready to kick off Stage 01 Discovery for your product?
                     </h4>
-                    <p className="text-xs text-slate-500" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                    <p className="text-xs text-slate-600" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                       Zero obligation. We map your requirements and return a crystal-clear technical blueprint.
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 flex-shrink-0">
-                  <Link to="/contact" className="btn-primary text-xs whitespace-nowrap">
+                  <Link to="/contact" className="btn-primary text-xs whitespace-nowrap shadow-md">
                     Start Discovery Sprint <ArrowUpRight size={13} />
                   </Link>
                 </div>
@@ -1829,13 +1830,16 @@ export default function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.45, delay: i * 0.05 }}
                     whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                    className="bg-white p-7 rounded-2xl border transition-all duration-300 hover:shadow-xl hover:border-blue-300 group relative overflow-hidden flex flex-col justify-between"
-                    style={{ borderColor: '#E2EBF5' }}
+                    className="p-7 rounded-2xl border transition-all duration-300 hover:border-blue-400 hover:shadow-xl group relative overflow-hidden flex flex-col justify-between bg-white"
+                    style={{
+                      borderColor: '#E2EBF5',
+                      boxShadow: '0 4px 20px rgba(7, 17, 31, 0.04)',
+                    }}
                   >
                     {/* Top gradient glow line on hover */}
                     <div
                       className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{ background: `linear-gradient(90deg, transparent, ${step.color}, transparent)` }}
+                      style={{ background: `linear-gradient(90deg, #1558D4, #0BC4E3)` }}
                     />
 
                     <div>
@@ -1845,8 +1849,8 @@ export default function Home() {
                           {step.num}
                         </span>
                         <span
-                          className="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full"
-                          style={{ background: step.bgSoft, color: step.color, fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                          className="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-100"
+                          style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
                         >
                           {step.phase}
                         </span>
@@ -1854,8 +1858,7 @@ export default function Home() {
 
                       {/* Icon */}
                       <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 shadow-sm"
-                        style={{ background: step.bgSoft, color: step.color }}
+                        className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 shadow-sm bg-blue-50 text-blue-600 border border-blue-100"
                       >
                         <StepIcon size={22} />
                       </div>
@@ -1864,7 +1867,7 @@ export default function Home() {
                       <h3 className="font-bold text-lg text-slate-900 mb-1 group-hover:text-blue-600 transition-colors" style={{ fontFamily: 'Sora, sans-serif' }}>
                         {step.title}
                       </h3>
-                      <p className="text-[11px] font-bold text-blue-600/80 mb-3 uppercase tracking-tight" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                      <p className="text-[11px] font-bold text-blue-600 mb-3 uppercase tracking-tight" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                         {step.tagline}
                       </p>
 
@@ -1887,9 +1890,9 @@ export default function Home() {
                           </span>
                         ))}
                       </div>
-                      <div className="flex items-center justify-between text-xs text-slate-400" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                      <div className="flex items-center justify-between text-xs text-slate-500" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                         <span>Timeline:</span>
-                        <span className="font-bold text-slate-700">{step.timeline}</span>
+                        <span className="font-bold text-slate-900">{step.timeline}</span>
                       </div>
                     </div>
                   </motion.div>
@@ -1907,7 +1910,7 @@ export default function Home() {
                 style={{
                   background: 'linear-gradient(135deg, #07111F 0%, #0A1E38 100%)',
                   borderColor: 'rgba(56, 189, 248, 0.4)',
-                  boxShadow: '0 20px 40px -15px rgba(2, 6, 23, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12)',
+                  boxShadow: '0 20px 40px -15px rgba(2, 6, 23, 0.4)',
                 }}
               >
                 {/* Background glow orb */}

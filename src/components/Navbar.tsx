@@ -1,25 +1,155 @@
 import { useState, useEffect, useRef } from "react"
 import { Link, NavLink, useLocation } from "react-router-dom"
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
-import { ArrowUpRight, ChevronDown, X, Menu, Zap } from "lucide-react"
+import {
+  ArrowUpRight,
+  ChevronDown,
+  X,
+  Menu,
+  Zap,
+  Palette,
+  Layout,
+  Compass,
+  Code2,
+  Database,
+  Globe,
+  Smartphone,
+  ShoppingBag,
+  Rocket,
+  Workflow,
+  Sparkles,
+} from "lucide-react"
 
-const services = [
-  { label: "Web Design",                 href: "/services/web-design",                desc: "Modern layouts and brand experiences" },
-  { label: "UX/UI Design",               href: "/services/ui-ux-design",              desc: "Wireframes, prototypes & design systems" },
-  { label: "IT Strategy Consulting",     href: "/services/it-strategy-consulting",    desc: "Technology roadmaps & tech advisory" },
-  { label: "Custom Software Development", href: "/services/custom-software",          desc: "Enterprise tools & workflow systems" },
-  { label: "CRM Development",            href: "/services/crm-development",           desc: "Sales pipelines & customer management" },
-  { label: "Web Development",            href: "/services/web-development",           desc: "Fast, fullstack web applications" },
-  { label: "Mobile App Development",     href: "/services/mobile-app-development",    desc: "Cross-platform iOS & Android apps" },
-  { label: "E-Commerce Development",     href: "/services/ecommerce",                 desc: "Storefronts, checkout & catalogs" },
+const servicesData = [
+  {
+    label: "Web Design",
+    href: "/services/web-design",
+    desc: "Modern layouts and bespoke brand experiences",
+    icon: Palette,
+    category: "Design",
+    color: "#1558D4",
+    bgSoft: "rgba(21, 88, 212, 0.08)",
+  },
+  {
+    label: "UX/UI Design",
+    href: "/services/ui-ux-design",
+    desc: "Wireframes, clickable prototypes & design systems",
+    icon: Layout,
+    category: "Design",
+    color: "#0BC4E3",
+    bgSoft: "rgba(11, 196, 227, 0.08)",
+  },
+  {
+    label: "IT Strategy Consulting",
+    href: "/services/it-strategy-consulting",
+    desc: "Technology roadmaps & architectural advisory",
+    icon: Compass,
+    category: "Strategy",
+    color: "#5B3CF5",
+    bgSoft: "rgba(91, 60, 245, 0.08)",
+  },
+  {
+    label: "Custom Software Development",
+    href: "/services/custom-software",
+    desc: "Enterprise operational tools & internal systems",
+    icon: Code2,
+    category: "Engineering",
+    color: "#1558D4",
+    bgSoft: "rgba(21, 88, 212, 0.08)",
+  },
+  {
+    label: "CRM Development",
+    href: "/services/crm-development",
+    desc: "Sales pipelines, client portals & lead automation",
+    icon: Database,
+    category: "Enterprise",
+    color: "#0BC4E3",
+    bgSoft: "rgba(11, 196, 227, 0.08)",
+  },
+  {
+    label: "Web Development",
+    href: "/services/web-development",
+    desc: "Ultra-fast, fullstack web applications & edge APIs",
+    icon: Globe,
+    category: "Engineering",
+    color: "#2570E8",
+    bgSoft: "rgba(37, 112, 232, 0.08)",
+  },
+  {
+    label: "Mobile App Development",
+    href: "/services/mobile-app-development",
+    desc: "Fluid cross-platform iOS & Android mobile apps",
+    icon: Smartphone,
+    category: "Engineering",
+    color: "#5B3CF5",
+    bgSoft: "rgba(91, 60, 245, 0.08)",
+  },
+  {
+    label: "E-Commerce Development",
+    href: "/services/ecommerce",
+    desc: "High-conversion storefronts, checkouts & catalogs",
+    icon: ShoppingBag,
+    category: "Enterprise",
+    color: "#0BC4E3",
+    bgSoft: "rgba(11, 196, 227, 0.08)",
+  },
 ]
 
-const solutions = [
-  { label: "CRM & Business Systems",    href: "/services/crm-development",     desc: "Manage leads, sales and customers" },
-  { label: "Dashboards & Admin Tools",  href: "/services/web-applications",    desc: "Operations and reporting platforms" },
-  { label: "Internal Tools",            href: "/services/custom-software",     desc: "Built for your team, not the market" },
-  { label: "Digital Platforms",         href: "/services/saas-development",    desc: "End-to-end product infrastructure" },
-  { label: "Business Automation",       href: "/services/business-automation", desc: "Workflow and process automation" },
+const solutionsData = [
+  {
+    label: "CRM & Sales Pipelines",
+    href: "/services/crm-development",
+    desc: "Unified customer databases, automated lead intake & deal tracking",
+    icon: Database,
+    category: "Enterprise CRM",
+    color: "#0BC4E3",
+    bgSoft: "rgba(11, 196, 227, 0.08)",
+  },
+  {
+    label: "Dashboards & Web Applications",
+    href: "/services/web-applications",
+    desc: "Real-time operations management, data visualization & reporting",
+    icon: Layout,
+    category: "Analytics & Admin",
+    color: "#1558D4",
+    bgSoft: "rgba(21, 88, 212, 0.08)",
+  },
+  {
+    label: "Custom Internal Software",
+    href: "/services/custom-software",
+    desc: "Purpose-built operational platforms designed around how you work",
+    icon: Code2,
+    category: "Internal Tools",
+    color: "#5B3CF5",
+    bgSoft: "rgba(91, 60, 245, 0.08)",
+  },
+  {
+    label: "SaaS & Digital Platforms",
+    href: "/services/saas-development",
+    desc: "Scalable multi-tenant infrastructure, auth systems & billing engines",
+    icon: Rocket,
+    category: "Product MVP",
+    color: "#2570E8",
+    bgSoft: "rgba(37, 112, 232, 0.08)",
+  },
+  {
+    label: "Business Process Automation",
+    href: "/services/business-automation",
+    desc: "Eliminate manual data entry, webhook triggers & scheduled jobs",
+    icon: Workflow,
+    category: "Automation",
+    color: "#0BC4E3",
+    bgSoft: "rgba(11, 196, 227, 0.08)",
+  },
+  {
+    label: "AI Solutions & Integrations",
+    href: "/services/ai-solutions",
+    desc: "Document extraction, conversational workflows & smart predictive logic",
+    icon: Sparkles,
+    category: "AI & Data",
+    color: "#5B3CF5",
+    bgSoft: "rgba(91, 60, 245, 0.08)",
+  },
 ]
 
 const navLinks = [
@@ -29,55 +159,44 @@ const navLinks = [
   { label: "Work",       href: "/work" },
   { label: "Process",    href: "/process" },
   { label: "About",      href: "/about" },
-  { label: "Insights",   href: "/insights" },
+  { label: "Contact Us", href: "/contact" },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled]           = useState(false)
-  const [hidden, setHidden]               = useState(false)
   const [megaOpen, setMegaOpen]           = useState<string | null>(null)
   const [mobileOpen, setMobileOpen]       = useState(false)
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null)
   const location   = useLocation()
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const lastY      = useRef(0)
 
   const { scrollY } = useScroll()
 
   useMotionValueEvent(scrollY, "change", (y) => {
-    const diff = y - lastY.current
-    setScrolled(y > 32)
-    // Hide navbar on scroll down > 80px from top, show on scroll up
-    if (y > 120) {
-      setHidden(diff > 0 && Math.abs(diff) > 2)
-    } else {
-      setHidden(false)
-    }
-    lastY.current = y
+    setScrolled(y > 20)
   })
 
   useEffect(() => { setMobileOpen(false); setMegaOpen(null) }, [location.pathname])
 
-  const isHome = location.pathname === "/"
   const openMega = (key: string) => { if (closeTimer.current) clearTimeout(closeTimer.current); setMegaOpen(key) }
   const closeMega = () => { closeTimer.current = setTimeout(() => setMegaOpen(null), 180) }
   const keepMega  = () => { if (closeTimer.current) clearTimeout(closeTimer.current) }
 
-  const transparent = isHome && !scrolled
-  const linkBase = transparent ? "text-white/65 hover:text-white" : "text-[#3D5168] hover:text-[#0A1828]"
+  const transparent = !scrolled
+  const linkBase = transparent ? "text-white/80 hover:text-white" : "text-[#3D5168] hover:text-[#0A1828]"
 
   return (
     <>
-      <motion.nav
-        animate={{ y: hidden ? -100 : 0 }}
-        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "nav-glass" : isHome ? "bg-transparent" : "bg-white border-b border-[#E2EBF5]"
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "nav-glass border-b border-[#E2EBF5]"
+            : "bg-transparent border-b border-transparent"
         }`}
         style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
         aria-label="Main navigation"
       >
-        {/* Top gradient line (home only) */}
+        {/* Top gradient line (only when at top) */}
         {transparent && (
           <div
             className="absolute top-0 left-0 right-0 h-px"
@@ -88,7 +207,7 @@ export default function Navbar() {
         <div className="container-wide">
           <div className="flex items-center justify-between h-[68px] lg:h-[72px]">
 
-            {/* Logo */}
+            {/* Logo (White at top, Dark when scrolled) */}
             <Link to="/" className="relative flex items-center h-10 transition-all duration-300 group">
               <div className="transition-transform duration-200 hover:scale-[1.03]">
                 <img
@@ -118,7 +237,7 @@ export default function Navbar() {
                   <NavLink
                     to={link.href}
                     className={({ isActive }) =>
-                      `relative flex items-center gap-1 px-3.5 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 ${
+                      `relative flex items-center gap-1.5 px-3.5 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 ${
                         isActive
                           ? transparent ? "text-white" : "text-[#1558D4]"
                           : linkBase
@@ -130,9 +249,9 @@ export default function Navbar() {
                         {link.label}
                         {link.hasMega && (
                           <ChevronDown
-                            size={11}
-                            className={`transition-transform duration-200 ${megaOpen === link.hasMega ? "rotate-180" : ""}`}
-                            style={{ opacity: 0.6 }}
+                            size={12}
+                            className={`transition-transform duration-200 ${megaOpen === link.hasMega ? "rotate-180 text-blue-500" : ""}`}
+                            style={{ opacity: 0.7 }}
                           />
                         )}
                         {isActive && (
@@ -161,10 +280,10 @@ export default function Navbar() {
             {/* CTA */}
             <div className="hidden lg:flex items-center gap-3">
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
-                <Link to="/contact" data-cta className="btn-primary text-sm">
-                  <Zap size={13} />
+                <Link to="/contact" data-cta className="btn-primary text-sm shadow-md">
+                  <Zap size={14} />
                   Start a Project
-                  <ArrowUpRight size={13} />
+                  <ArrowUpRight size={14} />
                 </Link>
               </motion.div>
             </div>
@@ -191,75 +310,80 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mega Menu */}
+        {/* Next-Level Mega Menu Dropdown */}
         <AnimatePresence>
           {megaOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -8, scaleY: 0.97 }}
-              animate={{ opacity: 1,  y: 0,  scaleY: 1 }}
-              exit={  { opacity: 0, y: -8,  scaleY: 0.97 }}
-              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              style={{ transformOrigin: "top" }}
-              className="absolute left-0 right-0 mega-glass"
+              initial={{ opacity: 0, y: -6, scale: 0.99 }}
+              animate={{ opacity: 1,  y: 0,  scale: 1 }}
+              exit={{ opacity: 0, y: -6,  scale: 0.99 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                transformOrigin: "top",
+                borderColor: "#E2EBF5",
+                boxShadow: "0 25px 50px -12px rgba(11, 26, 46, 0.15)",
+              }}
+              className="absolute left-0 right-0 bg-white/95 backdrop-blur-2xl border-b shadow-2xl"
               onMouseEnter={keepMega}
               onMouseLeave={closeMega}
             >
-              <div className="container-wide py-10">
-                <div className="grid grid-cols-[1.6fr_1fr] gap-14">
-                  <div>
-                    <p className="section-label mb-6">{megaOpen === "services" ? "Services" : "Solutions"}</p>
-                    <div className="grid grid-cols-2 gap-0.5">
-                      {(megaOpen === "services" ? services : solutions).map((item) => (
-                        <Link
-                          key={item.href + item.label}
-                          to={item.href}
-                          className="group flex items-start gap-3 p-3.5 rounded-2xl transition-all duration-200 hover:bg-[#EEF3FA]"
+              <div className="container-wide max-w-5xl mx-auto py-7 px-4 sm:px-6">
+                <div className="flex items-center justify-between mb-4 pb-2.5 border-b" style={{ borderColor: "#E2EBF5" }}>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
+                    <span className="text-xs font-bold tracking-[0.16em] uppercase text-blue-600" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                      {megaOpen === "services" ? "Full-Cycle Services" : "Custom Industry Solutions"}
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-400 font-medium" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                    {megaOpen === "services" ? "8 Core Engineering Divisions" : "6 Purpose-Built Architectures"}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {(megaOpen === "services" ? servicesData : solutionsData).map((item) => {
+                    const Icon = item.icon
+                    return (
+                      <Link
+                        key={item.href + item.label}
+                        to={item.href}
+                        className="group flex items-start gap-3.5 p-3.5 rounded-2xl transition-all duration-200 hover:bg-[#F0F6FF] border border-transparent hover:border-blue-100 hover:shadow-sm"
+                      >
+                        {/* Icon Container with hover effect */}
+                        <div
+                          className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-110 group-hover:rotate-2 shadow-xs"
+                          style={{ background: item.bgSoft, color: item.color }}
                         >
-                          <div
-                            className="w-1.5 h-1.5 rounded-full mt-[7px] flex-shrink-0 transition-all duration-200 group-hover:scale-150"
-                            style={{ background: "#CBD5E1" }}
-                          />
-                          <div>
-                            <p className="font-semibold text-sm transition-colors duration-200 flex items-center gap-1.5 group-hover:text-[#1558D4]" style={{ color: "#07111F" }}>
+                          <Icon size={18} />
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-1 mb-0.5">
+                            <p
+                              className="font-bold text-sm text-slate-900 group-hover:text-blue-600 transition-colors duration-200 truncate"
+                              style={{ fontFamily: "Sora, sans-serif" }}
+                            >
                               {item.label}
-                              <ArrowUpRight size={10} className="opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                             </p>
-                            <p className="text-xs mt-0.5 leading-snug" style={{ color: "#6B7E94" }}>{item.desc}</p>
+                            <ArrowUpRight
+                              size={13}
+                              className="opacity-0 group-hover:opacity-100 text-blue-600 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0"
+                            />
                           </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="pl-12 border-l" style={{ borderColor: "#E2EBF5" }}>
-                    <p className="section-label mb-6">Quick Links</p>
-                    <div className="space-y-5">
-                      {[
-                        { label: "All Services", href: "/services", desc: "Browse our complete offering" },
-                        { label: "Our Work",      href: "/work",     desc: "Case studies and projects" },
-                        { label: "How We Work",   href: "/process",  desc: "From brief to launch" },
-                      ].map((q) => (
-                        <Link key={q.href} to={q.href} className="group block">
-                          <p className="font-semibold text-sm flex items-center gap-1.5 transition-colors group-hover:text-[#1558D4]" style={{ color: "#07111F" }}>
-                            {q.label} <ArrowUpRight size={12} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          <p className="text-xs text-slate-500 leading-snug line-clamp-2" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                            {item.desc}
                           </p>
-                          <p className="text-xs mt-0.5" style={{ color: "#6B7E94" }}>{q.desc}</p>
-                        </Link>
-                      ))}
-                      <div className="pt-4 border-t" style={{ borderColor: "#E2EBF5" }}>
-                        <Link to="/contact" data-cta className="btn-primary text-sm inline-flex">
-                          <Zap size={12} />
-                          Start a Project
-                          <ArrowUpRight size={12} />
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
+                        </div>
+                      </Link>
+                    )
+                  })}
                 </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Drawer */}
       <AnimatePresence>
@@ -320,18 +444,30 @@ export default function Navbar() {
                               transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                               className="overflow-hidden"
                             >
-                              <div className="pl-5 space-y-0.5 pb-2 pt-1">
-                                {(link.hasMega === "services" ? services : solutions).map((s) => (
-                                  <Link
-                                    key={s.href + s.label}
-                                    to={s.href}
-                                    className="flex items-center gap-2.5 py-2.5 px-3 text-sm rounded-xl transition-colors hover:bg-[#EEF3FA] hover:text-[#1558D4]"
-                                    style={{ color: "#3D5168", fontFamily: "Plus Jakarta Sans, sans-serif" }}
-                                  >
-                                    <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: "#CBD5E1" }} />
-                                    {s.label}
-                                  </Link>
-                                ))}
+                              <div className="pl-3 space-y-1 pb-2 pt-1">
+                                {(link.hasMega === "services" ? servicesData : solutionsData).map((s) => {
+                                  const Icon = s.icon
+                                  return (
+                                    <Link
+                                      key={s.href + s.label}
+                                      to={s.href}
+                                      className="flex items-center gap-3 py-2 px-3 text-sm rounded-xl transition-colors hover:bg-[#EEF3FA] group"
+                                      style={{ color: "#1E293B", fontFamily: "Plus Jakarta Sans, sans-serif" }}
+                                    >
+                                      <div
+                                        className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                                        style={{ background: s.bgSoft, color: s.color }}
+                                      >
+                                        <Icon size={14} />
+                                      </div>
+                                      <div className="flex-1 min-w-0">
+                                        <p className="font-semibold text-xs text-slate-800 group-hover:text-blue-600 transition-colors truncate">
+                                          {s.label}
+                                        </p>
+                                      </div>
+                                    </Link>
+                                  )
+                                })}
                               </div>
                             </motion.div>
                           )}

@@ -1,38 +1,136 @@
-// Contact page — SwasTek Solutions (ULTRA-PREMIUM REDESIGN)
+// Contact page — SwasTek Solutions (ULTRA-PREMIUM NEXT LEVEL)
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, CheckCircle2, Mail, Clock, MapPin, Zap } from 'lucide-react'
+import {
+  ArrowRight,
+  CheckCircle2,
+  Mail,
+  Clock,
+  MapPin,
+  Zap,
+  ShieldCheck,
+  Sparkles,
+  Globe,
+  Code2,
+  Database,
+  Smartphone,
+  ShoppingBag,
+  Layout,
+  PenTool,
+  Brain,
+  ChevronDown,
+  Check,
+  Copy,
+} from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 
-const projectTypes = [
-  { label: 'Website', icon: '🌐' },
-  { label: 'Custom Software', icon: '⚙️' },
-  { label: 'CRM', icon: '📊' },
-  { label: 'SaaS Product', icon: '📦' },
-  { label: 'E-commerce', icon: '🛍️' },
-  { label: 'Automation', icon: '⚡' },
-  { label: 'AI Integration', icon: '🧠' },
-  { label: 'API / Integration', icon: '🔗' },
-  { label: 'Other', icon: '✦' },
+const projectScopes = [
+  {
+    id: 'web-design',
+    label: 'Web Design',
+    desc: 'Bespoke UI layouts, visual branding & high-conversion landing pages',
+    icon: Layout,
+  },
+  {
+    id: 'ui-ux-design',
+    label: 'UX/UI Design',
+    desc: 'User journey mapping, wireframing, Figma prototypes & design systems',
+    icon: PenTool,
+  },
+  {
+    id: 'it-strategy-consulting',
+    label: 'IT Strategy Consulting',
+    desc: 'Technology roadmaps, architecture review & digital transformation',
+    icon: Brain,
+  },
+  {
+    id: 'custom-software',
+    label: 'Custom Software Development',
+    desc: 'Tailored internal tools, scalable business engines & databases',
+    icon: Code2,
+  },
+  {
+    id: 'crm-development',
+    label: 'CRM Development',
+    desc: 'Custom pipeline management, client portals & automated intake',
+    icon: Database,
+  },
+  {
+    id: 'web-development',
+    label: 'Web Development',
+    desc: 'Fast, secure & scalable fullstack web applications & portals',
+    icon: Globe,
+  },
+  {
+    id: 'mobile-app-development',
+    label: 'Mobile App Development',
+    desc: 'High-performance iOS & Android cross-platform mobile apps',
+    icon: Smartphone,
+  },
+  {
+    id: 'ecommerce',
+    label: 'E-Commerce Development',
+    desc: 'Custom storefronts, payment gateways & checkout funnels',
+    icon: ShoppingBag,
+  },
 ]
 
-const budgetRanges = ['Under £10K', '£10K – £25K', '£25K – £50K', '£50K – £100K', '£100K+', 'Not sure yet']
+const promptChips = [
+  'Building a new MVP from scratch',
+  'Modernizing legacy software',
+  'Automating manual team workflows',
+  'High-performance API integration',
+  'Dedicated contractor portal',
+]
 
-const contactInfo = [
-  { icon: Mail, label: 'Email', value: 'hello@swastek.com', href: 'mailto:hello@swastek.com' },
-  { icon: Clock, label: 'Response time', value: 'Within one business day', href: null },
-  { icon: MapPin, label: 'Based in', value: 'United Kingdom', href: null },
+const faqs = [
+  {
+    q: 'How quickly will I receive a proposal after submitting?',
+    a: 'We review all project submissions within 24 business hours. A Senior Solutions Architect will schedule a 30-minute discovery call and return a transparent, fixed-milestone technical blueprint with zero hidden fees.',
+  },
+  {
+    q: 'Do you sign Non-Disclosure Agreements (NDAs)?',
+    a: 'Yes, absolutely. We treat your intellectual property and business specifications with total confidentiality. Check the NDA request box on Step 3 or request one via email, and we will execute a mutual NDA before our deep-dive call.',
+  },
+  {
+    q: 'How does your project pricing work?',
+    a: 'We believe in fixed-fee, milestone-based pricing with crystal-clear deliverables. You never receive surprise invoices or vague hourly billing. Every sprint has clear acceptance criteria and live staging demos.',
+  },
+  {
+    q: 'Who owns the intellectual property and source code?',
+    a: 'You do. 100% of all code, design tokens, Figma assets, and database schemas developed by SwasTek Solutions are completely owned by your company upon milestone completion.',
+  },
 ]
 
 export default function Contact() {
   const [step, setStep] = useState(1)
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([])
+  const [selectedScopes, setSelectedScopes] = useState<string[]>([])
+  const [customScopeText, setCustomScopeText] = useState('')
   const [projectDesc, setProjectDesc] = useState('')
-  const [form, setForm] = useState({ name: '', email: '', company: '', country: '', budget: '' })
+  const [copiedEmail, setCopiedEmail] = useState(false)
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
+
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    country: '',
+  })
+
   const [submitted, setSubmitted] = useState(false)
 
-  const toggleType = (type: string) => {
-    setSelectedTypes(prev => prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type])
+  const toggleScope = (scopeId: string) => {
+    setSelectedScopes((prev) =>
+      prev.includes(scopeId) ? prev.filter((id) => id !== scopeId) : [...prev, scopeId]
+    )
+  }
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('hello@swastek.com')
+    setCopiedEmail(true)
+    setTimeout(() => setCopiedEmail(false), 2000)
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -40,402 +138,662 @@ export default function Contact() {
     setSubmitted(true)
   }
 
-  if (submitted) {
-    return (
-      <PageTransition title="Contact | SwasTek Solutions">
-        <div className="min-h-screen flex items-center justify-center grain-overlay" style={{ background: 'var(--void)' }}>
-          <div className="absolute inset-0 hero-grid opacity-60" />
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div style={{ position: 'absolute', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,88,212,0.15) 0%, transparent 68%)', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', filter: 'blur(80px)' }} />
-          </div>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.94 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="text-center max-w-lg px-8 relative z-10"
-          >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: 'spring', stiffness: 300 }}
-              className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-8"
-              style={{ background: 'linear-gradient(135deg, rgba(21,88,212,0.2) 0%, rgba(11,196,227,0.2) 100%)', border: '1px solid rgba(21,88,212,0.3)' }}
-            >
-              <CheckCircle2 size={36} style={{ color: '#4A8FF5' }} />
-            </motion.div>
-            <h2
-              className="font-bold text-white mb-4"
-              style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(1.8rem, 4vw, 3rem)', letterSpacing: '-0.04em' }}
-            >
-              We've received your details.
-            </h2>
-            <p className="text-base leading-relaxed" style={{ color: 'rgba(160,175,194,0.7)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-              Someone from the SwasTek team will be in touch within one business day to arrange a conversation.
-            </p>
-          </motion.div>
-        </div>
-      </PageTransition>
-    )
-  }
-
   return (
     <PageTransition
-      title="Contact | SwasTek Solutions"
-      description="Tell us what you're trying to build. We'll help you figure out the technology behind it."
+      title="Contact Us | SwasTek Solutions"
+      description="Tell us what you're trying to build. We'll engineer the technology, architecture, and UI/UX behind it."
     >
-      <div className="min-h-screen" style={{ background: 'var(--void)' }}>
-        {/* Background */}
-        <div className="fixed inset-0 hero-grid opacity-60 pointer-events-none" />
+      <div className="min-h-screen relative text-slate-100 overflow-hidden" style={{ background: '#020712', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+        {/* Ambient Grid and Glow Orbs */}
+        <div className="fixed inset-0 hero-grid opacity-35 pointer-events-none" />
         <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          <div className="orb-1 absolute" style={{ width: 700, height: 700, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,88,212,0.15) 0%, transparent 68%)', top: '-10%', right: '-5%', filter: 'blur(80px)' }} />
-          <div className="orb-2 absolute" style={{ width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(11,196,227,0.08) 0%, transparent 70%)', bottom: '10%', left: '5%', filter: 'blur(100px)' }} />
+          <div
+            className="absolute"
+            style={{
+              width: 800,
+              height: 800,
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(21,88,212,0.22) 0%, transparent 68%)',
+              top: '-15%',
+              right: '-10%',
+              filter: 'blur(90px)',
+            }}
+          />
+          <div
+            className="absolute"
+            style={{
+              width: 600,
+              height: 600,
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(11,196,227,0.15) 0%, transparent 70%)',
+              bottom: '5%',
+              left: '-5%',
+              filter: 'blur(100px)',
+            }}
+          />
         </div>
-        {/* Top line */}
-        <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.7) 30%, rgba(11,196,227,0.7) 70%, transparent 100%)' }} />
 
-        <div className="container-wide pt-36 pb-24 relative z-10">
-          <div className="grid lg:grid-cols-[1fr_1.5fr] gap-20 items-start">
+        {/* Top Accent Gradient Border */}
+        <div
+          className="absolute top-0 left-0 right-0 h-[2px]"
+          style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.9) 30%, rgba(11,196,227,0.9) 70%, transparent 100%)' }}
+        />
 
-            {/* ── LEFT — sticky info ── */}
-            <div className="lg:sticky lg:top-32">
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                className="flex items-center gap-2 mb-10"
-              >
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ background: 'rgba(21,88,212,0.12)', border: '1px solid rgba(21,88,212,0.22)' }}>
-                  <span className="relative flex h-2 w-2">
-                    <span className="pulse-ring absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: 'var(--blue-600)' }} />
-                    <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: 'var(--blue-500)' }} />
-                  </span>
-                  <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                    Get in Touch
-                  </span>
-                </div>
-              </motion.div>
-
-              <div className="overflow-hidden mb-1">
-                <motion.h1
-                  initial={{ y: '105%' }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="leading-none text-white"
-                  style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 4rem)', letterSpacing: '-0.04em' }}
-                >
-                  Have something
-                </motion.h1>
-              </div>
-              <div className="overflow-hidden mb-8">
-                <motion.h1
-                  initial={{ y: '105%' }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 1, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 4rem)', letterSpacing: '-0.04em', lineHeight: 1.05 }}
-                >
-                  <span style={{ background: 'linear-gradient(135deg, #2570E8 0%, #0BC4E3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-                    in mind?
-                  </span>
-                </motion.h1>
-              </div>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-                className="text-base leading-relaxed mb-12"
-                style={{ color: 'rgba(160,175,194,0.7)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
-              >
-                Tell us what you're trying to build. We'll help you figure out the technology behind it.
-              </motion.p>
-
-              {/* Contact details */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="space-y-4 mb-12"
-              >
-                {contactInfo.map((item) => {
-                  const Icon = item.icon
-                  return (
-                    <div
-                      key={item.label}
-                      className="flex items-center gap-4 p-4 rounded-xl"
-                      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}
-                    >
-                      <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(21,88,212,0.15)', border: '1px solid rgba(21,88,212,0.2)' }}>
-                        <Icon size={15} style={{ color: '#4A8FF5' }} />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-bold tracking-wider uppercase mb-0.5" style={{ color: '#536880', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.label}</p>
-                        {item.href ? (
-                          <a href={item.href} className="text-sm font-semibold transition-colors hover:text-blue-400" style={{ color: 'rgba(255,255,255,0.8)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                            {item.value}
-                          </a>
-                        ) : (
-                          <p className="text-sm" style={{ color: 'rgba(255,255,255,0.6)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.value}</p>
-                        )}
-                      </div>
-                    </div>
-                  )
-                })}
-              </motion.div>
-
-              {/* Step indicator */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  {[1, 2, 3].map((s) => (
-                    <div key={s} className="flex items-center gap-2">
-                      <div
-                        className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-400"
-                        style={{
-                          background: step > s ? 'linear-gradient(135deg, #1558D4, #0BC4E3)' : step === s ? 'rgba(21,88,212,0.3)' : 'rgba(255,255,255,0.05)',
-                          color: step >= s ? '#ffffff' : '#536880',
-                          fontFamily: 'Plus Jakarta Sans, sans-serif',
-                          border: `1px solid ${step >= s ? 'rgba(21,88,212,0.5)' : 'rgba(255,255,255,0.08)'}`,
-                        }}
-                      >
-                        {step > s ? '✓' : s}
-                      </div>
-                      {s < 3 && (
-                        <div
-                          className="w-10 h-px transition-all duration-400"
-                          style={{ background: step > s ? 'linear-gradient(90deg, #1558D4, #0BC4E3)' : 'rgba(255,255,255,0.08)' }}
-                        />
-                      )}
-                    </div>
-                  ))}
-                </div>
-                <p className="text-xs" style={{ color: '#536880', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                  Step {step} of 3 —{' '}
-                  {step === 1 && 'What are you looking to build?'}
-                  {step === 2 && 'Tell us about it'}
-                  {step === 3 && 'How can we reach you?'}
-                </p>
-              </motion.div>
+        <div className="container-wide pt-32 sm:pt-36 pb-20 relative z-10">
+          {/* Header Banner */}
+          <div className="max-w-3xl mb-12 lg:mb-16">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full mb-4 bg-cyan-500/10 border border-cyan-500/30">
+              <span className="relative flex h-2 w-2">
+                <span className="pulse-ring absolute inline-flex h-full w-full rounded-full opacity-75 bg-cyan-400" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
+              </span>
+              <span className="text-xs font-bold tracking-[0.16em] uppercase text-cyan-300">
+                Online & Accepting New Projects
+              </span>
             </div>
 
-            {/* ── RIGHT — form ── */}
-            <div>
-              <AnimatePresence mode="wait">
+            <h1
+              className="font-bold text-white leading-tight tracking-tight mb-4"
+              style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(2.4rem, 5vw, 4.2rem)', letterSpacing: '-0.035em' }}
+            >
+              Let's engineer your{' '}
+              <span style={{ background: 'linear-gradient(135deg, #38BDF8 0%, #2570E8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                next breakthrough.
+              </span>
+            </h1>
 
-                {/* Step 1 */}
-                {step === 1 && (
-                  <motion.div
-                    key="step1"
-                    initial={{ opacity: 0, x: 30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -30 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="rounded-3xl p-8 md:p-10"
-                    style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', backdropFilter: 'blur(20px)' }}
-                  >
-                    <h2 className="font-bold text-white mb-2" style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.4rem, 3vw, 2rem)', letterSpacing: '-0.03em' }}>
-                      What are you looking to build?
-                    </h2>
-                    <p className="text-sm mb-8" style={{ color: '#536880', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Select all that apply</p>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
-                      {projectTypes.map((type) => {
-                        const selected = selectedTypes.includes(type.label)
-                        return (
-                          <motion.button
-                            key={type.label}
-                            onClick={() => toggleType(type.label)}
-                            whileHover={{ scale: 1.03 }}
-                            whileTap={{ scale: 0.97 }}
-                            className="flex items-center gap-2.5 px-4 py-3.5 rounded-2xl text-sm font-semibold text-left transition-all duration-300"
-                            style={{
-                              background: selected ? 'linear-gradient(135deg, rgba(21,88,212,0.25) 0%, rgba(11,196,227,0.15) 100%)' : 'rgba(255,255,255,0.03)',
-                              color: selected ? '#4A8FF5' : 'rgba(255,255,255,0.5)',
-                              border: '1px solid',
-                              borderColor: selected ? 'rgba(21,88,212,0.5)' : 'rgba(255,255,255,0.07)',
-                              fontFamily: 'Plus Jakarta Sans, sans-serif',
-                            }}
-                          >
-                            <span className="text-base">{type.icon}</span>
-                            {type.label}
-                          </motion.button>
-                        )
-                      })}
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+              Tell us about your business goals and technical requirements. You speak directly with senior software architects — no pushy sales scripts.
+            </p>
+
+            {/* Quick Guarantees Strip */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-6 text-xs text-slate-200">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10">
+                <Clock size={13} className="text-cyan-400" /> &lt; 24h Response SLA
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10">
+                <ShieldCheck size={13} className="text-blue-400" /> Mutual NDA Ready
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-white/10">
+                <Zap size={13} className="text-cyan-400" /> Free Architecture Blueprint
+              </span>
+            </div>
+          </div>
+
+          {/* Main Grid: Left Trust Column + Right Interactive Project Builder */}
+          <div className="grid lg:grid-cols-[1.1fr_1.9fr] gap-10 lg:gap-14 items-start">
+            
+            {/* ── LEFT PILLAR: Contact Info & Proof Cards ── */}
+            <div className="space-y-6 lg:sticky lg:top-28">
+              
+              {/* Direct Channels Card */}
+              <div
+                className="p-6 sm:p-7 rounded-3xl border relative overflow-hidden backdrop-blur-xl shadow-xl"
+                style={{
+                  background: 'linear-gradient(145deg, rgba(15, 30, 60, 0.7) 0%, rgba(6, 15, 30, 0.9) 100%)',
+                  borderColor: 'rgba(56, 189, 248, 0.25)',
+                }}
+              >
+                <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/10">
+                  <span className="text-xs font-bold tracking-wider uppercase text-cyan-300">
+                    Direct Channels
+                  </span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    Fast Reply
+                  </span>
+                </div>
+
+                <div className="space-y-4">
+                  {/* Email */}
+                  <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between gap-3 group hover:border-cyan-400/40 transition-all">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center flex-shrink-0">
+                        <Mail size={18} />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Email Inquiry</p>
+                        <a href="mailto:hello@swastek.com" className="text-sm font-bold text-white hover:text-cyan-300 transition-colors">
+                          hello@swastek.com
+                        </a>
+                      </div>
                     </div>
-                    <motion.button
-                      onClick={() => setStep(2)}
-                      disabled={selectedTypes.length === 0}
-                      whileHover={selectedTypes.length > 0 ? { scale: 1.02 } : {}}
-                      whileTap={selectedTypes.length > 0 ? { scale: 0.98 } : {}}
-                      className="btn-primary text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+                    <button
+                      type="button"
+                      onClick={handleCopyEmail}
+                      title="Copy email to clipboard"
+                      className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-all text-xs flex items-center gap-1"
                     >
-                      <Zap size={14} />
-                      Continue
-                      <ArrowRight size={14} />
-                    </motion.button>
-                  </motion.div>
-                )}
+                      {copiedEmail ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
+                      <span className="text-[11px] hidden sm:inline">{copiedEmail ? 'Copied' : 'Copy'}</span>
+                    </button>
+                  </div>
 
-                {/* Step 2 */}
-                {step === 2 && (
-                  <motion.div
-                    key="step2"
-                    initial={{ opacity: 0, x: 30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -30 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="rounded-3xl p-8 md:p-10"
-                    style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', backdropFilter: 'blur(20px)' }}
-                  >
-                    {/* Selected types summary */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {selectedTypes.map(t => (
-                        <span key={t} className="text-xs px-3 py-1 rounded-full font-semibold" style={{ background: 'rgba(21,88,212,0.2)', color: '#4A8FF5', border: '1px solid rgba(21,88,212,0.3)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                          {t}
-                        </span>
-                      ))}
+                  {/* Consultation SLA */}
+                  <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center flex-shrink-0">
+                      <Clock size={18} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Response Commitment</p>
+                      <p className="text-sm font-bold text-white">Within 24 business hours</p>
+                    </div>
+                  </div>
+
+                  {/* Location & Global Delivery */}
+                  <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center flex-shrink-0">
+                      <MapPin size={18} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Delivery Model</p>
+                      <p className="text-sm font-bold text-white">Delhi, India · Global Delivery</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Direct Engineer Promise Box */}
+              <div
+                className="p-6 rounded-3xl border relative overflow-hidden text-slate-200"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(21, 88, 212, 0.15) 0%, rgba(6, 15, 30, 0.6) 100%)',
+                  borderColor: 'rgba(21, 88, 212, 0.3)',
+                }}
+              >
+                <div className="flex items-center gap-2 mb-2 text-xs font-bold text-cyan-400 uppercase tracking-wider">
+                  <ShieldCheck size={16} /> Direct Architect Collaboration
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed mb-3">
+                  You collaborate directly with principal fullstack engineers and UX designers who actually build your software. No commission-driven account managers or third-party outsourcing.
+                </p>
+                <div className="flex items-center gap-2 text-[11px] font-bold text-cyan-300">
+                  <Zap size={12} /> 100% Type-Safe & Scalable Codebase
+                </div>
+              </div>
+
+              {/* Process Clarity Box */}
+              <div
+                className="p-5 sm:p-6 rounded-3xl border relative overflow-hidden"
+                style={{
+                  background: 'linear-gradient(145deg, rgba(15, 30, 60, 0.4) 0%, rgba(6, 15, 30, 0.7) 100%)',
+                  borderColor: 'rgba(56, 189, 248, 0.2)',
+                }}
+              >
+                <div className="flex items-center gap-2 mb-3.5 text-xs font-bold text-cyan-400 uppercase tracking-wider">
+                  <Sparkles size={15} /> What Happens Next?
+                </div>
+                <div className="space-y-3 text-xs text-slate-300">
+                  <div className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-[10px] flex-shrink-0 mt-0.5 border border-cyan-500/30">1</span>
+                    <p><strong className="text-white">Technical Review:</strong> We analyze your chosen scope & architectural needs.</p>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-[10px] flex-shrink-0 mt-0.5 border border-cyan-500/30">2</span>
+                    <p><strong className="text-white">Direct Connect:</strong> 30-min discovery session with our Lead Architect.</p>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-[10px] flex-shrink-0 mt-0.5 border border-cyan-500/30">3</span>
+                    <p><strong className="text-white">Fixed Blueprint:</strong> Milestone roadmap & transparent estimate within 24h.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ── RIGHT PILLAR: Interactive Multi-Step Project Discovery Form ── */}
+            <div>
+              {submitted ? (
+                /* Success State */
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="p-8 sm:p-12 rounded-3xl border text-center shadow-2xl relative overflow-hidden"
+                  style={{
+                    background: 'linear-gradient(145deg, rgba(16, 42, 85, 0.95) 0%, rgba(9, 24, 48, 0.98) 100%)',
+                    borderColor: 'rgba(11, 196, 227, 0.45)',
+                    boxShadow: '0 30px 70px -15px rgba(0,0,0,0.8), 0 0 50px rgba(11, 196, 227, 0.18)',
+                  }}
+                >
+                  <div className="w-20 h-20 rounded-2xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-cyan-500/20">
+                    <CheckCircle2 size={40} className="text-cyan-300 animate-pulse" />
+                  </div>
+
+                  <h3 className="font-bold text-2xl sm:text-3xl text-white mb-3" style={{ fontFamily: 'Sora, sans-serif' }}>
+                    Project Blueprint Request Received!
+                  </h3>
+                  <p className="text-sm sm:text-base text-slate-200 max-w-md mx-auto mb-8 leading-relaxed">
+                    Thank you, <strong className="text-white">{form.name || 'there'}</strong>. Our Senior Technical Architect is reviewing your scope requirements now.
+                  </p>
+
+                  {/* Next steps roadmap */}
+                  <div className="p-5 rounded-2xl bg-white/5 border border-white/10 text-left max-w-md mx-auto space-y-3 mb-8 text-xs text-slate-300">
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-cyan-500/30 text-cyan-300 flex items-center justify-center font-bold text-[10px] mt-0.5">1</div>
+                      <p><strong className="text-white">Review:</strong> We analyze your chosen scope & timeline.</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-cyan-500/30 text-cyan-300 flex items-center justify-center font-bold text-[10px] mt-0.5">2</div>
+                      <p><strong className="text-white">Direct Connect:</strong> You'll receive an email & call booking invite within 24h.</p>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-cyan-500/30 text-cyan-300 flex items-center justify-center font-bold text-[10px] mt-0.5">3</div>
+                      <p><strong className="text-white">Blueprint Delivery:</strong> Milestone roadmap, tech stack selection & transparent fixed pricing.</p>
+                    </div>
+                  </div>
+
+                  <Link to="/" className="btn-primary-white inline-flex items-center gap-2">
+                    Return to Homepage <ArrowRight size={14} />
+                  </Link>
+                </motion.div>
+              ) : (
+                /* Multi-Step Wizard Container */
+                <div
+                  className="rounded-3xl border p-6 sm:p-10 shadow-2xl relative backdrop-blur-2xl"
+                  style={{
+                    background: 'linear-gradient(145deg, rgba(16, 38, 76, 0.85) 0%, rgba(8, 20, 38, 0.95) 50%, rgba(4, 10, 20, 0.99) 100%)',
+                    borderColor: 'rgba(56, 189, 248, 0.3)',
+                    boxShadow: '0 24px 60px -15px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15)',
+                  }}
+                >
+                  {/* Stepper Header */}
+                  <div className="mb-8">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-bold tracking-wider uppercase text-cyan-300">
+                        Step {step} of 3
+                      </span>
+                      <span className="text-xs text-slate-400 font-medium">
+                        {step === 1 && '1. Project Scope & Architecture'}
+                        {step === 2 && '2. Project Vision & Requirements'}
+                        {step === 3 && '3. Direct Consultation Details'}
+                      </span>
                     </div>
 
-                    <h2 className="font-bold text-white mb-2" style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.4rem, 3vw, 2rem)', letterSpacing: '-0.03em' }}>
-                      Tell us a little about it.
-                    </h2>
-                    <p className="text-sm mb-6" style={{ color: '#536880', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                      What's the problem you're trying to solve? What does success look like?
-                    </p>
-                    <textarea
-                      value={projectDesc}
-                      onChange={(e) => setProjectDesc(e.target.value)}
-                      placeholder="Describe your project, the business context, what you've tried before (if anything), and what you're hoping to achieve..."
-                      rows={8}
-                      className="w-full rounded-2xl p-5 text-sm resize-none outline-none transition-all mb-6"
-                      style={{
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        fontFamily: 'Plus Jakarta Sans, sans-serif',
-                        color: 'rgba(255,255,255,0.8)',
-                        background: 'rgba(255,255,255,0.04)',
-                        lineHeight: '1.7',
-                      }}
-                    />
-                    <div className="flex gap-3">
-                      <button
-                        onClick={() => setStep(1)}
-                        className="px-6 py-3.5 rounded-full text-sm font-semibold transition-all duration-200 hover:bg-white/5"
-                        style={{ border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
-                      >
-                        Back
-                      </button>
-                      <motion.button
-                        onClick={() => setStep(3)}
-                        disabled={projectDesc.trim().length < 10}
-                        whileHover={projectDesc.trim().length >= 10 ? { scale: 1.02 } : {}}
-                        whileTap={projectDesc.trim().length >= 10 ? { scale: 0.98 } : {}}
-                        className="btn-primary text-sm disabled:opacity-40 disabled:cursor-not-allowed"
-                      >
-                        Continue <ArrowRight size={14} />
-                      </motion.button>
+                    {/* Glowing Progress Track */}
+                    <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-500"
+                        initial={{ width: '33.33%' }}
+                        animate={{ width: `${(step / 3) * 100}%` }}
+                        transition={{ duration: 0.35, ease: 'easeInOut' }}
+                      />
                     </div>
-                  </motion.div>
-                )}
+                  </div>
 
-                {/* Step 3 */}
-                {step === 3 && (
-                  <motion.div
-                    key="step3"
-                    initial={{ opacity: 0, x: 30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -30 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="rounded-3xl p-8 md:p-10"
-                    style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', backdropFilter: 'blur(20px)' }}
-                  >
-                    <h2 className="font-bold text-white mb-2" style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.4rem, 3vw, 2rem)', letterSpacing: '-0.03em' }}>
-                      How can we reach you?
-                    </h2>
-                    <p className="text-sm mb-8" style={{ color: '#536880', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                      We'll be in touch within one business day.
-                    </p>
+                  <AnimatePresence mode="wait">
+                    {/* ──── STEP 1: SCOPE SELECTION ──── */}
+                    {step === 1 && (
+                      <motion.div
+                        key="step1"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <h3 className="font-bold text-xl sm:text-2xl text-white mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
+                          What are you looking to build or improve?
+                        </h3>
+                        <p className="text-xs sm:text-sm text-slate-300 mb-6">
+                          Select all architectural capabilities relevant to your upcoming project.
+                        </p>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      <div className="grid sm:grid-cols-2 gap-4">
-                        {[
-                          { id: 'contact-name', label: 'Your name', field: 'name', type: 'text', required: true },
-                          { id: 'contact-email', label: 'Work email', field: 'email', type: 'email', required: true },
-                          { id: 'contact-company', label: 'Company', field: 'company', type: 'text', required: false },
-                          { id: 'contact-country', label: 'Country', field: 'country', type: 'text', required: false },
-                        ].map((f) => (
-                          <div key={f.id}>
-                            <label htmlFor={f.id} className="block text-xs font-semibold mb-2" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'Plus Jakarta Sans, sans-serif', letterSpacing: '0.08em' }}>
-                              {f.label}{f.required ? ' *' : ''}
-                            </label>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+                          {projectScopes.map((item) => {
+                            const Icon = item.icon
+                            const isSelected = selectedScopes.includes(item.id)
+                            return (
+                              <button
+                                key={item.id}
+                                type="button"
+                                onClick={() => toggleScope(item.id)}
+                                className={`p-4 rounded-2xl text-left border transition-all duration-200 flex items-start gap-3.5 group relative ${
+                                  isSelected
+                                    ? 'bg-cyan-500/20 border-cyan-400 text-white shadow-md shadow-cyan-500/10'
+                                    : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10 hover:border-white/20'
+                                }`}
+                              >
+                                <div
+                                  className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform ${
+                                    isSelected ? 'bg-cyan-500 text-slate-950 scale-105' : 'bg-white/10 text-cyan-300 group-hover:scale-105'
+                                  }`}
+                                >
+                                  <Icon size={18} />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center justify-between gap-1 mb-0.5">
+                                    <p className="font-bold text-xs sm:text-sm text-white truncate" style={{ fontFamily: 'Sora, sans-serif' }}>
+                                      {item.label}
+                                    </p>
+                                    <div
+                                      className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${
+                                        isSelected ? 'bg-cyan-400 border-cyan-400 text-slate-950' : 'border-white/20'
+                                      }`}
+                                    >
+                                      {isSelected && <Check size={10} strokeWidth={3} />}
+                                    </div>
+                                  </div>
+                                  <p className="text-[11px] text-slate-300 leading-snug line-clamp-2">
+                                    {item.desc}
+                                  </p>
+                                </div>
+                              </button>
+                            )
+                          })}
+                        </div>
+
+                        {/* Custom / Other Specification Input */}
+                        <div
+                          className={`p-4 rounded-2xl border transition-all duration-300 mb-6 ${
+                            customScopeText.trim().length > 0
+                              ? 'bg-cyan-500/10 border-cyan-400/80 shadow-lg shadow-cyan-500/10'
+                              : 'bg-white/5 border-white/10 hover:border-white/20'
+                          }`}
+                        >
+                          <div className="flex items-center justify-between gap-2 mb-2">
+                            <div className="flex items-center gap-2.5">
+                              <div
+                                className={`w-8 h-8 rounded-xl flex items-center justify-center transition-colors ${
+                                  customScopeText.trim().length > 0 ? 'bg-cyan-400 text-slate-950 font-bold' : 'bg-white/10 text-cyan-300'
+                                }`}
+                              >
+                                <Sparkles size={16} />
+                              </div>
+                              <div>
+                                <label htmlFor="custom-service-input" className="text-xs sm:text-sm font-bold text-white block cursor-pointer">
+                                  Need something different or custom?
+                                </label>
+                                <span className="text-[11px] text-slate-400">Type your specific service, framework or custom build requirement.</span>
+                              </div>
+                            </div>
+                            {customScopeText.trim().length > 0 && (
+                              <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 flex-shrink-0">
+                                Custom Added
+                              </span>
+                            )}
+                          </div>
+                          <div className="relative mt-2">
                             <input
-                              id={f.id}
-                              type={f.type}
-                              required={f.required}
-                              value={form[f.field as keyof typeof form]}
-                              onChange={(e) => setForm({ ...form, [f.field]: e.target.value })}
-                              className="w-full px-4 py-3.5 rounded-xl text-sm outline-none transition-all"
-                              style={{
-                                border: '1px solid rgba(255,255,255,0.1)',
-                                fontFamily: 'Plus Jakarta Sans, sans-serif',
-                                color: 'rgba(255,255,255,0.8)',
-                                background: 'rgba(255,255,255,0.05)',
-                              }}
+                              id="custom-service-input"
+                              type="text"
+                              value={customScopeText}
+                              onChange={(e) => setCustomScopeText(e.target.value)}
+                              placeholder="e.g. AI Workflow Bots, Cloud DevOps, Custom Payment APIs, Legacy Migration..."
+                              className="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/15 text-xs sm:text-sm text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all"
                             />
                           </div>
-                        ))}
-                      </div>
+                        </div>
 
-                      <div>
-                        <label className="block text-xs font-semibold mb-3" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'Plus Jakarta Sans, sans-serif', letterSpacing: '0.08em' }}>
-                          Budget range (optional)
-                        </label>
-                        <div className="flex flex-wrap gap-2">
-                          {budgetRanges.map((b) => (
+                        <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                          <span className="text-xs text-slate-400">
+                            {selectedScopes.length + (customScopeText.trim() ? 1 : 0)}{' '}
+                            {selectedScopes.length + (customScopeText.trim() ? 1 : 0) === 1 ? 'scope' : 'scopes'} selected
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setStep(2)}
+                            disabled={selectedScopes.length === 0 && customScopeText.trim().length === 0}
+                            className="btn-primary text-xs sm:text-sm shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
+                          >
+                            <span>Continue to Project Details</span>
+                            <ArrowRight size={14} />
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* ──── STEP 2: PROJECT VISION & TIMELINE ──── */}
+                    {step === 2 && (
+                      <motion.div
+                        key="step2"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <h3 className="font-bold text-xl sm:text-2xl text-white mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
+                          Tell us about your project vision.
+                        </h3>
+                        <p className="text-xs sm:text-sm text-slate-300 mb-6">
+                          Describe the business problem, expected user workflows, or what success looks like.
+                        </p>
+
+                        {/* Quick Prompt Chips */}
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {promptChips.map((chip) => (
                             <button
-                              key={b}
+                              key={chip}
                               type="button"
-                              onClick={() => setForm({ ...form, budget: form.budget === b ? '' : b })}
-                              className="px-3.5 py-2 rounded-full text-xs font-semibold transition-all duration-200"
-                              style={{
-                                background: form.budget === b ? 'rgba(21,88,212,0.25)' : 'rgba(255,255,255,0.04)',
-                                color: form.budget === b ? '#4A8FF5' : 'rgba(255,255,255,0.4)',
-                                border: '1px solid',
-                                borderColor: form.budget === b ? 'rgba(21,88,212,0.5)' : 'rgba(255,255,255,0.07)',
-                                fontFamily: 'Plus Jakarta Sans, sans-serif',
-                              }}
+                              onClick={() => setProjectDesc((prev) => (prev ? `${prev} ${chip}.` : `${chip}.`))}
+                              className="px-3 py-1 rounded-full text-[11px] font-semibold bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 hover:text-cyan-300 transition-colors"
                             >
-                              {b}
+                              + {chip}
                             </button>
                           ))}
                         </div>
-                      </div>
 
-                      <div className="flex gap-3 pt-4">
-                        <button
-                          type="button"
-                          onClick={() => setStep(2)}
-                          className="px-6 py-3.5 rounded-full text-sm font-semibold transition-all hover:bg-white/5"
-                          style={{ border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
-                        >
-                          Back
-                        </button>
-                        <motion.button
-                          type="submit"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          className="btn-primary text-sm"
-                          data-cta
-                        >
-                          <Zap size={14} />
-                          Send Project Details
-                          <ArrowRight size={14} />
-                        </motion.button>
-                      </div>
-                    </form>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                        {/* Description Textarea */}
+                        <div className="relative mb-8">
+                          <textarea
+                            rows={7}
+                            value={projectDesc}
+                            onChange={(e) => setProjectDesc(e.target.value)}
+                            placeholder="e.g. We are building a custom CRM with automated contractor quote submissions, integrated with WhatsApp & PlanSwift. Describe key workflows, features, or business goals..."
+                            className="w-full p-4 rounded-2xl bg-black/40 border border-white/15 text-sm text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all resize-none leading-relaxed"
+                          />
+                          <span className="absolute bottom-3 right-3 text-[10px] text-slate-400 font-mono">
+                            {projectDesc.length} chars
+                          </span>
+                        </div>
+
+                        <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                          <button
+                            type="button"
+                            onClick={() => setStep(1)}
+                            className="px-5 py-2.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 hover:text-white transition-all"
+                          >
+                            Back
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setStep(3)}
+                            disabled={projectDesc.trim().length < 8}
+                            className="btn-primary text-xs sm:text-sm shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
+                          >
+                            <span>Continue to Contact Info</span>
+                            <ArrowRight size={14} />
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* ──── STEP 3: CONTACT INFO & BUDGET ──── */}
+                    {step === 3 && (
+                      <motion.div
+                        key="step3"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <h3 className="font-bold text-xl sm:text-2xl text-white mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
+                          How can our engineering team reach you?
+                        </h3>
+                        <p className="text-xs sm:text-sm text-slate-300 mb-6">
+                          We will send our review, architecture suggestions, and calendar invite within 24 hours.
+                        </p>
+
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            <div>
+                              <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                                Your Full Name <span className="text-cyan-400">*</span>
+                              </label>
+                              <input
+                                type="text"
+                                required
+                                value={form.name}
+                                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                                placeholder="e.g. Alex Henderson"
+                                className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-sm text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none transition-all"
+                              />
+                            </div>
+
+                            <div>
+                              <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                                Work Email <span className="text-cyan-400">*</span>
+                              </label>
+                              <input
+                                type="email"
+                                required
+                                value={form.email}
+                                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                                placeholder="alex@company.com"
+                                className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-sm text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none transition-all"
+                              />
+                            </div>
+
+                            <div>
+                              <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                                Company / Business Name
+                              </label>
+                              <input
+                                type="text"
+                                value={form.company}
+                                onChange={(e) => setForm({ ...form, company: e.target.value })}
+                                placeholder="e.g. Acme Tech Ltd"
+                                className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-sm text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none transition-all"
+                              />
+                            </div>
+
+                            <div>
+                              <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                                Phone / WhatsApp (Optional)
+                              </label>
+                              <input
+                                type="tel"
+                                value={form.phone}
+                                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                                placeholder="+1 (555) 019-2834"
+                                className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-sm text-white placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none transition-all"
+                              />
+                            </div>
+                          </div>
+
+                          {/* Problem-Solving First Commitment */}
+                          <div
+                            className="p-4 sm:p-5 rounded-2xl border relative overflow-hidden"
+                            style={{
+                              background: 'linear-gradient(135deg, rgba(21, 88, 212, 0.12) 0%, rgba(6, 15, 30, 0.6) 100%)',
+                              borderColor: 'rgba(56, 189, 248, 0.25)',
+                            }}
+                          >
+                            <div className="flex items-center gap-2 mb-2 text-xs font-bold text-cyan-400 uppercase tracking-wider">
+                              <ShieldCheck size={16} /> Solution-First Approach · Zero Commercial Pressure
+                            </div>
+                            <p className="text-xs text-slate-300 leading-relaxed mb-3">
+                              Our primary goal is to deeply understand your business workflows and solve your exact technical challenges. We outline all architecture, timelines, and tailored milestone pricing together in our discovery call — with zero upfront pressure or hidden costs.
+                            </p>
+                            <div className="flex flex-wrap items-center gap-4 text-[11px] font-semibold text-slate-300">
+                              <span className="inline-flex items-center gap-1.5 text-cyan-300">
+                                <Check size={13} className="text-cyan-400" /> Free Technical Architecture Session
+                              </span>
+                              <span className="inline-flex items-center gap-1.5 text-cyan-300">
+                                <Check size={13} className="text-cyan-400" /> Fixed-Milestone Roadmap
+                              </span>
+                              <span className="inline-flex items-center gap-1.5 text-cyan-300">
+                                <Check size={13} className="text-cyan-400" /> 100% Confidential
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-between pt-6 border-t border-white/10">
+                            <button
+                              type="button"
+                              onClick={() => setStep(2)}
+                              className="px-5 py-2.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 hover:text-white transition-all"
+                            >
+                              Back
+                            </button>
+                            <button
+                              type="submit"
+                              data-cta
+                              className="btn-primary text-xs sm:text-sm shadow-xl hover:scale-105 transition-all"
+                            >
+                              <Zap size={14} />
+                              <span>Submit Project Discovery Request</span>
+                              <ArrowRight size={14} />
+                            </button>
+                          </div>
+                        </form>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* ── FAQ SECTION ACCORDION ── */}
+          <div className="mt-24 pt-16 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+            <div className="max-w-3xl mx-auto">
+              <div className="text-center mb-10">
+                <span className="text-xs font-bold tracking-widest uppercase text-cyan-400 mb-2 block">
+                  Transparency & Collaboration
+                </span>
+                <h2 className="font-bold text-2xl sm:text-3xl text-white mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
+                  Frequently Asked Questions
+                </h2>
+                <p className="text-sm text-slate-400">
+                  Everything you need to know before initiating a project sprint with SwasTek Solutions.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                {faqs.map((faq, index) => {
+                  const isOpen = openFaq === index
+                  return (
+                    <div
+                      key={faq.q}
+                      className="rounded-2xl border transition-all overflow-hidden"
+                      style={{
+                        background: isOpen ? 'rgba(21, 88, 212, 0.12)' : 'rgba(255, 255, 255, 0.03)',
+                        borderColor: isOpen ? 'rgba(56, 189, 248, 0.4)' : 'rgba(255, 255, 255, 0.08)',
+                      }}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => setOpenFaq(isOpen ? null : index)}
+                        className="w-full p-5 text-left flex items-center justify-between gap-4 transition-colors"
+                      >
+                        <span className="font-bold text-sm sm:text-base text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
+                          {faq.q}
+                        </span>
+                        <ChevronDown
+                          size={18}
+                          className={`text-cyan-400 transition-transform duration-300 flex-shrink-0 ${
+                            isOpen ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </button>
+
+                      <AnimatePresence>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-white/5">
+                              {faq.a}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           </div>
         </div>

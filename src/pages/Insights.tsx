@@ -188,7 +188,7 @@ export default function Insights() {
       {/* ═══════════════════════════════════════════════════════
           FILTER TABS
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-8 bg-white border-b sticky top-16 z-30" style={{ borderColor: '#E2EBF5', backdropFilter: 'blur(20px)', background: 'rgba(255,255,255,0.95)' }}>
+      <section className="py-8 border-b sticky top-16 z-30" style={{ borderColor: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(20px)', background: 'rgba(3, 8, 15, 0.9)' }}>
         <div className="container-wide">
           <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (
@@ -199,12 +199,12 @@ export default function Insights() {
                 whileTap={{ scale: 0.96 }}
                 className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 relative overflow-hidden"
                 style={{
-                  background: activeCategory === cat ? '#1558D4' : 'transparent',
-                  color: activeCategory === cat ? '#ffffff' : '#536880',
+                  background: activeCategory === cat ? '#1558D4' : 'rgba(255,255,255,0.03)',
+                  color: activeCategory === cat ? '#ffffff' : '#94A3B8',
                   fontFamily: 'Plus Jakarta Sans, sans-serif',
                   letterSpacing: '0.04em',
                   border: '1px solid',
-                  borderColor: activeCategory === cat ? '#1558D4' : '#E2EBF5',
+                  borderColor: activeCategory === cat ? '#1558D4' : 'rgba(255,255,255,0.08)',
                   fontSize: '11px',
                 }}
               >
@@ -218,7 +218,7 @@ export default function Insights() {
       {/* ═══════════════════════════════════════════════════════
           ARTICLES
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-20 md:py-28" style={{ background: 'var(--void)' }}>
         <div className="container-wide">
           <AnimatePresence mode="wait">
             <motion.div
@@ -238,41 +238,41 @@ export default function Insights() {
                         <Link to={`/insights/${article.slug}`} className="block group h-full">
                           <article
                             className="h-full flex flex-col p-8 rounded-3xl border transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
-                            style={{ borderColor: '#E2EBF5', background: 'linear-gradient(145deg, #F7FAFD 0%, #EEF3FA 100%)', boxShadow: '0 4px 24px rgba(7,17,31,0.04)' }}
+                            style={{ borderColor: 'rgba(255,255,255,0.08)', background: 'linear-gradient(145deg, rgba(7, 19, 34, 0.7) 0%, rgba(3, 8, 15, 0.9) 100%)', boxShadow: '0 8px 30px rgba(0,0,0,0.4)' }}
                           >
                             {/* Corner glow */}
-                            <div className="absolute top-0 right-0 w-40 h-40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: `radial-gradient(circle at top right, ${color}12, transparent 70%)` }} />
+                            <div className="absolute top-0 right-0 w-40 h-40 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: `radial-gradient(circle at top right, ${color}20, transparent 70%)` }} />
 
                             <div className="flex items-center justify-between mb-6">
                               <span
                                 className="text-[10px] font-bold px-3 py-1.5 rounded-full tracking-wider uppercase"
-                                style={{ background: `${color}14`, color, fontFamily: 'Plus Jakarta Sans, sans-serif', border: `1px solid ${color}20` }}
+                                style={{ background: `${color}18`, color, fontFamily: 'Plus Jakarta Sans, sans-serif', border: `1px solid ${color}30` }}
                               >
                                 {article.category}
                               </span>
-                              <div className="flex items-center gap-1.5 text-xs" style={{ color: '#8DA3B8', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                              <div className="flex items-center gap-1.5 text-xs text-slate-400" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                                 <Clock size={11} />
                                 {article.readTime} read
                               </div>
                             </div>
 
                             <h2
-                              className="font-bold text-xl leading-snug mb-4 flex-1 transition-colors group-hover:text-[#1558D4]"
-                              style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', letterSpacing: '-0.025em' }}
+                              className="font-bold text-xl leading-snug mb-4 flex-1 text-white transition-colors group-hover:text-cyan-400"
+                              style={{ fontFamily: 'Sora, sans-serif', letterSpacing: '-0.025em' }}
                             >
                               {article.title}
                             </h2>
-                            <p className="text-sm leading-relaxed mb-8" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                            <p className="text-sm leading-relaxed mb-8" style={{ color: 'rgba(160,175,194,0.85)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                               {article.desc}
                             </p>
 
-                            <div className="flex items-center justify-between pt-5 border-t" style={{ borderColor: '#E2EBF5' }}>
-                              <span className="text-xs" style={{ color: '#8DA3B8', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{article.date}</span>
+                            <div className="flex items-center justify-between pt-5 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+                              <span className="text-xs text-slate-400" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{article.date}</span>
                               <motion.div
-                                className="flex items-center gap-1.5 text-xs font-semibold"
+                                className="flex items-center gap-1.5 text-xs font-semibold text-cyan-400"
                                 animate={{ x: 0 }}
                                 whileHover={{ x: 3 }}
-                                style={{ color: '#1558D4', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                                style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
                               >
                                 Read article <ArrowUpRight size={13} />
                               </motion.div>
@@ -294,31 +294,31 @@ export default function Insights() {
                       <FadeUp key={article.slug} delay={i * 0.06}>
                         <Link to={`/insights/${article.slug}`} className="block group h-full">
                           <article
-                            className="h-full flex flex-col p-7 rounded-2xl border transition-all duration-400 hover:-translate-y-1 hover:shadow-lg relative overflow-hidden"
-                            style={{ borderColor: '#E2EBF5', boxShadow: '0 2px 12px rgba(7,17,31,0.03)' }}
+                            className="h-full flex flex-col p-7 rounded-2xl border transition-all duration-400 hover:-translate-y-1 relative overflow-hidden"
+                            style={{ borderColor: 'rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)', boxShadow: '0 4px 20px rgba(0,0,0,0.3)' }}
                           >
-                            <div className="absolute top-0 right-0 w-24 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-400" style={{ background: `radial-gradient(circle at top right, ${color}08, transparent 70%)` }} />
+                            <div className="absolute top-0 right-0 w-24 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-400" style={{ background: `radial-gradient(circle at top right, ${color}15, transparent 70%)` }} />
 
                             <div className="flex items-center gap-2 mb-5">
                               <Tag size={11} style={{ color }} />
                               <span className="text-[10px] font-bold tracking-wider uppercase" style={{ color, fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{article.category}</span>
                               <div className="flex-1" />
-                              <span className="text-[10px]" style={{ color: '#8DA3B8', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{article.readTime}</span>
+                              <span className="text-[10px] text-slate-400" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{article.readTime}</span>
                             </div>
 
                             <h2
-                              className="font-bold text-base leading-snug mb-3 flex-1 transition-colors group-hover:text-[#1558D4]"
-                              style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', letterSpacing: '-0.02em' }}
+                              className="font-bold text-base leading-snug mb-3 flex-1 text-white transition-colors group-hover:text-cyan-400"
+                              style={{ fontFamily: 'Sora, sans-serif', letterSpacing: '-0.02em' }}
                             >
                               {article.title}
                             </h2>
-                            <p className="text-sm leading-relaxed mb-5" style={{ color: '#536880', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                            <p className="text-sm leading-relaxed mb-5" style={{ color: 'rgba(160,175,194,0.8)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                               {article.desc}
                             </p>
 
-                            <div className="flex items-center justify-between mt-auto pt-4 border-t" style={{ borderColor: '#E2EBF5' }}>
-                              <span className="text-xs" style={{ color: '#8DA3B8', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{article.date}</span>
-                              <ArrowUpRight size={14} className="transition-all duration-200 opacity-25 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style={{ color: '#1558D4' }} />
+                            <div className="flex items-center justify-between mt-auto pt-4 border-t" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
+                              <span className="text-xs text-slate-400" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{article.date}</span>
+                              <ArrowUpRight size={14} className="transition-all duration-200 opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-cyan-400" />
                             </div>
                           </article>
                         </Link>
@@ -330,7 +330,7 @@ export default function Insights() {
 
               {filtered.length === 0 && (
                 <div className="text-center py-20">
-                  <p style={{ color: '#8DA3B8', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>No articles in this category yet.</p>
+                  <p className="text-slate-400" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>No articles in this category yet.</p>
                 </div>
               )}
             </motion.div>

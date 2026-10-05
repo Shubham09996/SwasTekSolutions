@@ -20,12 +20,11 @@ export default function PageTransition({ children, title, description }: PageTra
 
       {/* Page enter animation */}
       <motion.div
-        initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-        animate={{ opacity: 1, y: 0,  filter: "blur(0px)" }}
-        exit={  { opacity: 0, y: -12, filter: "blur(4px)" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{
-          duration: 0.55,
-          ease: [0.16, 1, 0.3, 1],
+          duration: 0.2,
+          ease: 'easeOut',
         }}
       >
         {children}

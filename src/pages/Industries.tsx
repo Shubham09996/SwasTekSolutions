@@ -167,7 +167,7 @@ export default function Industries() {
       {/* ═══════════════════════════════════════════════════════
           INDUSTRIES GRID
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-20 md:py-28 border-t" style={{ background: 'var(--void)', borderColor: 'rgba(255,255,255,0.08)' }}>
         <div className="container-wide">
           <div className="grid md:grid-cols-2 gap-4">
             {industries.map((ind, i) => (
@@ -175,14 +175,14 @@ export default function Industries() {
                 <Link
                   to={`/industries/${ind.slug}`}
                   className="group flex items-start gap-5 p-7 rounded-3xl border relative overflow-hidden transition-all duration-500 hover:-translate-y-1"
-                  style={{ borderColor: '#E2EBF5', boxShadow: '0 2px 16px rgba(7,17,31,0.03)' }}
+                  style={{ background: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.08)', boxShadow: '0 4px 20px rgba(0,0,0,0.4)' }}
                   onMouseEnter={() => setHovered(i)}
                   onMouseLeave={() => setHovered(null)}
                 >
                   {/* Hover glow */}
                   <div
-                    className="absolute inset-0 transition-opacity duration-500"
-                    style={{ background: `radial-gradient(circle at 20% 50%, ${ind.accent}06, transparent 65%)`, opacity: hovered === i ? 1 : 0 }}
+                    className="absolute inset-0 transition-opacity duration-500 pointer-events-none"
+                    style={{ background: `radial-gradient(circle at 20% 50%, ${ind.accent}15, transparent 65%)`, opacity: hovered === i ? 1 : 0 }}
                   />
                   {/* Left accent line */}
                   <motion.div
@@ -196,8 +196,8 @@ export default function Industries() {
                   <div
                     className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 text-2xl transition-all duration-400 group-hover:scale-110"
                     style={{
-                      background: `linear-gradient(135deg, ${ind.accent}12 0%, ${ind.accent}06 100%)`,
-                      border: `1px solid ${ind.accent}18`,
+                      background: `linear-gradient(135deg, ${ind.accent}20 0%, ${ind.accent}08 100%)`,
+                      border: `1px solid ${ind.accent}30`,
                     }}
                   >
                     {ind.emoji}
@@ -206,17 +206,17 @@ export default function Industries() {
                   <div className="flex-1 min-w-0 relative z-10">
                     <h2
                       className="font-bold text-xl mb-2 transition-colors duration-300"
-                      style={{ color: hovered === i ? ind.accent : '#07111F', fontFamily: 'Sora, sans-serif', letterSpacing: '-0.025em' }}
+                      style={{ color: hovered === i ? ind.accent : '#ffffff', fontFamily: 'Sora, sans-serif', letterSpacing: '-0.025em' }}
                     >
                       {ind.name}
                     </h2>
-                    <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                    <p className="text-sm leading-relaxed" style={{ color: 'rgba(160,175,194,0.85)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                       {ind.desc}
                     </p>
                   </div>
 
                   <motion.div
-                    animate={{ x: hovered === i ? 2 : 0, y: hovered === i ? -2 : 0, opacity: hovered === i ? 1 : 0.3 }}
+                    animate={{ x: hovered === i ? 2 : 0, y: hovered === i ? -2 : 0, opacity: hovered === i ? 1 : 0.4 }}
                     transition={{ duration: 0.25 }}
                     className="flex-shrink-0"
                     style={{ color: ind.accent }}
@@ -233,31 +233,36 @@ export default function Industries() {
       {/* ═══════════════════════════════════════════════════════
           CTA
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-24 md:py-32" style={{ background: '#F7FAFD' }}>
-        <div className="container-tight">
+      <section className="relative py-24 md:py-32 overflow-hidden border-t" style={{ background: 'var(--void)', borderColor: 'rgba(255,255,255,0.06)' }}>
+        <div className="absolute inset-0 hero-grid opacity-25 pointer-events-none" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="orb-1 absolute" style={{ width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,88,212,0.15) 0%, transparent 70%)', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', filter: 'blur(80px)' }} />
+        </div>
+
+        <div className="container-tight relative z-10">
           <FadeUp>
             <div
-              className="relative rounded-3xl p-12 md:p-20 overflow-hidden text-center shadow-2xl"
+              className="relative rounded-3xl p-10 sm:p-14 md:p-20 overflow-hidden text-center shadow-2xl border"
               style={{
-                background: 'linear-gradient(135deg, rgba(16, 42, 85, 0.95) 0%, rgba(9, 24, 48, 0.98) 50%, rgba(5, 13, 26, 1) 100%)',
-                border: '1px solid rgba(11, 196, 227, 0.35)',
-                boxShadow: '0 24px 60px -15px rgba(0,0,0,0.7), 0 0 40px rgba(11, 196, 227, 0.12)'
+                background: 'linear-gradient(145deg, rgba(7, 19, 34, 0.85) 0%, rgba(3, 8, 15, 0.95) 100%)',
+                borderColor: 'rgba(11, 196, 227, 0.3)',
+                boxShadow: '0 24px 60px -15px rgba(0,0,0,0.8), 0 0 40px rgba(11, 196, 227, 0.12)'
               }}
             >
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div style={{ width: 600, height: 300, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(21,88,212,0.35) 0%, transparent 70%)', filter: 'blur(50px)' }} />
               </div>
               <div className="relative z-10">
-                <span className="inline-block text-xs font-bold tracking-widest uppercase mb-4 text-cyan-400 px-3.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                <span className="inline-block text-[11px] font-bold tracking-[0.2em] uppercase mb-4 text-cyan-400 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Don't see your industry?
                 </span>
                 <h2 className="font-bold text-white mb-5" style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(1.8rem, 4vw, 3rem)', letterSpacing: '-0.04em', lineHeight: 1.08 }}>
                   We've built for many more sectors.
                 </h2>
-                <p className="text-base sm:text-lg mb-10 text-slate-200 max-w-xl mx-auto leading-relaxed" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                <p className="text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed" style={{ color: 'rgba(160,175,194,0.88)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Tell us about your business and what you need. We build software for how your business actually works.
                 </p>
-                <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">
+                <Link to="/contact" data-cta className="btn-primary inline-flex items-center gap-2 shadow-lg shadow-cyan-500/25">
                   <Zap size={15} />
                   Have a conversation <ArrowUpRight size={15} />
                 </Link>

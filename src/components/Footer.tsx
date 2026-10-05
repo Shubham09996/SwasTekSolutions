@@ -1,6 +1,21 @@
+import { useState } from "react"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
-import { ArrowUpRight, ArrowRight, Mail, Globe, ExternalLink, Zap, ShieldCheck, Clock3, MessageSquare } from "lucide-react"
+import {
+  ArrowUpRight,
+  ArrowRight,
+  Mail,
+  Globe,
+  Zap,
+  ShieldCheck,
+  Clock3,
+  MessageSquare,
+  MapPin,
+  ChevronRight,
+  Copy,
+  Check,
+  Lock,
+} from "lucide-react"
 
 const footerServices = [
   { label: "Web Design",                 href: "/services/web-design" },
@@ -13,60 +28,80 @@ const footerServices = [
   { label: "E-Commerce Development",     href: "/services/ecommerce" },
 ]
 
-const footerNav = [
-  { label: "Industries", href: "/industries" },
-  { label: "Work",       href: "/work" },
-  { label: "Process",    href: "/process" },
-  { label: "About",      href: "/about" },
-  { label: "Insights",   href: "/insights" },
-  { label: "Contact",    href: "/contact" },
+const footerCompany = [
+  { label: "Work & Case Studies", href: "/work" },
+  { label: "Industries Served",   href: "/industries" },
+  { label: "7-Stage Process",     href: "/process" },
+  { label: "About Us",            href: "/about" },
+  { label: "Insights",            href: "/insights" },
+  { label: "Contact Us",          href: "/contact" },
 ]
 
 export default function Footer() {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault()
+    navigator.clipboard.writeText("hello@swastek.com")
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
   return (
     <footer className="relative overflow-hidden" style={{ background: "#020710", fontFamily: "Plus Jakarta Sans, sans-serif" }}>
 
-      {/* ── Pre-footer CTA Floating Inset Card ── */}
-      <div className="container-wide pt-16 md:pt-24 pb-8 md:pb-12 relative z-10">
+      {/* ── Ambient Background Lighting & Mesh ── */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] opacity-25 blur-3xl pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at top, rgba(21, 88, 212, 0.4) 0%, rgba(11, 196, 227, 0.15) 50%, transparent 70%)" }}
+        />
+        <div className="absolute inset-0 hero-grid opacity-15" />
+      </div>
+
+      {/* Top Laser Accent Line */}
+      <div className="relative w-full h-px" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.7) 30%, rgba(11,196,227,0.9) 50%, rgba(91,60,245,0.7) 70%, transparent 100%)" }} />
+
+      {/* ── Pre-footer Floating CTA Card ── */}
+      <div className="container-wide pt-16 md:pt-20 pb-8 md:pb-12 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="relative rounded-3xl md:rounded-[36px] overflow-hidden p-8 sm:p-12 md:p-14 lg:p-16"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="relative rounded-3xl md:rounded-[36px] overflow-hidden p-8 sm:p-12 md:p-14 border"
           style={{
-            background: "linear-gradient(135deg, rgba(16, 42, 85, 0.92) 0%, rgba(9, 24, 48, 0.96) 50%, rgba(5, 13, 26, 0.99) 100%)",
-            border: "1px solid rgba(11, 196, 227, 0.35)",
-            boxShadow: "0 24px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(11, 196, 227, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+            background: "linear-gradient(135deg, rgba(14, 38, 76, 0.9) 0%, rgba(7, 20, 42, 0.96) 50%, rgba(3, 10, 22, 0.99) 100%)",
+            borderColor: "rgba(11, 196, 227, 0.35)",
+            boxShadow: "0 24px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(11, 196, 227, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
           }}
         >
-          {/* Ambient card glows */}
+          {/* Card Ambient Glows */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="orb-1 absolute" style={{ width: 650, height: 650, borderRadius: "50%", background: "radial-gradient(circle, rgba(21,88,212,0.40) 0%, transparent 68%)", top: "-30%", left: "-10%", filter: "blur(60px)" }} />
-            <div className="orb-2 absolute" style={{ width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(11,196,227,0.30) 0%, transparent 70%)", bottom: "-25%", right: "-5%", filter: "blur(70px)" }} />
-            <div className="absolute inset-0 hero-grid opacity-30" />
+            <div className="orb-1 absolute" style={{ width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle, rgba(21,88,212,0.35) 0%, transparent 68%)", top: "-30%", left: "-10%", filter: "blur(60px)" }} />
+            <div className="orb-2 absolute" style={{ width: 450, height: 450, borderRadius: "50%", background: "radial-gradient(circle, rgba(11,196,227,0.25) 0%, transparent 70%)", bottom: "-25%", right: "-5%", filter: "blur(70px)" }} />
             <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.9) 30%, rgba(11,196,227,0.9) 70%, transparent 100%)" }} />
           </div>
 
-          <div className="relative z-10 grid lg:grid-cols-[1.3fr_1fr] gap-10 lg:gap-14 items-center">
+          <div className="relative z-10 grid lg:grid-cols-[1.35fr_1fr] gap-10 lg:gap-14 items-center">
             {/* Left Content */}
             <div>
               <div
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5"
-                style={{ background: "rgba(11,196,227,0.15)", border: "1px solid rgba(11,196,227,0.45)" }}
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-4"
+                style={{ background: "rgba(11,196,227,0.15)", border: "1px solid rgba(11,196,227,0.4)" }}
               >
                 <span className="relative flex h-2 w-2">
-                  <span className="pulse-ring absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: "#0BC4E3" }} />
-                  <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: "#0BC4E3" }} />
+                  <span className="pulse-ring absolute inline-flex h-full w-full rounded-full opacity-75 bg-cyan-400" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
                 </span>
-                <span className="text-xs font-bold tracking-[0.16em] uppercase" style={{ color: "#38D9F0", fontFamily: "Plus Jakarta Sans, sans-serif" }}>
-                  Ready to Start?
+                <span className="text-xs font-bold tracking-[0.16em] uppercase text-cyan-300" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                  Start a Project
                 </span>
               </div>
 
               <h2
-                className="font-bold leading-[1.06] tracking-tight text-white mb-4"
-                style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(2.2rem, 4.5vw, 3.8rem)", letterSpacing: "-0.04em" }}
+                className="font-bold leading-[1.06] tracking-tight text-white mb-3"
+                style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(2rem, 4.2vw, 3.5rem)", letterSpacing: "-0.04em" }}
               >
                 Tell us what you're<br />
                 <span style={{ background: "linear-gradient(135deg, #38BDF8 0%, #0BC4E3 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
@@ -74,44 +109,43 @@ export default function Footer() {
                 </span>
               </h2>
 
-              <p className="text-base md:text-lg leading-relaxed max-w-lg mb-6 text-slate-200" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
-                Let's turn your business challenges into high-performance digital solutions. We reply to all enquiries within one business day.
+              <p className="text-base leading-relaxed max-w-lg mb-6 text-slate-200" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                Let's turn your business bottlenecks into clean, high-performance digital systems. We review requirements and outline a roadmap within 24 hours.
               </p>
 
-              {/* Trust Badges - High Visibility Glass Capsules */}
+              {/* Trust Badges */}
               <div className="flex flex-wrap items-center gap-3 text-xs font-medium" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 border border-white/15 text-slate-100 backdrop-blur-sm shadow-sm">
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/15 text-slate-100 backdrop-blur-sm shadow-sm">
                   <Clock3 size={14} className="text-cyan-400 flex-shrink-0" />
-                  <span>Response in 24 hours</span>
+                  <span>24h Response Time</span>
                 </span>
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 border border-white/15 text-slate-100 backdrop-blur-sm shadow-sm">
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/15 text-slate-100 backdrop-blur-sm shadow-sm">
                   <ShieldCheck size={14} className="text-blue-400 flex-shrink-0" />
-                  <span>NDA protected</span>
+                  <span>100% Client Code Ownership</span>
                 </span>
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 border border-white/15 text-slate-100 backdrop-blur-sm shadow-sm">
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/15 text-slate-100 backdrop-blur-sm shadow-sm">
                   <MessageSquare size={14} className="text-cyan-400 flex-shrink-0" />
-                  <span>Free initial consultation</span>
+                  <span>Free Initial Consultation</span>
                 </span>
               </div>
             </div>
 
             {/* Right Action buttons */}
-            <div className="flex flex-col sm:flex-row lg:flex-col gap-4 lg:items-end justify-start">
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3.5 lg:items-end justify-start">
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                 <Link
                   to="/contact"
                   data-cta
-                  className="ripple-btn group flex items-center justify-center gap-2.5 text-sm font-bold px-8 py-4 rounded-full w-full sm:w-auto"
+                  className="ripple-btn group flex items-center justify-center gap-2.5 text-sm font-bold px-8 py-4 rounded-full w-full sm:w-auto shadow-xl shadow-cyan-500/25 transition-all"
                   style={{
-                    background: "linear-gradient(135deg, #1558D4 0%, #0D47A1 100%)",
+                    background: "linear-gradient(135deg, #1558D4 0%, #0BC4E3 100%)",
                     color: "#ffffff",
-                    boxShadow: "0 10px 30px -5px rgba(21,88,212,0.6)",
                     border: "1px solid rgba(255,255,255,0.3)",
                     fontFamily: "Plus Jakarta Sans, sans-serif",
                   }}
                 >
-                  <Zap size={16} className="text-cyan-300" />
-                  Start a Project
+                  <Zap size={16} className="text-white fill-white" />
+                  <span>Start a Project</span>
                   <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               </motion.div>
@@ -119,16 +153,11 @@ export default function Footer() {
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                 <Link
                   to="/work"
-                  className="flex items-center justify-center gap-2 text-sm font-semibold px-8 py-4 rounded-full transition-all duration-300 w-full sm:w-auto hover:bg-white/20 hover:border-white/40 shadow-sm"
-                  style={{
-                    background: "rgba(255,255,255,0.12)",
-                    border: "1px solid rgba(255,255,255,0.25)",
-                    color: "#FFFFFF",
-                    fontFamily: "Plus Jakarta Sans, sans-serif",
-                  }}
+                  className="flex items-center justify-center gap-2 text-sm font-semibold px-8 py-4 rounded-full transition-all w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 shadow-sm"
+                  style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
                 >
-                  View Our Work
-                  <ArrowRight size={15} />
+                  <span>View Our Work</span>
+                  <ArrowRight size={15} className="text-slate-300" />
                 </Link>
               </motion.div>
             </div>
@@ -136,44 +165,61 @@ export default function Footer() {
         </motion.div>
       </div>
 
-      {/* ── Main Footer Navigation ── */}
-      <div className="container-wide pt-8 md:pt-12 pb-16 md:pb-20 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr] gap-12 lg:gap-10 pt-8 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+      {/* ── Main Footer Navigation (Polished & Refined) ── */}
+      <div className="container-wide pt-10 md:pt-14 pb-14 md:pb-16 relative z-10">
+        
+        {/* Subtle Top Divider with Soft Center Glow */}
+        <div className="h-px w-full mb-12" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 20%, rgba(11,196,227,0.25) 50%, rgba(255,255,255,0.1) 80%, transparent 100%)" }} />
 
-          {/* Brand */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1.1fr_1fr_1.35fr] gap-10 lg:gap-10 items-start">
+
+          {/* ── Column 1: Brand & Identity ── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
+            transition={{ duration: 0.5 }}
           >
-            <Link to="/" className="block mb-5">
+            <Link to="/" className="inline-block mb-4 group">
               <img
                 src="/logo-white.png"
                 alt="SwasTek Solutions"
-                className="h-9 lg:h-10 w-auto object-contain transition-transform duration-300 hover:scale-[1.02]"
-                style={{ maxWidth: 190 }}
+                className="h-9 lg:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                style={{ maxWidth: 195 }}
               />
             </Link>
-            <p className="text-xs font-bold tracking-[0.16em] uppercase mb-3" style={{ color: "#0BC4E3", fontFamily: "Plus Jakarta Sans, sans-serif" }}>
-              From Ideas to Digital Solutions
+
+            <div className="mb-3">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.14em] uppercase text-cyan-300 bg-cyan-950/60 border border-cyan-500/30" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                From Ideas to Digital Solutions
+              </span>
+            </div>
+
+            <p className="text-sm leading-relaxed text-slate-300 mb-5 max-w-sm" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+              We design and engineer bespoke software platforms, high-performance web applications, and automated CRM pipelines shaped around how your business works.
             </p>
-            <p className="text-sm leading-relaxed mb-6 max-w-sm text-slate-300" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
-              We design and build software, websites, CRM platforms and digital systems for businesses that need technology shaped around how they actually work.
-            </p>
-            <div className="flex gap-2.5">
+
+            <div className="flex items-center gap-2 text-xs text-slate-300 mb-6">
+              <MapPin size={14} className="text-cyan-400 flex-shrink-0" />
+              <span>Headquartered in Delhi, India · Global Delivery</span>
+            </div>
+
+            {/* Social Touchpoints */}
+            <div className="flex items-center gap-2.5">
               {[
-                { icon: <ExternalLink size={14} />, label: "LinkedIn" },
-                { icon: <Mail size={14} />, label: "Email" },
-                { icon: <Globe size={14} />, label: "Website" },
+                { icon: <Mail size={15} />, label: "Email Us", href: "mailto:hello@swastek.com" },
+                { icon: <Globe size={15} />, label: "Case Studies", href: "/work" },
+                { icon: <MessageSquare size={15} />, label: "Contact", href: "/contact" },
               ].map((s) => (
                 <motion.a
                   key={s.label}
-                  href="#"
+                  href={s.href}
                   aria-label={s.label}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.94 }}
-                  className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 bg-white/10 hover:bg-white/20 text-slate-200 hover:text-white border border-white/15"
+                  title={s.label}
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 bg-white/5 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 border border-white/10 hover:border-cyan-400/40 shadow-sm"
                 >
                   {s.icon}
                 </motion.a>
@@ -181,107 +227,192 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Services */}
+          {/* ── Column 2: Services ── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: 0.07 }}
+            transition={{ duration: 0.5, delay: 0.06 }}
           >
-            <p className="text-xs font-bold tracking-[0.18em] uppercase mb-5 text-white" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>Services</p>
+            <div className="flex items-center gap-2 mb-4 pb-2 border-b border-white/10">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+              <p className="text-xs font-bold tracking-[0.18em] uppercase text-white" style={{ fontFamily: "Sora, sans-serif" }}>
+                Services
+              </p>
+            </div>
+
             <ul className="space-y-2.5">
               {footerServices.map((s) => (
                 <li key={s.href}>
                   <Link
                     to={s.href}
-                    className="text-sm transition-all duration-200 text-slate-300 hover:text-cyan-300 hover:translate-x-1 inline-flex"
+                    className="group inline-flex items-center gap-1.5 text-sm text-slate-300 hover:text-cyan-300 transition-all duration-200"
                     style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
                   >
-                    {s.label}
+                    <ChevronRight size={13} className="text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                    <span className="group-hover:translate-x-0.5 transition-transform">{s.label}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Company */}
+          {/* ── Column 3: Company ── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: 0.14 }}
+            transition={{ duration: 0.5, delay: 0.12 }}
           >
-            <p className="text-xs font-bold tracking-[0.18em] uppercase mb-5 text-white" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>Company</p>
+            <div className="flex items-center gap-2 mb-4 pb-2 border-b border-white/10">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+              <p className="text-xs font-bold tracking-[0.18em] uppercase text-white" style={{ fontFamily: "Sora, sans-serif" }}>
+                Company
+              </p>
+            </div>
+
             <ul className="space-y-2.5">
-              {footerNav.map((n) => (
+              {footerCompany.map((n) => (
                 <li key={n.href}>
                   <Link
                     to={n.href}
-                    className="text-sm transition-all duration-200 text-slate-300 hover:text-cyan-300 hover:translate-x-1 inline-flex"
+                    className="group inline-flex items-center gap-1.5 text-sm text-slate-300 hover:text-cyan-300 transition-all duration-200"
                     style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
                   >
-                    {n.label}
+                    <ChevronRight size={13} className="text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                    <span className="group-hover:translate-x-0.5 transition-transform">{n.label}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Contact */}
+          {/* ── Column 4: Get in Touch (Interactive Touchpoint Hub) ── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: 0.21 }}
+            transition={{ duration: 0.5, delay: 0.18 }}
           >
-            <p className="text-xs font-bold tracking-[0.18em] uppercase mb-5 text-white" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>Get in Touch</p>
-            <p className="text-sm leading-relaxed mb-4 text-slate-300" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
-              Have a project in mind? We'd like to hear about it.
+            <div className="flex items-center gap-2 mb-4 pb-2 border-b border-white/10">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <p className="text-xs font-bold tracking-[0.18em] uppercase text-white" style={{ fontFamily: "Sora, sans-serif" }}>
+                Get in Touch
+              </p>
+            </div>
+
+            <p className="text-sm leading-relaxed text-slate-300 mb-4" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+              Have a project in mind? We'd love to hear about it.
             </p>
-            <Link
-              to="/contact"
-              className="text-sm font-semibold flex items-center gap-1.5 transition-all hover:gap-2.5 mb-6 group text-cyan-400 hover:text-cyan-300"
-              style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+
+            {/* Sleek Interactive Email Card with 1-Click Copy */}
+            <div
+              className="p-4 rounded-2xl mb-4 transition-all duration-300 relative overflow-hidden group border"
+              style={{
+                background: "linear-gradient(145deg, rgba(8, 26, 52, 0.75) 0%, rgba(4, 13, 28, 0.95) 100%)",
+                borderColor: "rgba(11, 196, 227, 0.35)",
+                boxShadow: "0 10px 25px -10px rgba(0,0,0,0.5)",
+              }}
             >
-              <span>Start the conversation</span>
-              <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-            <div className="p-4 rounded-xl transition-all duration-300 bg-cyan-950/40 border border-cyan-500/30 hover:border-cyan-400/60">
-              <p className="text-[11px] font-bold uppercase tracking-wider mb-1" style={{ color: "#38D9F0", fontFamily: "Plus Jakarta Sans, sans-serif" }}>Email us</p>
+              <div className="flex items-center justify-between mb-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-400" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                  Official Email
+                </span>
+                <button
+                  onClick={handleCopyEmail}
+                  className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-md bg-white/10 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 transition-colors"
+                  title="Copy email to clipboard"
+                >
+                  {copied ? (
+                    <>
+                      <Check size={11} className="text-emerald-400" />
+                      <span className="text-emerald-300">Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Copy size={11} />
+                      <span>Copy</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
               <a
                 href="mailto:hello@swastek.com"
-                className="text-sm font-bold text-white hover:text-cyan-300 transition-colors block"
-                style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+                className="text-base font-extrabold text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between"
+                style={{ fontFamily: "Sora, sans-serif" }}
               >
-                hello@swastek.com
+                <span>hello@swastek.com</span>
+                <ArrowUpRight size={16} className="text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
+
+            {/* Direct Consultation Link */}
+            <Link
+              to="/contact"
+              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white text-xs font-bold text-center inline-flex items-center justify-center gap-2 transition-all shadow-md shadow-cyan-500/20 group/cta"
+              style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+            >
+              <span>Start Discovery Conversation</span>
+              <ArrowRight size={14} className="group-hover/cta:translate-x-1 transition-transform" />
+            </Link>
+
+            <div className="mt-3 flex items-center gap-2 text-[11px] text-slate-400" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+              <Lock size={12} className="text-cyan-400 flex-shrink-0" />
+              <span>Strict NDA & 24h response guaranteed.</span>
+            </div>
           </motion.div>
+
         </div>
       </div>
 
+      {/* ── Giant Bespoke Watermark (Subtle & Low Visibility) ── */}
+      <div className="relative w-full overflow-hidden select-none pointer-events-none pb-2 flex justify-center items-center">
+        <h1
+          className="text-center font-extrabold uppercase whitespace-nowrap"
+          style={{
+            fontFamily: "Sora, sans-serif",
+            fontSize: "clamp(4.5rem, 15vw, 14rem)",
+            lineHeight: 0.85,
+            letterSpacing: "-0.02em",
+            background: "linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            WebkitTextStroke: "1px rgba(255, 255, 255, 0.08)",
+          }}
+        >
+          SWASTEK
+        </h1>
+      </div>
+
       {/* ── Bottom Bar ── */}
-      <div className="border-t relative z-10" style={{ borderColor: "rgba(255,255,255,0.1)", background: "rgba(2, 6, 15, 0.8)" }}>
-        <div className="container-wide py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-4">
-            <p className="text-xs text-slate-400" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
-              © 2026 SwasTek Solutions Ltd. All rights reserved.
-            </p>
-            {/* Live status badge */}
-            <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full" style={{ background: 'rgba(11,196,227,0.12)', border: '1px solid rgba(11,196,227,0.35)' }}>
+      <div className="border-t relative z-10" style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(2, 6, 15, 0.95)" }}>
+        <div className="container-wide py-5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+          
+          <div className="flex flex-wrap items-center gap-4 text-center md:text-left">
+            <p>© 2026 SwasTek Solutions Pvt. Ltd. All rights reserved.</p>
+            <span className="hidden sm:inline text-slate-600">|</span>
+            {/* Live Accepting Status Capsule */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30">
               <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full rounded-full opacity-75 hero-ping" style={{ background: '#0BC4E3' }} />
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5" style={{ background: '#0BC4E3' }} />
+                <span className="absolute inline-flex h-full w-full rounded-full opacity-75 hero-ping bg-cyan-400" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-cyan-400" />
               </span>
-              <span className="text-[10px] font-bold tracking-wider uppercase text-cyan-300" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>Accepting projects</span>
+              <span className="text-[10px] font-bold tracking-wider uppercase text-cyan-300" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                Accepting New Projects
+              </span>
             </div>
           </div>
-          <div className="flex items-center gap-6">
-            <Link to="/privacy-policy" className="text-xs text-slate-400 hover:text-white transition-colors" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>Privacy Policy</Link>
-            <Link to="/terms"          className="text-xs text-slate-400 hover:text-white transition-colors" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>Terms of Use</Link>
+
+          <div className="flex items-center gap-6 text-xs text-slate-400" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+            <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link to="/contact" className="text-cyan-400 hover:text-cyan-300 transition-colors font-semibold">Contact</Link>
           </div>
+
         </div>
       </div>
+
     </footer>
   )
 }

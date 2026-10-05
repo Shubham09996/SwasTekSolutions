@@ -111,9 +111,9 @@ export default function Services() {
       {/* ═══════════════════════════════════════════════════════
           SERVICES — editorial large-number list
       ═══════════════════════════════════════════════════════ */}
-      <section className="bg-white py-0">
+      <section className="py-0 border-t" style={{ background: 'var(--void)', borderColor: 'rgba(255,255,255,0.08)' }}>
         <div className="container-wide">
-          <div className="border-t-2" style={{ borderColor: '#07111F' }}>
+          <div>
             {services.map((s, i) => {
               const Icon = s.icon
               return (
@@ -127,7 +127,7 @@ export default function Services() {
                   <Link
                     to={s.href}
                     className="group block border-b relative overflow-hidden"
-                    style={{ borderColor: '#E2EBF5' }}
+                    style={{ borderColor: 'rgba(255,255,255,0.08)' }}
                     onMouseEnter={() => setActiveService(i)}
                     onMouseLeave={() => setActiveService(null)}
                   >
@@ -137,14 +137,14 @@ export default function Services() {
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: activeService === i ? 1 : 0 }}
                       transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                      style={{ background: 'var(--void)', transformOrigin: 'left' }}
+                      style={{ background: 'rgba(21,88,212,0.12)', transformOrigin: 'left' }}
                     />
 
                     <div className="relative z-10 grid grid-cols-[80px_1fr_auto] md:grid-cols-[120px_auto_1fr_280px_auto] items-center gap-6 py-7 px-2">
                       {/* Number */}
                       <span
                         className="font-bold leading-none transition-colors duration-350"
-                        style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.4rem, 2.8vw, 2.2rem)', color: activeService === i ? 'rgba(21,136,255,0.3)' : '#E2EBF5', letterSpacing: '-0.04em' }}
+                        style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.4rem, 2.8vw, 2.2rem)', color: activeService === i ? '#38D9F0' : 'rgba(255,255,255,0.2)', letterSpacing: '-0.04em' }}
                       >
                         {s.num}
                       </span>
@@ -152,7 +152,7 @@ export default function Services() {
                       {/* Icon */}
                       <div
                         className="hidden md:flex w-10 h-10 rounded-xl items-center justify-center transition-all duration-300"
-                        style={{ background: activeService === i ? `${s.color}20` : 'rgba(226,235,245,0.5)', border: `1px solid ${activeService === i ? `${s.color}35` : 'transparent'}` }}
+                        style={{ background: activeService === i ? `${s.color}25` : 'rgba(255,255,255,0.04)', border: `1px solid ${activeService === i ? `${s.color}45` : 'rgba(255,255,255,0.08)'}` }}
                       >
                         <Icon size={18} style={{ color: activeService === i ? s.color : '#8DA3B8' }} className="transition-colors duration-300" />
                       </div>
@@ -160,7 +160,7 @@ export default function Services() {
                       {/* Title */}
                       <h3
                         className="font-bold text-xl md:text-2xl transition-colors duration-300"
-                        style={{ color: activeService === i ? '#ffffff' : '#07111F', fontFamily: 'Sora, sans-serif', letterSpacing: '-0.025em' }}
+                        style={{ color: activeService === i ? '#ffffff' : 'rgba(240,244,248,0.95)', fontFamily: 'Sora, sans-serif', letterSpacing: '-0.025em' }}
                       >
                         {s.title}
                       </h3>
@@ -174,7 +174,7 @@ export default function Services() {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.2 }}
                             className="hidden md:block text-sm leading-relaxed"
-                            style={{ color: 'rgba(160,175,194,0.7)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                            style={{ color: 'rgba(160,175,194,0.85)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
                           >
                             {s.desc}
                           </motion.p>
@@ -182,8 +182,8 @@ export default function Services() {
                         {activeService !== i && (
                           <span
                             key="tag"
-                            className="hidden md:inline-flex text-xs px-3 py-1 rounded-full"
-                            style={{ background: '#EEF3FA', color: '#536880', fontFamily: 'Plus Jakarta Sans, sans-serif', letterSpacing: '0.04em' }}
+                            className="hidden md:inline-flex text-xs px-3 py-1 rounded-full border"
+                            style={{ background: 'rgba(255,255,255,0.04)', borderColor: 'rgba(255,255,255,0.08)', color: '#94A3B8', fontFamily: 'Plus Jakarta Sans, sans-serif', letterSpacing: '0.04em' }}
                           >
                             {s.tag}
                           </span>
@@ -198,7 +198,7 @@ export default function Services() {
                         <ArrowUpRight
                           size={20}
                           className="flex-shrink-0 transition-colors duration-300"
-                          style={{ color: activeService === i ? '#1558D4' : '#CBD5E1' }}
+                          style={{ color: activeService === i ? '#0BC4E3' : 'rgba(255,255,255,0.3)' }}
                         />
                       </motion.div>
                     </div>
@@ -213,22 +213,27 @@ export default function Services() {
       {/* ═══════════════════════════════════════════════════════
           CTA
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-24 md:py-32" style={{ background: '#F7FAFD' }}>
-        <div className="container-tight">
+      <section className="relative py-24 md:py-32 overflow-hidden border-t" style={{ background: 'var(--void)', borderColor: 'rgba(255,255,255,0.06)' }}>
+        <div className="absolute inset-0 hero-grid opacity-25 pointer-events-none" />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="orb-1 absolute" style={{ width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,88,212,0.15) 0%, transparent 70%)', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', filter: 'blur(80px)' }} />
+        </div>
+
+        <div className="container-tight relative z-10">
           <FadeUp>
             <div
-              className="relative rounded-3xl p-12 md:p-20 overflow-hidden text-center shadow-2xl"
+              className="relative rounded-3xl p-10 sm:p-14 md:p-20 overflow-hidden text-center shadow-2xl border"
               style={{
-                background: 'linear-gradient(135deg, rgba(16, 42, 85, 0.95) 0%, rgba(9, 24, 48, 0.98) 50%, rgba(5, 13, 26, 1) 100%)',
-                border: '1px solid rgba(11, 196, 227, 0.35)',
-                boxShadow: '0 24px 60px -15px rgba(0,0,0,0.7), 0 0 40px rgba(11, 196, 227, 0.12)'
+                background: 'linear-gradient(145deg, rgba(7, 19, 34, 0.85) 0%, rgba(3, 8, 15, 0.95) 100%)',
+                borderColor: 'rgba(11, 196, 227, 0.3)',
+                boxShadow: '0 24px 60px -15px rgba(0,0,0,0.8), 0 0 40px rgba(11, 196, 227, 0.12)'
               }}
             >
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <div style={{ width: 600, height: 300, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(21,88,212,0.35) 0%, transparent 70%)', filter: 'blur(50px)' }} />
               </div>
               <div className="relative z-10">
-                <span className="inline-block text-xs font-bold tracking-widest uppercase mb-4 text-cyan-400 px-3.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                <span className="inline-block text-[11px] font-bold tracking-[0.2em] uppercase mb-4 text-cyan-400 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Not sure what you need?
                 </span>
                 <h2
@@ -237,10 +242,11 @@ export default function Services() {
                 >
                   Tell us about your business.<br />We'll figure out the right approach.
                 </h2>
-                <p className="text-base sm:text-lg mb-10 text-slate-200 max-w-xl mx-auto leading-relaxed" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                <p className="text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed" style={{ color: 'rgba(160,175,194,0.88)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Every engagement starts with understanding your business — not picking a technology.
                 </p>
-                <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">
+                <Link to="/contact" data-cta className="btn-primary inline-flex items-center gap-2 shadow-lg shadow-cyan-500/25">
+                  <Zap size={15} />
                   Have a conversation <ArrowUpRight size={15} />
                 </Link>
               </div>
