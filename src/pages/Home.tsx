@@ -793,7 +793,7 @@ export default function Home() {
         <div className="absolute inset-0 hero-scanlines opacity-100 pointer-events-none" style={{ zIndex: 2 }} />
 
         {/* Content — two column: left text, right lottie */}
-        <div className="container-wide relative z-10 pt-8 md:pt-10 lg:pt-12 pb-6 md:pb-8">
+        <div className="container-wide relative z-10 pt-[78px] md:pt-10 lg:pt-12 pb-6 md:pb-8">
           <div className="grid grid-cols-1 md:grid-cols-[1fr_440px] lg:grid-cols-[1fr_560px] xl:grid-cols-[1fr_620px] gap-6 xl:gap-10 items-center">
 
             {/* ── LEFT: Text content ── */}
