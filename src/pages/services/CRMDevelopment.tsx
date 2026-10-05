@@ -305,10 +305,10 @@ export default function CRMDevelopment() {
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
             Software that fits the way you sell.
           </h2>
-          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+          <p className="text-base sm:text-lg mb-8 text-slate-200" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
             Tell us about your sales process and we'll design a CRM around it.
           </p>
-          <Link to="/contact" data-cta className="btn-primary-white">
+          <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">
             Build My CRM <ArrowUpRight size={14} />
           </Link>
         </div>

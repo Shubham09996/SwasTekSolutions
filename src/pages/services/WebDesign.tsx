@@ -127,10 +127,10 @@ export default function WebDesign() {
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
               Ready to elevate your online presence?
             </h2>
-            <p className="text-base mb-8 max-w-xl mx-auto" style={{ color: '#94A3B8', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+            <p className="text-base sm:text-lg mb-8 max-w-xl mx-auto text-slate-200" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               Let's create a tailored web design that reflects your excellence and drives real business growth.
             </p>
-            <Link to="/contact" data-cta className="btn-primary-white">
+            <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">
               Start Your Design Project <ArrowUpRight size={14} />
             </Link>
           </FadeUp>

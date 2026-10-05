@@ -170,10 +170,10 @@ export default function CustomSoftware() {
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
             Your business is unique. Your software should be too.
           </h2>
-          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+          <p className="text-base sm:text-lg mb-8 text-slate-200" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
             Tell us about your operations and what you need to improve. We'll build the software around it.
           </p>
-          <Link to="/contact" data-cta className="btn-primary-white">
+          <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">
             Start the Conversation <ArrowUpRight size={14} />
           </Link>
         </div>

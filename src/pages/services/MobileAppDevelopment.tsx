@@ -126,10 +126,10 @@ export default function MobileAppDevelopment() {
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
               Ready to bring your mobile app idea to life?
             </h2>
-            <p className="text-base mb-8 max-w-xl mx-auto" style={{ color: '#94A3B8', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+            <p className="text-base sm:text-lg mb-8 max-w-xl mx-auto text-slate-200" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               From initial wireframes to production deployment in the App Store and Google Play, we handle the entire process.
             </p>
-            <Link to="/contact" data-cta className="btn-primary-white">
+            <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">
               Start Mobile App Project <ArrowUpRight size={14} />
             </Link>
           </FadeUp>

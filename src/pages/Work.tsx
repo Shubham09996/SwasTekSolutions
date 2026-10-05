@@ -434,26 +434,32 @@ export default function Work() {
         <div className="container-tight">
           <FadeUp>
             <div
-              className="relative rounded-3xl p-12 md:p-20 overflow-hidden text-center"
-              style={{ background: 'linear-gradient(145deg, #03080F 0%, #071424 60%, #0D1E34 100%)', border: '1px solid rgba(255,255,255,0.06)' }}
+              className="relative rounded-3xl p-12 md:p-20 overflow-hidden text-center shadow-2xl"
+              style={{
+                background: 'linear-gradient(135deg, rgba(16, 42, 85, 0.95) 0%, rgba(9, 24, 48, 0.98) 50%, rgba(5, 13, 26, 1) 100%)',
+                border: '1px solid rgba(11, 196, 227, 0.35)',
+                boxShadow: '0 24px 60px -15px rgba(0,0,0,0.7), 0 0 40px rgba(11, 196, 227, 0.12)'
+              }}
             >
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div style={{ width: 600, height: 300, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(21,88,212,0.18) 0%, transparent 70%)', filter: 'blur(40px)' }} />
+                <div style={{ width: 600, height: 300, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(21,88,212,0.35) 0%, transparent 70%)', filter: 'blur(50px)' }} />
               </div>
               <div className="relative z-10">
-                <p className="section-label mb-4">Next project</p>
+                <span className="inline-block text-xs font-bold tracking-widest uppercase mb-4 text-cyan-400 px-3.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                  Next project
+                </span>
                 <h2
                   className="font-bold text-white mb-5"
                   style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(1.8rem, 4vw, 3rem)', letterSpacing: '-0.04em', lineHeight: 1.08 }}
                 >
                   Have a project in mind?
                 </h2>
-                <p className="text-base mb-10" style={{ color: 'rgba(160,175,194,0.7)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                <p className="text-base sm:text-lg mb-10 text-slate-200 max-w-xl mx-auto leading-relaxed" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Tell us what you're trying to build and we'll help you figure out the approach.
                 </p>
-                <Link to="/contact" data-cta className="btn-primary-white">
-                  <Zap size={14} />
-                  Start a Project <ArrowUpRight size={14} />
+                <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">
+                  <Zap size={15} />
+                  Start a Project <ArrowUpRight size={15} />
                 </Link>
               </div>
             </div>

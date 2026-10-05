@@ -62,8 +62,8 @@ export default function AiSolutions() {
       <section className="page-section-sm" style={{ background: 'linear-gradient(135deg, #060E1C 0%, #0B1A2E 100%)' }}>
         <div className="container-tight text-center">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>Is AI the right tool for your problem?</h2>
-          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Tell us what you're trying to achieve and we'll tell you honestly whether AI is the right answer.</p>
-          <Link to="/contact" data-cta className="btn-primary-white">Have an honest conversation <ArrowUpRight size={14} /></Link>
+          <p className="text-base sm:text-lg mb-8 text-slate-200" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Tell us what you're trying to achieve and we'll tell you honestly whether AI is the right answer.</p>
+          <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">Have an honest conversation <ArrowUpRight size={14} /></Link>
         </div>
       </section>
     </PageTransition>

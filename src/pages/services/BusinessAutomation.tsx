@@ -77,8 +77,8 @@ export default function BusinessAutomation() {
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
             What are you automating away?
           </h2>
-          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Tell us about the manual processes costing your team time and we'll build the automation.</p>
-          <Link to="/contact" data-cta className="btn-primary-white">Start the Conversation <ArrowUpRight size={14} /></Link>
+          <p className="text-base sm:text-lg mb-8 text-slate-200" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Tell us about the manual processes costing your team time and we'll build the automation.</p>
+          <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">Start the Conversation <ArrowUpRight size={14} /></Link>
         </div>
       </section>
     </PageTransition>

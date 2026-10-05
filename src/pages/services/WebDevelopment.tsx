@@ -154,10 +154,10 @@ export default function WebDevelopment() {
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
             Ready to build your website?
           </h2>
-          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+          <p className="text-base sm:text-lg mb-8 text-slate-200" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
             Tell us about your business, your audience and your goals. We'll design and build a website that works.
           </p>
-          <Link to="/contact" data-cta className="btn-primary-white">
+          <Link to="/contact" data-cta className="btn-primary-white shadow-lg shadow-white/10">
             Build My Website <ArrowUpRight size={14} />
           </Link>
         </div>
