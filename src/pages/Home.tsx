@@ -889,7 +889,7 @@ export default function Home() {
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                   <Link to="/contact" data-cta className="btn-primary ripple-btn text-sm">
                     <Zap size={14} />
-                    Start a Project
+                    <span>Start a Project</span>
                     <ArrowUpRight size={14} />
                   </Link>
                 </motion.div>

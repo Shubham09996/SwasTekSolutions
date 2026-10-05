@@ -283,7 +283,7 @@ export default function Navbar() {
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
                 <Link to="/contact" data-cta className="btn-primary text-sm shadow-md">
                   <Zap size={14} />
-                  Start a Project
+                  <span>Start a Project</span>
                   <ArrowUpRight size={14} />
                 </Link>
               </motion.div>
@@ -496,7 +496,7 @@ export default function Navbar() {
                 >
                   <Link to="/contact" data-cta className="btn-primary w-full justify-center">
                     <Zap size={14} />
-                    Start a Project
+                    <span>Start a Project</span>
                     <ArrowUpRight size={14} />
                   </Link>
                 </motion.div>

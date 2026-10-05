@@ -132,10 +132,11 @@
   .btn-primary {
     @apply inline-flex items-center gap-2.5 font-semibold text-sm px-8 py-4 rounded-full overflow-hidden relative;
     background: var(--grad-blue);
-    color: #fff;
+    color: #ffffff !important;
     font-family: 'Plus Jakarta Sans', sans-serif;
     box-shadow: 0 0 0 0 rgba(21,88,212,0), 0 4px 20px rgba(21,88,212,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
     transition: box-shadow 0.35s var(--ease-smooth), transform 0.25s var(--ease-smooth), gap 0.3s;
+    isolation: isolate;
   }
   .btn-primary::before {
     content: '';
@@ -144,11 +145,14 @@
     background: linear-gradient(135deg, #1A68F0 0%, #0BC4E3 100%);
     opacity: 0;
     transition: opacity 0.35s;
+    z-index: -1;
+    pointer-events: none;
   }
   .btn-primary:hover {
     box-shadow: 0 0 0 4px rgba(21,88,212,0.18), 0 8px 32px rgba(21,88,212,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
     transform: translateY(-2px) scale(1.01);
     gap: 0.85rem;
+    color: #ffffff !important;
   }
   .btn-primary:hover::before { opacity: 1; }
   .btn-primary > * { position: relative; z-index: 1; }
@@ -659,6 +663,11 @@ input:focus, textarea:focus, select:focus {
 .ripple-btn {
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+}
+.ripple-btn > * {
+  position: relative;
+  z-index: 2;
 }
 .ripple-btn::after {
   content: '';
@@ -668,6 +677,7 @@ input:focus, textarea:focus, select:focus {
   background: rgba(255,255,255,0.25);
   opacity: 0;
   pointer-events: none;
+  z-index: 1;
 }
 .ripple-btn:active::after {
   animation: ripple-out 0.55s ease-out forwards;
