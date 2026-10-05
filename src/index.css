@@ -123,10 +123,10 @@
    COMPONENT CLASSES
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 @layer components {
-  .container-wide  { @apply max-w-[1440px] mx-auto px-5 lg:px-14 xl:px-20; }
-  .container-tight { @apply max-w-[1100px] mx-auto px-5 lg:px-12; }
-  .page-section    { @apply py-28 md:py-36; }
-  .page-section-sm { @apply py-16 md:py-24; }
+  .container-wide  { @apply max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16; }
+  .container-tight { @apply max-w-[1100px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12; }
+  .page-section    { @apply py-20 sm:py-24 md:py-32 lg:py-36; }
+  .page-section-sm { @apply py-12 sm:py-16 md:py-20 lg:py-24; }
 
   /* ── BUTTONS ── */
   .btn-primary {

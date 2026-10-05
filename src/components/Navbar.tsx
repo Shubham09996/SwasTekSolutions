@@ -402,7 +402,7 @@ export default function Navbar() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0.5 }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 bottom-0 w-[320px] z-50 lg:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-[min(320px,88vw)] z-50 lg:hidden overflow-y-auto"
               style={{ background: "#ffffff", boxShadow: "-20px 0 60px rgba(7,17,31,0.15)" }}
             >
               <div className="flex items-center justify-between px-5 py-4 border-b" style={{ borderColor: "#E2EBF5" }}>

@@ -140,11 +140,11 @@ export default function Services() {
                       style={{ background: 'rgba(21,88,212,0.12)', transformOrigin: 'left' }}
                     />
 
-                    <div className="relative z-10 grid grid-cols-[80px_1fr_auto] md:grid-cols-[120px_auto_1fr_280px_auto] items-center gap-6 py-7 px-2">
+                    <div className="relative z-10 grid grid-cols-[40px_1fr_auto] sm:grid-cols-[70px_1fr_auto] md:grid-cols-[100px_auto_1fr_260px_auto] items-center gap-3 sm:gap-6 py-5 sm:py-7 px-1 sm:px-2">
                       {/* Number */}
                       <span
                         className="font-bold leading-none transition-colors duration-350"
-                        style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.4rem, 2.8vw, 2.2rem)', color: activeService === i ? '#38D9F0' : 'rgba(255,255,255,0.2)', letterSpacing: '-0.04em' }}
+                        style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.1rem, 2.5vw, 2.2rem)', color: activeService === i ? '#38D9F0' : 'rgba(255,255,255,0.2)', letterSpacing: '-0.04em' }}
                       >
                         {s.num}
                       </span>
@@ -159,7 +159,7 @@ export default function Services() {
 
                       {/* Title */}
                       <h3
-                        className="font-bold text-xl md:text-2xl transition-colors duration-300"
+                        className="font-bold text-base sm:text-xl md:text-2xl transition-colors duration-300"
                         style={{ color: activeService === i ? '#ffffff' : 'rgba(240,244,248,0.95)', fontFamily: 'Sora, sans-serif', letterSpacing: '-0.025em' }}
                       >
                         {s.title}

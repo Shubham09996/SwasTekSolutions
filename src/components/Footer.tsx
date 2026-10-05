@@ -63,13 +63,13 @@ export default function Footer() {
       <div className="relative w-full h-px" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.7) 30%, rgba(11,196,227,0.9) 50%, rgba(91,60,245,0.7) 70%, transparent 100%)" }} />
 
       {/* ── Pre-footer Floating CTA Card ── */}
-      <div className="container-wide pt-16 md:pt-20 pb-8 md:pb-12 relative z-10">
+      <div className="container-wide pt-12 sm:pt-16 md:pt-20 pb-8 md:pb-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="relative rounded-3xl md:rounded-[36px] overflow-hidden p-8 sm:p-12 md:p-14 border"
+          className="relative rounded-3xl md:rounded-[36px] overflow-hidden p-6 sm:p-10 md:p-12 lg:p-14 border"
           style={{
             background: "linear-gradient(135deg, rgba(14, 38, 76, 0.9) 0%, rgba(7, 20, 42, 0.96) 50%, rgba(3, 10, 22, 0.99) 100%)",
             borderColor: "rgba(11, 196, 227, 0.35)",
@@ -83,25 +83,25 @@ export default function Footer() {
             <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.9) 30%, rgba(11,196,227,0.9) 70%, transparent 100%)" }} />
           </div>
 
-          <div className="relative z-10 grid lg:grid-cols-[1.35fr_1fr] gap-10 lg:gap-14 items-center">
+          <div className="relative z-10 grid lg:grid-cols-[1.35fr_1fr] gap-8 sm:gap-10 lg:gap-14 items-center">
             {/* Left Content */}
             <div>
               <div
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-4"
+                className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full mb-3.5 sm:mb-4"
                 style={{ background: "rgba(11,196,227,0.15)", border: "1px solid rgba(11,196,227,0.4)" }}
               >
                 <span className="relative flex h-2 w-2">
                   <span className="pulse-ring absolute inline-flex h-full w-full rounded-full opacity-75 bg-cyan-400" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />
                 </span>
-                <span className="text-xs font-bold tracking-[0.16em] uppercase text-cyan-300" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                <span className="text-[11px] sm:text-xs font-bold tracking-[0.16em] uppercase text-cyan-300" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
                   Start a Project
                 </span>
               </div>
 
               <h2
-                className="font-bold leading-[1.06] tracking-tight text-white mb-3"
-                style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(2rem, 4.2vw, 3.5rem)", letterSpacing: "-0.04em" }}
+                className="font-bold leading-[1.08] tracking-tight text-white mb-3"
+                style={{ fontFamily: "Sora, sans-serif", fontSize: "clamp(1.75rem, 4.2vw, 3.4rem)", letterSpacing: "-0.04em" }}
               >
                 Tell us what you're<br />
                 <span style={{ background: "linear-gradient(135deg, #38BDF8 0%, #0BC4E3 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
@@ -109,34 +109,34 @@ export default function Footer() {
                 </span>
               </h2>
 
-              <p className="text-base leading-relaxed max-w-lg mb-6 text-slate-200" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+              <p className="text-sm sm:text-base leading-relaxed max-w-lg mb-6 text-slate-200" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
                 Let's turn your business bottlenecks into clean, high-performance digital systems. We review requirements and outline a roadmap within 24 hours.
               </p>
 
               {/* Trust Badges */}
-              <div className="flex flex-wrap items-center gap-3 text-xs font-medium" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/15 text-slate-100 backdrop-blur-sm shadow-sm">
-                  <Clock3 size={14} className="text-cyan-400 flex-shrink-0" />
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[11px] sm:text-xs font-medium" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-slate-100 backdrop-blur-sm shadow-sm">
+                  <Clock3 size={13} className="text-cyan-400 flex-shrink-0" />
                   <span>24h Response Time</span>
                 </span>
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/15 text-slate-100 backdrop-blur-sm shadow-sm">
-                  <ShieldCheck size={14} className="text-blue-400 flex-shrink-0" />
+                <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-slate-100 backdrop-blur-sm shadow-sm">
+                  <ShieldCheck size={13} className="text-blue-400 flex-shrink-0" />
                   <span>100% Client Code Ownership</span>
                 </span>
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/15 text-slate-100 backdrop-blur-sm shadow-sm">
-                  <MessageSquare size={14} className="text-cyan-400 flex-shrink-0" />
+                <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-xl bg-white/10 border border-white/15 text-slate-100 backdrop-blur-sm shadow-sm">
+                  <MessageSquare size={13} className="text-cyan-400 flex-shrink-0" />
                   <span>Free Initial Consultation</span>
                 </span>
               </div>
             </div>
 
             {/* Right Action buttons */}
-            <div className="flex flex-col sm:flex-row lg:flex-col gap-3.5 lg:items-end justify-start">
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 sm:gap-3.5 lg:items-end justify-start w-full lg:w-auto">
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                 <Link
                   to="/contact"
                   data-cta
-                  className="ripple-btn group flex items-center justify-center gap-2.5 text-sm font-bold px-8 py-4 rounded-full w-full sm:w-auto shadow-xl shadow-cyan-500/25 transition-all"
+                  className="ripple-btn group flex items-center justify-center gap-2.5 text-sm font-bold px-7 sm:px-8 py-3.5 sm:py-4 rounded-full w-full sm:w-auto shadow-xl shadow-cyan-500/25 transition-all text-center"
                   style={{
                     background: "linear-gradient(135deg, #1558D4 0%, #0BC4E3 100%)",
                     color: "#ffffff",
@@ -144,20 +144,20 @@ export default function Footer() {
                     fontFamily: "Plus Jakarta Sans, sans-serif",
                   }}
                 >
-                  <Zap size={16} className="text-white fill-white" />
+                  <Zap size={16} className="text-white fill-white flex-shrink-0" />
                   <span>Start a Project</span>
-                  <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0" />
                 </Link>
               </motion.div>
 
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                 <Link
                   to="/work"
-                  className="flex items-center justify-center gap-2 text-sm font-semibold px-8 py-4 rounded-full transition-all w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 shadow-sm"
+                  className="flex items-center justify-center gap-2 text-sm font-semibold px-7 sm:px-8 py-3.5 sm:py-4 rounded-full transition-all w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 shadow-sm text-center"
                   style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
                 >
                   <span>View Our Work</span>
-                  <ArrowRight size={15} className="text-slate-300" />
+                  <ArrowRight size={15} className="text-slate-300 flex-shrink-0" />
                 </Link>
               </motion.div>
             </div>
@@ -171,7 +171,7 @@ export default function Footer() {
         {/* Subtle Top Divider with Soft Center Glow */}
         <div className="h-px w-full mb-12" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 20%, rgba(11,196,227,0.25) 50%, rgba(255,255,255,0.1) 80%, transparent 100%)" }} />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1.1fr_1fr_1.35fr] gap-10 lg:gap-10 items-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.4fr_1.1fr_1fr_1.35fr] gap-8 sm:gap-10 items-start">
 
           {/* ── Column 1: Brand & Identity ── */}
           <motion.div
@@ -307,7 +307,7 @@ export default function Footer() {
 
             {/* Sleek Interactive Email Card with 1-Click Copy */}
             <div
-              className="p-4 rounded-2xl mb-4 transition-all duration-300 relative overflow-hidden group border"
+              className="p-3.5 sm:p-4 rounded-2xl mb-4 transition-all duration-300 relative overflow-hidden group border"
               style={{
                 background: "linear-gradient(145deg, rgba(8, 26, 52, 0.75) 0%, rgba(4, 13, 28, 0.95) 100%)",
                 borderColor: "rgba(11, 196, 227, 0.35)",
@@ -339,11 +339,11 @@ export default function Footer() {
 
               <a
                 href="mailto:hello@swastek.com"
-                className="text-base font-extrabold text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between"
+                className="text-sm sm:text-base font-extrabold text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between gap-1 break-all sm:break-normal"
                 style={{ fontFamily: "Sora, sans-serif" }}
               >
                 <span>hello@swastek.com</span>
-                <ArrowUpRight size={16} className="text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ArrowUpRight size={16} className="text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform flex-shrink-0" />
               </a>
             </div>
 
@@ -354,7 +354,7 @@ export default function Footer() {
               style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
             >
               <span>Start Discovery Conversation</span>
-              <ArrowRight size={14} className="group-hover/cta:translate-x-1 transition-transform" />
+              <ArrowRight size={14} className="group-hover/cta:translate-x-1 transition-transform flex-shrink-0" />
             </Link>
 
             <div className="mt-3 flex items-center gap-2 text-[11px] text-slate-400" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
@@ -367,12 +367,12 @@ export default function Footer() {
       </div>
 
       {/* ── Giant Bespoke Watermark (Subtle & Low Visibility) ── */}
-      <div className="relative w-full overflow-hidden select-none pointer-events-none pb-2 flex justify-center items-center">
+      <div className="relative w-full overflow-hidden select-none pointer-events-none pb-2 px-2 flex justify-center items-center">
         <h1
           className="text-center font-extrabold uppercase whitespace-nowrap"
           style={{
             fontFamily: "Sora, sans-serif",
-            fontSize: "clamp(4.5rem, 15vw, 14rem)",
+            fontSize: "clamp(3.2rem, 14vw, 13.5rem)",
             lineHeight: 0.85,
             letterSpacing: "-0.02em",
             background: "linear-gradient(180deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.02) 100%)",
@@ -387,9 +387,9 @@ export default function Footer() {
 
       {/* ── Bottom Bar ── */}
       <div className="border-t relative z-10" style={{ borderColor: "rgba(255,255,255,0.08)", background: "rgba(2, 6, 15, 0.95)" }}>
-        <div className="container-wide py-5 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+        <div className="container-wide py-5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
           
-          <div className="flex flex-wrap items-center gap-4 text-center md:text-left">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-4 text-center sm:text-left">
             <p>© 2026 SwasTek Solutions Pvt. Ltd. All rights reserved.</p>
             <span className="hidden sm:inline text-slate-600">|</span>
             {/* Live Accepting Status Capsule */}
@@ -404,7 +404,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex items-center gap-6 text-xs text-slate-400" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-400" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
             <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
             <Link to="/contact" className="text-cyan-400 hover:text-cyan-300 transition-colors font-semibold">Contact</Link>

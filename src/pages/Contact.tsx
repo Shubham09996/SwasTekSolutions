@@ -388,7 +388,7 @@ export default function Contact() {
               ) : (
                 /* Multi-Step Wizard Container */
                 <div
-                  className="rounded-3xl border p-6 sm:p-10 shadow-2xl relative backdrop-blur-2xl"
+                  className="rounded-3xl border p-4 sm:p-7 md:p-10 shadow-2xl relative backdrop-blur-2xl"
                   style={{
                     background: 'linear-gradient(145deg, rgba(16, 38, 76, 0.85) 0%, rgba(8, 20, 38, 0.95) 50%, rgba(4, 10, 20, 0.99) 100%)',
                     borderColor: 'rgba(56, 189, 248, 0.3)',
@@ -522,8 +522,8 @@ export default function Contact() {
                           </div>
                         </div>
 
-                        <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                          <span className="text-xs text-slate-400">
+                        <div className="flex flex-col sm:flex-row items-center justify-between gap-3.5 pt-4 border-t border-white/10">
+                          <span className="text-xs text-slate-400 order-2 sm:order-1 text-center sm:text-left">
                             {selectedScopes.length + (customScopeText.trim() ? 1 : 0)}{' '}
                             {selectedScopes.length + (customScopeText.trim() ? 1 : 0) === 1 ? 'scope' : 'scopes'} selected
                           </span>
@@ -531,7 +531,7 @@ export default function Contact() {
                             type="button"
                             onClick={() => setStep(2)}
                             disabled={selectedScopes.length === 0 && customScopeText.trim().length === 0}
-                            className="btn-primary text-xs sm:text-sm shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
+                            className="btn-primary text-xs sm:text-sm shadow-lg disabled:opacity-40 disabled:cursor-not-allowed w-full sm:w-auto justify-center order-1 sm:order-2"
                           >
                             <span>Continue to Project Details</span>
                             <ArrowRight size={14} />
@@ -584,11 +584,11 @@ export default function Contact() {
                           </span>
                         </div>
 
-                        <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                        <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-3 pt-4 border-t border-white/10">
                           <button
                             type="button"
                             onClick={() => setStep(1)}
-                            className="px-5 py-2.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 hover:text-white transition-all"
+                            className="w-full sm:w-auto px-5 py-2.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 hover:text-white transition-all text-center"
                           >
                             Back
                           </button>
@@ -596,7 +596,7 @@ export default function Contact() {
                             type="button"
                             onClick={() => setStep(3)}
                             disabled={projectDesc.trim().length < 8}
-                            className="btn-primary text-xs sm:text-sm shadow-lg disabled:opacity-40 disabled:cursor-not-allowed"
+                            className="btn-primary text-xs sm:text-sm shadow-lg disabled:opacity-40 disabled:cursor-not-allowed w-full sm:w-auto justify-center"
                           >
                             <span>Continue to Contact Info</span>
                             <ArrowRight size={14} />
@@ -705,18 +705,18 @@ export default function Contact() {
                             </div>
                           </div>
 
-                          <div className="flex items-center justify-between pt-6 border-t border-white/10">
+                          <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-3 pt-6 border-t border-white/10">
                             <button
                               type="button"
                               onClick={() => setStep(2)}
-                              className="px-5 py-2.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 hover:text-white transition-all"
+                              className="w-full sm:w-auto px-5 py-2.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 hover:text-white transition-all text-center"
                             >
                               Back
                             </button>
                             <button
                               type="submit"
                               data-cta
-                              className="btn-primary text-xs sm:text-sm shadow-xl hover:scale-105 transition-all"
+                              className="btn-primary text-xs sm:text-sm shadow-xl hover:scale-105 transition-all w-full sm:w-auto justify-center"
                             >
                               <Zap size={14} />
                               <span>Submit Project Discovery Request</span>
