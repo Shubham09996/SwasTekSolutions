@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, ArrowLeft } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 
 function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -251,20 +251,17 @@ export default function IndustryDetail() {
   return (
     <PageTransition title={`${data.name} Software Solutions | SwasTek Solutions`} description={data.intro}>
       {/* Hero */}
-      <section className="pt-32 pb-20 bg-white border-b" style={{ borderColor: '#E4EDF7' }}>
+      <section className="pt-[74px] pb-8 sm:pt-24 sm:pb-14 md:pt-32 md:pb-20 bg-white border-b" style={{ borderColor: '#E4EDF7' }}>
         <div className="container-wide">
           <FadeUp>
-            <Link to="/industries" className="inline-flex items-center gap-2 text-sm mb-8 transition-colors hover:text-blue-600" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-              <ArrowLeft size={14} /> Industries
-            </Link>
-            <p className="section-label">{data.name}</p>
-            <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
+            <p className="section-label mb-2">{data.name}</p>
+            <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-4 sm:mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
               {data.headline}
             </h1>
-            <p className="text-lg leading-relaxed max-w-2xl mb-4" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+            <p className="text-sm sm:text-lg leading-relaxed max-w-2xl mb-3 sm:mb-4" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               {data.intro}
             </p>
-            <p className="text-base leading-relaxed max-w-2xl" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+            <p className="text-xs sm:text-base leading-relaxed max-w-2xl" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               {data.context}
             </p>
           </FadeUp>
@@ -274,7 +271,7 @@ export default function IndustryDetail() {
       {/* Challenges + Solutions */}
       <section className="page-section" style={{ background: '#EFF4FA' }}>
         <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
             <FadeUp>
               <p className="section-label">Common challenges</p>
               <h2 className="font-heading text-2xl md:text-3xl font-bold mb-8" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>

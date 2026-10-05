@@ -468,8 +468,41 @@ function StarField() {
 /* ─────────────────────────────────────────────────────────── */
 
 function QuantaxsShowcaseMockup() {
-  const [tab, setTab] = useState<'preview' | 'trades' | 'quote'>('preview')
-  const [selectedTrade, setSelectedTrade] = useState<'lumber' | 'drywall' | 'concrete' | 'roofing'>('lumber')
+  const screenshots = [
+    {
+      id: 'hero',
+      label: 'Hero & Overview',
+      tag: '01 · Main Landing',
+      title: 'Accurate Construction Estimation & Takeoffs',
+      desc: 'High-converting dark aesthetic hero engineered with live estimation software visuals and dual CTAs.',
+      img: '/assets/projects/quantax/hero.png',
+      fallback: '/image.png',
+      badge: '🇺🇸 Worldwide & US Nationwide',
+    },
+    {
+      id: 'features',
+      label: 'Why Choose Quantax',
+      tag: '02 · Value Proposition',
+      title: 'The Estimation Partner Contractors Trust',
+      desc: 'Key value pillars, 100% double-checked review metrics, and material savings breakdown.',
+      img: '/assets/projects/quantax/features.png',
+      fallback: '/image copy.png',
+      badge: '✓ 100% Double-Checked Quality',
+    },
+    {
+      id: 'quote',
+      label: 'Blueprint & Quote Form',
+      tag: '03 · Lead Intake',
+      title: 'Interactive Multi-Trade Project Intake',
+      desc: 'Intuitive plan upload interface (PDF/DWG), trade selector checkboxes, and direct quote routing.',
+      img: '/assets/projects/quantax/quote.png',
+      fallback: '/image copy 2.png',
+      badge: '⚡ 24–48h Rapid Turnaround',
+    },
+  ]
+
+  const [activeIndex, setActiveIndex] = useState(0)
+  const current = screenshots[activeIndex]
 
   return (
     <div
@@ -503,246 +536,126 @@ function QuantaxsShowcaseMockup() {
       </div>
 
       {/* Interactive Tabs Header */}
-      <div className="px-4 py-2 border-b flex items-center gap-1.5 overflow-x-auto" style={{ borderColor: 'rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}>
-        <button
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setTab('preview') }}
-          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
-            tab === 'preview'
-              ? 'bg-cyan-500/25 text-cyan-300 border border-cyan-500/40 shadow-sm'
-              : 'text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent'
-          }`}
-          style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
-        >
-          <Globe size={12} /> Homepage Preview
-        </button>
-        <button
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setTab('trades') }}
-          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
-            tab === 'trades'
-              ? 'bg-cyan-500/25 text-cyan-300 border border-cyan-500/40 shadow-sm'
-              : 'text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent'
-          }`}
-          style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
-        >
-          <HardHat size={12} /> Core Trade Services
-        </button>
-        <button
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); setTab('quote') }}
-          className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
-            tab === 'quote'
-              ? 'bg-cyan-500/25 text-cyan-300 border border-cyan-500/40 shadow-sm'
-              : 'text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent'
-          }`}
-          style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
-        >
-          <Zap size={12} /> Plan Upload / Quote
-        </button>
+      <div className="px-3 sm:px-4 py-2 border-b flex items-center gap-1.5 overflow-x-auto scrollbar-none" style={{ borderColor: 'rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}>
+        {screenshots.map((s, idx) => (
+          <button
+            key={s.id}
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); setActiveIndex(idx) }}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap flex items-center gap-1.5 ${
+              activeIndex === idx
+                ? 'bg-cyan-500/25 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-white/5 border border-transparent'
+            }`}
+            style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+          >
+            {idx === 0 && <Globe size={12} />}
+            {idx === 1 && <HardHat size={12} />}
+            {idx === 2 && <Zap size={12} />}
+            {s.label}
+          </button>
+        ))}
       </div>
 
-      {/* Body Viewport */}
-      <div className="p-5 sm:p-6 space-y-4 text-white min-h-[330px] flex flex-col justify-between">
-        {tab === 'preview' && (
-          <div className="space-y-3.5">
-            {/* Real Header on Site */}
-            <div className="flex items-center justify-between pb-2.5 border-b border-white/10 text-xs">
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-white text-sm" style={{ fontFamily: 'Sora, sans-serif' }}>
-                  Quantax<span className="text-cyan-400">Estimation</span>
+      {/* Main Image Showcase Viewport */}
+      <div className="p-3 sm:p-4 space-y-3">
+        <div className="relative rounded-xl overflow-hidden border border-white/10 group bg-slate-950/80 aspect-[16/9.5] sm:aspect-[16/9]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current.id}
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              className="w-full h-full relative flex items-center justify-center overflow-hidden"
+            >
+              <img
+                src={current.img}
+                alt={current.title}
+                onError={(e) => {
+                  const target = e.currentTarget
+                  if (target.src.indexOf(current.fallback) === -1) {
+                    target.src = current.fallback
+                  }
+                }}
+                className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                loading="lazy"
+              />
+
+              {/* Floating Badge on Image */}
+              <div className="absolute top-2.5 left-2.5 pointer-events-none">
+                <span className="px-2.5 py-1 rounded-md text-[10px] font-bold bg-slate-900/85 backdrop-blur-md text-cyan-300 border border-cyan-500/40 shadow-md flex items-center gap-1">
+                  {current.badge}
                 </span>
               </div>
-              <div className="hidden sm:flex items-center gap-3 text-[11px] text-slate-400" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                <span>Services</span>
-                <span>Industries</span>
-                <span>Process</span>
-                <span>Contact</span>
-              </div>
+
+              {/* Live Overlay Link */}
               <a
                 href="https://quantaxsestimation.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-2.5 py-1 rounded bg-cyan-500 text-slate-950 font-bold text-[10px] hover:bg-cyan-400 transition-colors"
-                style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+                className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white"
               >
-                Get a Quote
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs font-bold text-white leading-tight">{current.title}</p>
+                    <p className="text-[10px] text-cyan-300 mt-0.5">{current.desc}</p>
+                  </div>
+                  <span className="px-3 py-1.5 rounded-lg bg-cyan-500 text-slate-950 font-bold text-[11px] flex items-center gap-1 shadow-lg flex-shrink-0">
+                    Open Site <ExternalLink size={11} />
+                  </span>
+                </div>
               </a>
-            </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-            {/* Hero Banner from actual website */}
-            <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
-              <span className="inline-block text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                🇺🇸 New Jersey · California · Texas
-              </span>
-              <h4 className="text-base sm:text-lg font-bold text-white leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
-                Precision Lumber Estimation & Construction Material Takeoffs
-              </h4>
-              <p className="text-xs text-slate-300 leading-relaxed" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                Professional material quantification, lumber takeoff packages, and bid-ready Excel spreadsheets for contractors across the USA.
-              </p>
-            </div>
-
-            {/* Real Deliverables strip */}
-            <div className="grid grid-cols-2 gap-2 text-[11px]" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-              <div className="p-2 rounded-lg bg-white/5 border border-white/5 text-slate-300 flex items-center gap-1.5">
-                <span className="text-cyan-400 font-bold">📊</span> Excel Spreadsheets with Formulas
-              </div>
-              <div className="p-2 rounded-lg bg-white/5 border border-white/5 text-slate-300 flex items-center gap-1.5">
-                <span className="text-cyan-400 font-bold">🖍️</span> Color-Coded Plan Markups
-              </div>
-              <div className="p-2 rounded-lg bg-white/5 border border-white/5 text-slate-300 flex items-center gap-1.5">
-                <span className="text-cyan-400 font-bold">📋</span> CSI MasterFormat 16/50
-              </div>
-              <div className="p-2 rounded-lg bg-white/5 border border-white/5 text-slate-300 flex items-center gap-1.5">
-                <span className="text-emerald-400 font-bold">⚡</span> 24 to 48 Hour Turnaround
-              </div>
-            </div>
-          </div>
-        )}
-
-        {tab === 'trades' && (
-          <div className="space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-white/10">
-              <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                Real Service Offerings
-              </span>
-              <span className="text-[10px] text-slate-400" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                CSI Divisions
-              </span>
-            </div>
-
-            {/* Trade Selector Pills */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
-              {[
-                { id: 'lumber', label: '🪵 Lumber' },
-                { id: 'drywall', label: '🧱 Drywall' },
-                { id: 'concrete', label: '🏗️ Concrete' },
-                { id: 'roofing', label: '🏠 Roofing' },
-              ].map((t) => (
-                <button
-                  key={t.id}
-                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); setSelectedTrade(t.id as any) }}
-                  className={`p-1.5 rounded-lg text-xs font-semibold text-center border transition-all ${
-                    selectedTrade === t.id
-                      ? 'bg-cyan-500/25 text-cyan-300 border-cyan-400/60 font-bold'
-                      : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
-                  }`}
-                  style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
-                >
-                  {t.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Selected Trade Real Details */}
-            <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs space-y-2" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-              {selectedTrade === 'lumber' && (
-                <>
-                  <p className="font-bold text-white text-sm">Lumber & Wood Framing Takeoffs</p>
-                  <p className="text-slate-300 text-[11px] leading-relaxed">
-                    Complete board-foot accurate takeoff for studs, wall plates, floor joists, roof trusses, shear walls, plywood sheathing, and Simpson hardware connectors.
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] text-cyan-300">Board-Foot Summaries</span>
-                    <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] text-cyan-300">Cut-Lists</span>
-                    <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] text-cyan-300">Simpson Hardware</span>
-                  </div>
-                </>
-              )}
-
-              {selectedTrade === 'drywall' && (
-                <>
-                  <p className="font-bold text-white text-sm">Drywall & Metal Stud Framing</p>
-                  <p className="text-slate-300 text-[11px] leading-relaxed">
-                    Comprehensive quantification of drywall sheets (GWB), metal framing tracks and studs, insulation, acoustical ceiling tiles (ACT), corner beads, and joint compound.
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] text-cyan-300">Sheet Counts</span>
-                    <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] text-cyan-300">Metal Stud LF</span>
-                    <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] text-cyan-300">ACT Ceilings</span>
-                  </div>
-                </>
-              )}
-
-              {selectedTrade === 'concrete' && (
-                <>
-                  <p className="font-bold text-white text-sm">Concrete, Masonry & Steel</p>
-                  <p className="text-slate-300 text-[11px] leading-relaxed">
-                    Detailed takeoff of foundation footings, grade beams, slab-on-grade (CY), rebar tonnage, wire mesh, CMU block walls, and structural steel members.
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] text-cyan-300">Cubic Yards (CY)</span>
-                    <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] text-cyan-300">Rebar Weight</span>
-                    <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] text-cyan-300">CMU Block Count</span>
-                  </div>
-                </>
-              )}
-
-              {selectedTrade === 'roofing' && (
-                <>
-                  <p className="font-bold text-white text-sm">Roofing & Siding Takeoffs</p>
-                  <p className="text-slate-300 text-[11px] leading-relaxed">
-                    Accurate roofing squares calculation for asphalt shingles, metal roofing, membrane flat roofs, siding panels, soffits, fascia, and underlayment rolls.
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] text-cyan-300">Roofing Squares</span>
-                    <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] text-cyan-300">Siding Area</span>
-                    <span className="px-2 py-0.5 rounded bg-white/10 text-[10px] text-cyan-300">Underlayment Rolls</span>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-        )}
-
-        {tab === 'quote' && (
-          <div className="space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-white/10">
-              <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                Quotation Request Flow
-              </span>
-              <span className="text-[10px] font-bold text-emerald-400" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                ● 24–48h Turnaround
-              </span>
-            </div>
-
-            {/* Realistic Form Preview */}
-            <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 space-y-2.5 text-xs" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-              <div className="p-3 rounded-lg bg-cyan-950/40 border border-dashed border-cyan-500/40 text-center">
-                <FileCode size={18} className="mx-auto text-cyan-300 mb-1" />
-                <p className="font-bold text-white text-xs">Upload Architectural Plans (PDF / DWG / TIFF)</p>
-                <p className="text-[10px] text-slate-300 mt-0.5">Drop full drawing sets or single-sheet specifications</p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2 text-[10px]">
-                <div className="p-2 rounded bg-black/40 border border-white/5">
-                  <span className="text-slate-400 block">Deliverable Format:</span>
-                  <span className="text-white font-bold">Excel + PlanSwift Markup</span>
-                </div>
-                <div className="p-2 rounded bg-black/40 border border-white/5">
-                  <span className="text-slate-400 block">Pricing Model:</span>
-                  <span className="text-cyan-300 font-bold">Fixed Project Fee</span>
-                </div>
-              </div>
-            </div>
-
-            <a
-              href="https://quantaxsestimation.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 text-xs font-bold text-center block transition-all shadow-md"
-              style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+        {/* Thumbnail Selector Strip */}
+        <div className="grid grid-cols-3 gap-2 pt-0.5">
+          {screenshots.map((s, idx) => (
+            <button
+              key={s.id}
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); setActiveIndex(idx) }}
+              className={`relative rounded-lg overflow-hidden border p-0.5 transition-all text-left ${
+                activeIndex === idx
+                  ? 'border-cyan-400 ring-2 ring-cyan-500/30 bg-cyan-500/10'
+                  : 'border-white/10 hover:border-white/30 bg-white/5 opacity-60 hover:opacity-100'
+              }`}
             >
-              Visit Live Site to Request a Free Quote ↗
-            </a>
-          </div>
-        )}
+              <div className="aspect-[16/9] rounded overflow-hidden bg-slate-900">
+                <img
+                  src={s.img}
+                  alt={s.label}
+                  onError={(e) => {
+                    const target = e.currentTarget
+                    if (target.src.indexOf(s.fallback) === -1) {
+                      target.src = s.fallback
+                    }
+                  }}
+                  className="w-full h-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+              <p className="text-[10px] font-semibold text-slate-300 truncate px-1 pt-1" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                {s.label}
+              </p>
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Footer info strip */}
-      <div className="px-5 py-2.5 border-t flex items-center justify-between text-[11px] text-slate-400" style={{ borderColor: 'rgba(255,255,255,0.06)', background: 'rgba(0,0,0,0.4)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+      <div className="px-4 py-2.5 border-t flex items-center justify-between text-[11px] text-slate-400" style={{ borderColor: 'rgba(255,255,255,0.06)', background: 'rgba(0,0,0,0.4)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
         <span className="flex items-center gap-1.5">
-          <Globe size={13} className="text-cyan-400" /> Serving Contractors in NJ, CA, TX & Nationwide
+          <Globe size={13} className="text-cyan-400" /> Serving Contractors Worldwide · NJ, CA, TX
         </span>
-        <span className="text-cyan-300 font-semibold">24–48h Turnaround</span>
+        <a
+          href="https://quantaxsestimation.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-cyan-300 hover:text-cyan-200 font-semibold flex items-center gap-1 transition-colors"
+        >
+          quantaxsestimation.com <ExternalLink size={10} />
+        </a>
       </div>
     </div>
   )

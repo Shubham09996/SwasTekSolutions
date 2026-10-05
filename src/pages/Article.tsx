@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 
 function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -107,18 +107,15 @@ export default function Article() {
   return (
     <PageTransition title={`${data.title} | SwasTek Solutions`} description={data.intro}>
       {/* Hero */}
-      <section className="pt-32 pb-16 bg-white border-b" style={{ borderColor: '#E4EDF7' }}>
+      <section className="pt-[74px] pb-8 sm:pt-24 sm:pb-14 md:pt-32 md:pb-16 bg-white border-b" style={{ borderColor: '#E4EDF7' }}>
         <div className="container-tight">
           <FadeUp>
-            <Link to="/insights" className="inline-flex items-center gap-2 text-sm mb-8 transition-colors hover:text-blue-600" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-              <ArrowLeft size={14} /> Insights
-            </Link>
-            <div className="flex items-center gap-3 mb-5">
-              <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: '#EBF4FF', color: '#1860D4', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{data.category}</span>
-              <span className="text-xs" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{data.date}</span>
-              <span className="text-xs" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{data.readTime}</span>
+            <div className="flex items-center gap-3 mb-3 sm:mb-5">
+              <span className="text-[11px] sm:text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: '#EBF4FF', color: '#1860D4', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{data.category}</span>
+              <span className="text-[11px] sm:text-xs" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{data.date}</span>
+              <span className="text-[11px] sm:text-xs" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{data.readTime}</span>
             </div>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold leading-tight tracking-tight" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
+            <h1 className="font-heading text-2xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
               {data.title}
             </h1>
           </FadeUp>

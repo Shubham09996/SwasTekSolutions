@@ -77,7 +77,7 @@ export default function ApiIntegrations() {
         {/* ═══════════════════════════════════════════════════════
             HERO SECTION — ULTRA-PREMIUM DARK
         ═══════════════════════════════════════════════════════ */}
-        <section className="relative pt-36 pb-20 md:pt-40 md:pb-28 overflow-hidden grain-overlay">
+        <section className="relative pt-[74px] pb-8 sm:pt-24 sm:pb-14 md:pt-32 md:pb-20 overflow-hidden grain-overlay">
           {/* Ambient Glows & Grid */}
           <div className="absolute inset-0 hero-grid opacity-100 pointer-events-none" />
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -117,7 +117,7 @@ export default function ApiIntegrations() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="flex items-center gap-2 mb-6"
+                  className="flex items-center gap-2 mb-4"
                 >
                   <div
                     className="flex items-center gap-2 px-3.5 py-1.5 rounded-full"
@@ -285,41 +285,41 @@ export default function ApiIntegrations() {
         {/* ═══════════════════════════════════════════════════════
             INTEGRATIONS SECTION
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-24 sm:py-28 relative border-t border-white/10 bg-[#030914]">
+        <section className="py-10 sm:py-16 md:py-24 relative border-t border-white/10 bg-[#030914]">
           <div className="container-wide">
             <FadeUp>
-              <div className="max-w-2xl mb-14">
-                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-cyan-400 mb-3">
+              <div className="max-w-2xl mb-8 sm:mb-14">
+                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-cyan-400 mb-2 sm:mb-3">
                   Integration Engineering
                 </p>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white mb-3 sm:mb-5 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Integration architectures we engineer.
                 </h2>
-                <p className="text-base text-slate-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
                   Whether linking modern SaaS APIs or extracting data from legacy on-premise SQL databases, we build reliable, secure pipelines.
                 </p>
               </div>
             </FadeUp>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-16">
               {integrationTypes.map((item, i) => {
                 const Icon = item.icon
                 return (
                   <FadeUp key={item.title} delay={i * 0.07}>
                     <div
-                      className="p-7 rounded-2xl transition-all duration-300 hover:-translate-y-1 group"
+                      className="p-5 sm:p-7 rounded-2xl transition-all duration-300 hover:-translate-y-1 group"
                       style={{
                         background: 'linear-gradient(135deg, rgba(7, 17, 31, 0.7) 0%, rgba(10, 25, 48, 0.4) 100%)',
                         border: '1px solid rgba(255, 255, 255, 0.08)',
                       }}
                     >
-                      <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-110 transition-transform">
-                        <Icon size={22} />
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-110 transition-transform">
+                        <Icon size={20} />
                       </div>
-                      <h3 className="text-lg font-bold text-white mb-2.5 font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>
+                      <h3 className="text-base sm:text-lg font-bold text-white mb-2 font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>
                         {item.title}
                       </h3>
-                      <p className="text-sm text-slate-300 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
@@ -330,15 +330,15 @@ export default function ApiIntegrations() {
 
             {/* Platforms Grid */}
             <FadeUp delay={0.2}>
-              <div className="p-8 rounded-3xl border border-white/10" style={{ background: 'rgba(7, 17, 31, 0.6)' }}>
-                <p className="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-5 text-center">
+              <div className="p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-white/10" style={{ background: 'rgba(7, 17, 31, 0.6)' }}>
+                <p className="text-xs font-bold text-cyan-400 uppercase tracking-wider mb-4 sm:mb-5 text-center">
                   Common Enterprise Platforms & Protocols We Integrate
                 </p>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3">
                   {platforms.map((p) => (
                     <div
                       key={p}
-                      className="p-3.5 rounded-xl text-center text-xs font-semibold text-slate-200 border border-white/5 bg-white/[0.02] transition-colors hover:border-cyan-500/30 hover:text-white"
+                      className="p-2.5 sm:p-3.5 rounded-xl text-center text-xs font-semibold text-slate-200 border border-white/5 bg-white/[0.02] transition-colors hover:border-cyan-500/30 hover:text-white"
                       style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
                     >
                       {p}
@@ -353,7 +353,7 @@ export default function ApiIntegrations() {
         {/* ═══════════════════════════════════════════════════════
             CTA SECTION
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 relative border-t border-white/10 bg-gradient-to-b from-[#030914] to-[#02050B]">
+        <section className="py-12 sm:py-16 md:py-20 relative border-t border-white/10 bg-gradient-to-b from-[#030914] to-[#02050B]">
           <div className="container-tight text-center relative z-10">
             <FadeUp>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5" style={{ fontFamily: 'Sora, sans-serif' }}>

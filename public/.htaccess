@@ -1,0 +1,26 @@
+Options -MultiViews
+DirectoryIndex index.html
+
+<IfModule mod_mime.c>
+  AddType application/javascript .js .mjs
+  AddType text/css .css
+  AddType image/svg+xml .svg
+  AddType application/json .json
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Do not rewrite assets, scripts, styles or static media
+  RewriteRule ^assets/ - [L]
+  RewriteRule ^(favicon|logo|icon|hero).*\.(png|ico|svg|json|lottie)$ - [L]
+
+  # Existing files and directories
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Fallback all client routes to /index.html
+  RewriteRule ^ /index.html [L]
+</IfModule>

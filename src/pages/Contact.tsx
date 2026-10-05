@@ -179,10 +179,10 @@ export default function Contact() {
           style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.9) 30%, rgba(11,196,227,0.9) 70%, transparent 100%)' }}
         />
 
-        <div className="container-wide pt-32 sm:pt-36 pb-20 relative z-10">
+        <div className="container-wide pt-[74px] sm:pt-24 md:pt-32 pb-14 sm:pb-20 relative z-10">
           {/* Header Banner */}
-          <div className="max-w-3xl mb-12 lg:mb-16">
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full mb-4 bg-cyan-500/10 border border-cyan-500/30">
+          <div className="max-w-3xl mb-6 sm:mb-12 lg:mb-16">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full mb-3 sm:mb-4 bg-cyan-500/10 border border-cyan-500/30">
               <span className="relative flex h-2 w-2">
                 <span className="pulse-ring absolute inline-flex h-full w-full rounded-full opacity-75 bg-cyan-400" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400" />

@@ -102,7 +102,7 @@ export default function Industries() {
       {/* ═══════════════════════════════════════════════════════
           DARK HERO
       ═══════════════════════════════════════════════════════ */}
-      <section className="relative pt-32 pb-20 overflow-hidden grain-overlay" style={{ background: 'var(--void)' }}>
+      <section className="relative pt-[74px] pb-8 sm:pt-24 sm:pb-14 md:pt-32 md:pb-20 overflow-hidden grain-overlay" style={{ background: 'var(--void)' }}>
         <div className="absolute inset-0 hero-grid opacity-100" />
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="orb-1 absolute" style={{ width: 800, height: 800, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,88,212,0.18) 0%, transparent 68%)', top: '-15%', left: '-5%', filter: 'blur(80px)' }} />
@@ -115,7 +115,7 @@ export default function Industries() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="flex items-center gap-2 mb-10"
+            className="flex items-center gap-2 mb-4 sm:mb-8"
           >
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ background: 'rgba(21,88,212,0.12)', border: '1px solid rgba(21,88,212,0.22)' }}>
               <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
@@ -124,7 +124,7 @@ export default function Industries() {
             </div>
           </motion.div>
 
-          <div className="grid lg:grid-cols-[1.1fr_1fr] gap-12 items-end">
+          <div className="grid lg:grid-cols-[1.1fr_1fr] gap-6 sm:gap-10 lg:gap-12 items-end">
             <div>
               <div className="overflow-hidden mb-1">
                 <motion.h1
@@ -155,7 +155,7 @@ export default function Industries() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="text-lg leading-relaxed self-end"
+              className="text-sm sm:text-lg leading-relaxed self-end"
               style={{ color: 'rgba(160,175,194,0.88)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
             >
               Different industries have different workflows, compliance requirements and operational rhythms. We build software around the specific needs of your sector — not a generic template.
@@ -167,14 +167,14 @@ export default function Industries() {
       {/* ═══════════════════════════════════════════════════════
           INDUSTRIES GRID
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 border-t" style={{ background: 'var(--void)', borderColor: 'rgba(255,255,255,0.08)' }}>
+      <section className="py-10 sm:py-16 md:py-24 border-t" style={{ background: 'var(--void)', borderColor: 'rgba(255,255,255,0.08)' }}>
         <div className="container-wide">
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
             {industries.map((ind, i) => (
               <FadeUp key={ind.slug} delay={i * 0.05}>
                 <Link
                   to={`/industries/${ind.slug}`}
-                  className="group flex items-start gap-5 p-7 rounded-3xl border relative overflow-hidden transition-all duration-500 hover:-translate-y-1"
+                  className="group flex items-start gap-4 sm:gap-5 p-5 sm:p-7 rounded-3xl border relative overflow-hidden transition-all duration-500 hover:-translate-y-1"
                   style={{ background: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.08)', boxShadow: '0 4px 20px rgba(0,0,0,0.4)' }}
                   onMouseEnter={() => setHovered(i)}
                   onMouseLeave={() => setHovered(null)}
@@ -194,7 +194,7 @@ export default function Industries() {
 
                   {/* Emoji icon */}
                   <div
-                    className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 text-2xl transition-all duration-400 group-hover:scale-110"
+                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center flex-shrink-0 text-xl sm:text-2xl transition-all duration-400 group-hover:scale-110"
                     style={{
                       background: `linear-gradient(135deg, ${ind.accent}20 0%, ${ind.accent}08 100%)`,
                       border: `1px solid ${ind.accent}30`,
@@ -205,12 +205,12 @@ export default function Industries() {
 
                   <div className="flex-1 min-w-0 relative z-10">
                     <h2
-                      className="font-bold text-xl mb-2 transition-colors duration-300"
+                      className="font-bold text-lg sm:text-xl mb-1.5 sm:mb-2 transition-colors duration-300"
                       style={{ color: hovered === i ? ind.accent : '#ffffff', fontFamily: 'Sora, sans-serif', letterSpacing: '-0.025em' }}
                     >
                       {ind.name}
                     </h2>
-                    <p className="text-sm leading-relaxed" style={{ color: 'rgba(160,175,194,0.85)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                    <p className="text-xs sm:text-sm leading-relaxed" style={{ color: 'rgba(160,175,194,0.85)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                       {ind.desc}
                     </p>
                   </div>
@@ -218,7 +218,7 @@ export default function Industries() {
                   <motion.div
                     animate={{ x: hovered === i ? 2 : 0, y: hovered === i ? -2 : 0, opacity: hovered === i ? 1 : 0.4 }}
                     transition={{ duration: 0.25 }}
-                    className="flex-shrink-0"
+                    className="flex-shrink-0 mt-1"
                     style={{ color: ind.accent }}
                   >
                     <ArrowUpRight size={18} />
@@ -233,7 +233,7 @@ export default function Industries() {
       {/* ═══════════════════════════════════════════════════════
           CTA
       ═══════════════════════════════════════════════════════ */}
-      <section className="relative py-24 md:py-32 overflow-hidden border-t" style={{ background: 'var(--void)', borderColor: 'rgba(255,255,255,0.06)' }}>
+      <section className="relative py-10 sm:py-16 md:py-24 overflow-hidden border-t" style={{ background: 'var(--void)', borderColor: 'rgba(255,255,255,0.06)' }}>
         <div className="absolute inset-0 hero-grid opacity-25 pointer-events-none" />
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="orb-1 absolute" style={{ width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,88,212,0.15) 0%, transparent 70%)', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', filter: 'blur(80px)' }} />
@@ -242,7 +242,7 @@ export default function Industries() {
         <div className="container-tight relative z-10">
           <FadeUp>
             <div
-              className="relative rounded-3xl p-10 sm:p-14 md:p-20 overflow-hidden text-center shadow-2xl border"
+              className="relative rounded-3xl p-6 sm:p-12 md:p-16 overflow-hidden text-center shadow-2xl border"
               style={{
                 background: 'linear-gradient(145deg, rgba(7, 19, 34, 0.85) 0%, rgba(3, 8, 15, 0.95) 100%)',
                 borderColor: 'rgba(11, 196, 227, 0.3)',
@@ -253,18 +253,18 @@ export default function Industries() {
                 <div style={{ width: 600, height: 300, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(21,88,212,0.35) 0%, transparent 70%)', filter: 'blur(50px)' }} />
               </div>
               <div className="relative z-10">
-                <span className="inline-block text-[11px] font-bold tracking-[0.2em] uppercase mb-4 text-cyan-400 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                <span className="inline-block text-[11px] font-bold tracking-[0.2em] uppercase mb-3 sm:mb-4 text-cyan-400 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Don't see your industry?
                 </span>
-                <h2 className="font-bold text-white mb-5" style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(1.8rem, 4vw, 3rem)', letterSpacing: '-0.04em', lineHeight: 1.08 }}>
+                <h2 className="font-bold text-white mb-3 sm:mb-5" style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(1.75rem, 4vw, 3rem)', letterSpacing: '-0.04em', lineHeight: 1.12 }}>
                   We've built for many more sectors.
                 </h2>
-                <p className="text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed" style={{ color: 'rgba(160,175,194,0.88)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                <p className="text-xs sm:text-base md:text-lg mb-6 sm:mb-10 max-w-xl mx-auto leading-relaxed" style={{ color: 'rgba(160,175,194,0.88)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Tell us about your business and what you need. We build software for how your business actually works.
                 </p>
-                <Link to="/contact" data-cta className="btn-primary inline-flex items-center gap-2 shadow-lg shadow-cyan-500/25">
-                  <Zap size={15} />
-                  Have a conversation <ArrowUpRight size={15} />
+                <Link to="/contact" data-cta className="btn-primary text-xs sm:text-sm inline-flex items-center gap-2 shadow-lg shadow-cyan-500/25">
+                  <Zap size={14} />
+                  Have a conversation <ArrowUpRight size={14} />
                 </Link>
               </div>
             </div>

@@ -67,7 +67,7 @@ export default function BusinessAutomation() {
         {/* ═══════════════════════════════════════════════════════
             HERO SECTION — ULTRA-PREMIUM DARK
         ═══════════════════════════════════════════════════════ */}
-        <section className="relative pt-36 pb-20 md:pt-40 md:pb-28 overflow-hidden grain-overlay">
+        <section className="relative pt-[74px] pb-8 sm:pt-24 sm:pb-14 md:pt-32 md:pb-20 overflow-hidden grain-overlay">
           {/* Ambient Glows & Grid */}
           <div className="absolute inset-0 hero-grid opacity-100 pointer-events-none" />
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -107,7 +107,7 @@ export default function BusinessAutomation() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="flex items-center gap-2 mb-6"
+                  className="flex items-center gap-2 mb-4"
                 >
                   <div
                     className="flex items-center gap-2 px-3.5 py-1.5 rounded-full"
@@ -314,33 +314,33 @@ export default function BusinessAutomation() {
         {/* ═══════════════════════════════════════════════════════
             WORKFLOWS SECTION
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-24 sm:py-28 relative border-t border-white/10 bg-[#030914]">
+        <section className="py-10 sm:py-16 md:py-24 relative border-t border-white/10 bg-[#030914]">
           <div className="container-wide">
             <FadeUp>
-              <div className="max-w-2xl mb-14">
-                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-cyan-400 mb-3">
+              <div className="max-w-2xl mb-8 sm:mb-14">
+                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-cyan-400 mb-2 sm:mb-3">
                   Proven Playbooks
                 </p>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white mb-3 sm:mb-5 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Workflows we routinely automate.
                 </h2>
-                <p className="text-base text-slate-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
                   Every business loses hundreds of hours to manual coordination. Here is how we engineer instant, error-free operational velocity.
                 </p>
               </div>
             </FadeUp>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               {automatedWorkflows.map((item, i) => (
                 <FadeUp key={item.trigger} delay={i * 0.07}>
                   <div
-                    className="p-6 rounded-2xl transition-all duration-300 hover:border-cyan-500/40 group"
+                    className="p-4 sm:p-6 rounded-2xl transition-all duration-300 hover:border-cyan-500/40 group"
                     style={{
                       background: 'linear-gradient(135deg, rgba(7, 17, 31, 0.7) 0%, rgba(10, 25, 48, 0.4) 100%)',
                       border: '1px solid rgba(255, 255, 255, 0.08)',
                     }}
                   >
-                    <div className="grid md:grid-cols-[1.2fr_auto_1.8fr_auto] gap-4 items-center">
+                    <div className="grid md:grid-cols-[1.2fr_auto_1.8fr_auto] gap-3 sm:gap-4 items-center">
                       <div>
                         <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-400 px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/20 inline-block mb-1.5">
                           {item.category} Trigger
@@ -373,7 +373,7 @@ export default function BusinessAutomation() {
         {/* ═══════════════════════════════════════════════════════
             CTA SECTION
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 relative border-t border-white/10 bg-gradient-to-b from-[#030914] to-[#02050B]">
+        <section className="py-12 sm:py-16 md:py-20 relative border-t border-white/10 bg-gradient-to-b from-[#030914] to-[#02050B]">
           <div className="container-tight text-center relative z-10">
             <FadeUp>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5" style={{ fontFamily: 'Sora, sans-serif' }}>

@@ -40,7 +40,7 @@ export default function Services() {
       {/* ═══════════════════════════════════════════════════════
           DARK HERO
       ═══════════════════════════════════════════════════════ */}
-      <section className="relative pt-32 pb-20 overflow-hidden grain-overlay" style={{ background: 'var(--void)' }}>
+      <section className="relative pt-[74px] pb-8 sm:pt-24 sm:pb-14 md:pt-32 md:pb-20 overflow-hidden grain-overlay" style={{ background: 'var(--void)' }}>
         <div className="absolute inset-0 hero-grid opacity-100" />
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="orb-1 absolute" style={{ width: 700, height: 700, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,88,212,0.20) 0%, transparent 68%)', top: '-15%', left: '-5%', filter: 'blur(80px)' }} />
@@ -53,7 +53,7 @@ export default function Services() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="flex items-center gap-2 mb-10"
+            className="flex items-center gap-2 mb-4 sm:mb-8"
           >
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ background: 'rgba(21,88,212,0.12)', border: '1px solid rgba(21,88,212,0.22)' }}>
               <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
@@ -62,7 +62,7 @@ export default function Services() {
             </div>
           </motion.div>
 
-          <div className="grid lg:grid-cols-[1fr_1fr] gap-14 items-end">
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-6 sm:gap-10 lg:gap-14 items-end">
             <div>
               <div className="overflow-hidden mb-1">
                 <motion.h1
@@ -95,10 +95,10 @@ export default function Services() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="flex flex-col justify-end"
             >
-              <p className="text-lg leading-relaxed mb-8" style={{ color: 'rgba(160,175,194,0.88)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+              <p className="text-sm sm:text-lg leading-relaxed mb-5 sm:mb-8" style={{ color: 'rgba(160,175,194,0.88)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                 From business websites to custom software and CRM platforms, we build digital products around the way your business works.
               </p>
-              <Link to="/contact" data-cta className="btn-primary text-sm self-start">
+              <Link to="/contact" data-cta className="btn-primary text-xs sm:text-sm self-start">
                 <Zap size={14} />
                 Start a Project
                 <ArrowUpRight size={14} />
@@ -213,7 +213,7 @@ export default function Services() {
       {/* ═══════════════════════════════════════════════════════
           CTA
       ═══════════════════════════════════════════════════════ */}
-      <section className="relative py-24 md:py-32 overflow-hidden border-t" style={{ background: 'var(--void)', borderColor: 'rgba(255,255,255,0.06)' }}>
+      <section className="relative py-10 sm:py-16 md:py-24 overflow-hidden border-t" style={{ background: 'var(--void)', borderColor: 'rgba(255,255,255,0.06)' }}>
         <div className="absolute inset-0 hero-grid opacity-25 pointer-events-none" />
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="orb-1 absolute" style={{ width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,88,212,0.15) 0%, transparent 70%)', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', filter: 'blur(80px)' }} />
@@ -222,7 +222,7 @@ export default function Services() {
         <div className="container-tight relative z-10">
           <FadeUp>
             <div
-              className="relative rounded-3xl p-10 sm:p-14 md:p-20 overflow-hidden text-center shadow-2xl border"
+              className="relative rounded-3xl p-6 sm:p-12 md:p-16 overflow-hidden text-center shadow-2xl border"
               style={{
                 background: 'linear-gradient(145deg, rgba(7, 19, 34, 0.85) 0%, rgba(3, 8, 15, 0.95) 100%)',
                 borderColor: 'rgba(11, 196, 227, 0.3)',
@@ -233,21 +233,21 @@ export default function Services() {
                 <div style={{ width: 600, height: 300, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(21,88,212,0.35) 0%, transparent 70%)', filter: 'blur(50px)' }} />
               </div>
               <div className="relative z-10">
-                <span className="inline-block text-[11px] font-bold tracking-[0.2em] uppercase mb-4 text-cyan-400 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                <span className="inline-block text-[11px] font-bold tracking-[0.2em] uppercase mb-3 sm:mb-4 text-cyan-400 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Not sure what you need?
                 </span>
                 <h2
-                  className="font-bold text-white mb-5"
-                  style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(1.8rem, 4vw, 3rem)', letterSpacing: '-0.04em', lineHeight: 1.08 }}
+                  className="font-bold text-white mb-3 sm:mb-5"
+                  style={{ fontFamily: 'Sora, sans-serif', fontWeight: 800, fontSize: 'clamp(1.75rem, 4vw, 3rem)', letterSpacing: '-0.04em', lineHeight: 1.15 }}
                 >
-                  Tell us about your business.<br />We'll figure out the right approach.
+                  Tell us about your business.<br className="hidden sm:inline" />We'll figure out the right approach.
                 </h2>
-                <p className="text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed" style={{ color: 'rgba(160,175,194,0.88)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                <p className="text-xs sm:text-base md:text-lg mb-6 sm:mb-10 max-w-xl mx-auto leading-relaxed" style={{ color: 'rgba(160,175,194,0.88)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Every engagement starts with understanding your business — not picking a technology.
                 </p>
-                <Link to="/contact" data-cta className="btn-primary inline-flex items-center gap-2 shadow-lg shadow-cyan-500/25">
-                  <Zap size={15} />
-                  Have a conversation <ArrowUpRight size={15} />
+                <Link to="/contact" data-cta className="btn-primary text-xs sm:text-sm inline-flex items-center gap-2 shadow-lg shadow-cyan-500/25">
+                  <Zap size={14} />
+                  Have a conversation <ArrowUpRight size={14} />
                 </Link>
               </div>
             </div>

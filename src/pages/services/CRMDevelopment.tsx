@@ -345,7 +345,7 @@ export default function CRMDevelopment() {
         {/* ═══════════════════════════════════════════════════════
             HERO SECTION — ULTRA-PREMIUM DARK
         ═══════════════════════════════════════════════════════ */}
-        <section className="relative pt-36 pb-20 md:pt-40 md:pb-28 overflow-hidden grain-overlay">
+        <section className="relative pt-[74px] pb-8 sm:pt-24 sm:pb-14 md:pt-32 md:pb-20 overflow-hidden grain-overlay">
           {/* Ambient Glows & Grid */}
           <div className="absolute inset-0 hero-grid opacity-100 pointer-events-none" />
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -385,7 +385,7 @@ export default function CRMDevelopment() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="flex items-center gap-2 mb-6"
+                  className="flex items-center gap-2 mb-4"
                 >
                   <div
                     className="flex items-center gap-2 px-3.5 py-1.5 rounded-full"
@@ -550,41 +550,41 @@ export default function CRMDevelopment() {
         {/* ═══════════════════════════════════════════════════════
             CAPABILITIES SECTION — 6 ARCHITECTURAL PILLARS
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-24 sm:py-28 relative border-t border-white/10 bg-[#030914]">
+        <section className="py-10 sm:py-16 md:py-24 relative border-t border-white/10 bg-[#030914]">
           <div className="container-wide">
             <FadeUp>
-              <div className="max-w-2xl mb-14">
-                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-cyan-400 mb-3">
+              <div className="max-w-2xl mb-8 sm:mb-14">
+                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-cyan-400 mb-2 sm:mb-3">
                   Enterprise Capabilities
                 </p>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white mb-3 sm:mb-5 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Engineered around your sales velocity.
                 </h2>
-                <p className="text-base text-slate-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
                   Every field, pipeline stage, and automated trigger is designed specifically around how your team generates revenue.
                 </p>
               </div>
             </FadeUp>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {coreFeatures.map((f, i) => {
                 const Icon = f.icon
                 return (
                   <FadeUp key={f.title} delay={i * 0.07}>
                     <div
-                      className="p-7 rounded-2xl transition-all duration-300 hover:-translate-y-1 group"
+                      className="p-5 sm:p-7 rounded-2xl transition-all duration-300 hover:-translate-y-1 group"
                       style={{
                         background: 'linear-gradient(135deg, rgba(7, 17, 31, 0.7) 0%, rgba(10, 25, 48, 0.4) 100%)',
                         border: '1px solid rgba(255, 255, 255, 0.08)',
                       }}
                     >
-                      <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-110 transition-transform">
-                        <Icon size={22} />
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-110 transition-transform">
+                        <Icon size={20} />
                       </div>
-                      <h3 className="text-lg font-bold text-white mb-2.5 font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>
+                      <h3 className="text-base sm:text-lg font-bold text-white mb-2 font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>
                         {f.title}
                       </h3>
-                      <p className="text-sm text-slate-300 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                         {f.desc}
                       </p>
                     </div>
@@ -598,17 +598,17 @@ export default function CRMDevelopment() {
         {/* ═══════════════════════════════════════════════════════
             COMPARISON: BESPOKE VS OFF-THE-SHELF
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-24 relative border-t border-white/10" style={{ background: 'var(--void)' }}>
+        <section className="py-10 sm:py-16 md:py-24 relative border-t border-white/10" style={{ background: 'var(--void)' }}>
           <div className="container-wide">
             <FadeUp>
-              <div className="text-center max-w-2xl mx-auto mb-14">
-                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-cyan-400 mb-3">
+              <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-14">
+                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-cyan-400 mb-2 sm:mb-3">
                   ROI & Architecture Comparison
                 </p>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
+                <h2 className="text-2xl sm:text-4xl font-extrabold text-white mb-3 sm:mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Bespoke SwasTek CRM vs Off-the-Shelf
                 </h2>
-                <p className="text-sm sm:text-base text-slate-300">
+                <p className="text-xs sm:text-base text-slate-300">
                   Why fast-scaling businesses replace Salesforce and HubSpot with a dedicated proprietary sales platform.
                 </p>
               </div>
@@ -619,14 +619,14 @@ export default function CRMDevelopment() {
                 className="rounded-2xl overflow-hidden border border-white/10 max-w-4xl mx-auto"
                 style={{ background: 'rgba(7, 17, 31, 0.8)' }}
               >
-                <div className="grid grid-cols-3 p-4 sm:p-5 bg-white/5 border-b border-white/10 text-xs sm:text-sm font-bold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
+                <div className="grid grid-cols-3 p-3 sm:p-5 bg-white/5 border-b border-white/10 text-xs sm:text-sm font-bold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
                   <div>Metric / Architecture</div>
                   <div className="text-slate-400">Generic Off-the-Shelf</div>
                   <div className="text-cyan-400">Custom SwasTek CRM</div>
                 </div>
                 <div className="divide-y divide-white/5">
                   {comparisonPoints.map((row) => (
-                    <div key={row.feature} className="grid grid-cols-3 p-4 sm:p-5 text-xs sm:text-sm items-center gap-2">
+                    <div key={row.feature} className="grid grid-cols-3 p-3 sm:p-5 text-xs sm:text-sm items-center gap-2">
                       <div className="font-semibold text-white">{row.feature}</div>
                       <div className="text-slate-400 text-xs sm:text-sm leading-snug">{row.offShelf}</div>
                       <div className="text-cyan-300 font-semibold text-xs sm:text-sm leading-snug flex items-center gap-1.5">
@@ -644,7 +644,7 @@ export default function CRMDevelopment() {
         {/* ═══════════════════════════════════════════════════════
             CTA SECTION
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 relative border-t border-white/10 bg-gradient-to-b from-[#030914] to-[#02050B]">
+        <section className="py-12 sm:py-16 md:py-20 relative border-t border-white/10 bg-gradient-to-b from-[#030914] to-[#02050B]">
           <div className="container-tight text-center relative z-10">
             <FadeUp>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5" style={{ fontFamily: 'Sora, sans-serif' }}>

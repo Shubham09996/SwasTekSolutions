@@ -82,7 +82,7 @@ export default function WebDesign() {
         {/* ═══════════════════════════════════════════════════════
             HERO SECTION — ULTRA-PREMIUM DARK
         ═══════════════════════════════════════════════════════ */}
-        <section className="relative pt-36 pb-20 md:pt-40 md:pb-28 overflow-hidden grain-overlay">
+        <section className="relative pt-[74px] pb-8 sm:pt-24 sm:pb-14 md:pt-32 md:pb-20 overflow-hidden grain-overlay">
           {/* Ambient Glows & Grid */}
           <div className="absolute inset-0 hero-grid opacity-100 pointer-events-none" />
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -114,7 +114,7 @@ export default function WebDesign() {
           <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(21,136,255,0.7) 30%, rgba(11,196,227,0.7) 70%, transparent 100%)' }} />
 
           <div className="container-wide relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
               
               {/* Left Column: Headline & Value Prop */}
               <div>
@@ -122,7 +122,7 @@ export default function WebDesign() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="flex items-center gap-2 mb-6"
+                  className="flex items-center gap-2 mb-3 sm:mb-4"
                 >
                   <div
                     className="flex items-center gap-2 px-3.5 py-1.5 rounded-full"
@@ -346,41 +346,41 @@ export default function WebDesign() {
         {/* ═══════════════════════════════════════════════════════
             CAPABILITIES SECTION
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-24 sm:py-28 relative border-t border-white/10 bg-[#030914]">
+        <section className="py-10 sm:py-16 md:py-24 relative border-t border-white/10 bg-[#030914]">
           <div className="container-wide">
             <FadeUp>
-              <div className="max-w-2xl mb-14">
-                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-cyan-400 mb-3">
+              <div className="max-w-2xl mb-8 sm:mb-14">
+                <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-cyan-400 mb-2 sm:mb-3">
                   Design Capabilities
                 </p>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white mb-3 sm:mb-5 leading-tight" style={{ fontFamily: 'Sora, sans-serif' }}>
                   Complete visual design engineering.
                 </h2>
-                <p className="text-base text-slate-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
                   From brand tokens and typography scales to interactive responsive prototypes, we build design systems ready for flawless development.
                 </p>
               </div>
             </FadeUp>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {designCapabilities.map((item, i) => {
                 const Icon = item.icon
                 return (
                   <FadeUp key={item.title} delay={i * 0.07}>
                     <div
-                      className="p-7 rounded-2xl transition-all duration-300 hover:-translate-y-1 group"
+                      className="p-5 sm:p-7 rounded-2xl transition-all duration-300 hover:-translate-y-1 group"
                       style={{
                         background: 'linear-gradient(135deg, rgba(7, 17, 31, 0.7) 0%, rgba(10, 25, 48, 0.4) 100%)',
                         border: '1px solid rgba(255, 255, 255, 0.08)',
                       }}
                     >
-                      <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-110 transition-transform">
-                        <Icon size={22} />
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-4 sm:mb-5 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 group-hover:scale-110 transition-transform">
+                        <Icon size={20} />
                       </div>
-                      <h3 className="text-lg font-bold text-white mb-2.5 font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>
+                      <h3 className="text-base sm:text-lg font-bold text-white mb-2 font-heading" style={{ fontFamily: 'Sora, sans-serif' }}>
                         {item.title}
                       </h3>
-                      <p className="text-sm text-slate-300 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                         {item.desc}
                       </p>
                     </div>
@@ -394,13 +394,13 @@ export default function WebDesign() {
         {/* ═══════════════════════════════════════════════════════
             CTA SECTION
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 relative border-t border-white/10 bg-gradient-to-b from-[#030914] to-[#02050B]">
+        <section className="py-12 sm:py-16 md:py-20 relative border-t border-white/10 bg-gradient-to-b from-[#030914] to-[#02050B]">
           <div className="container-tight text-center relative z-10">
             <FadeUp>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-5" style={{ fontFamily: 'Sora, sans-serif' }}>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white mb-3 sm:mb-5" style={{ fontFamily: 'Sora, sans-serif' }}>
                 Ready to elevate your digital presence?
               </h2>
-              <p className="text-base sm:text-lg text-slate-300 mb-8 max-w-xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-lg text-slate-300 mb-6 sm:mb-8 max-w-xl mx-auto leading-relaxed">
                 Let's architect an unforgettable, high-converting web design that sets you apart from competitors.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-4">

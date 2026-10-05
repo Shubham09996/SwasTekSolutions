@@ -83,38 +83,35 @@ export default function CaseStudy() {
   return (
     <PageTransition title={`${data.title} | SwasTek Solutions`} description={data.challenge}>
       {/* Hero */}
-      <section className="pt-32 pb-20 min-h-[50vh] flex items-end relative overflow-hidden" style={{ background: data.isLight ? 'linear-gradient(160deg, #EFF4FA 0%, #ffffff 60%)' : `linear-gradient(135deg, ${data.bg} 0%, #0E2040 100%)` }}>
+      <section className="pt-[74px] pb-8 sm:pt-24 sm:pb-14 md:pt-32 md:pb-20 min-h-[40vh] sm:min-h-[50vh] flex items-end relative overflow-hidden" style={{ background: data.isLight ? 'linear-gradient(160deg, #EFF4FA 0%, #ffffff 60%)' : `linear-gradient(135deg, ${data.bg} 0%, #0E2040 100%)` }}>
         <div className="container-wide relative z-10">
           <FadeUp>
-            <div className="flex items-center justify-between gap-4 mb-8">
-              <Link to="/work" className="inline-flex items-center gap-2 text-sm transition-colors" style={{ color: data.isLight ? '#7A8FA3' : 'rgba(255,255,255,0.6)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-                <ArrowLeft size={14} /> Back to Our Work
-              </Link>
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-4 sm:mb-8">
+              <span className="text-xs font-semibold tracking-[0.18em] uppercase" style={{ color: data.accent, fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                {data.industry}
+              </span>
               {data.liveUrl && (
                 <a
                   href={data.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all hover:scale-105 shadow-lg shadow-cyan-500/20"
+                  className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all hover:scale-105 shadow-lg shadow-cyan-500/20"
                   style={{
                     background: 'linear-gradient(135deg, #0BC4E3 0%, #2570E8 100%)',
                     color: '#ffffff',
                     fontFamily: 'Plus Jakarta Sans, sans-serif',
                   }}
                 >
-                  <Globe size={13} /> Visit Live Platform <ExternalLink size={13} />
+                  <Globe size={12} /> Visit Live Platform <ExternalLink size={12} />
                 </a>
               )}
             </div>
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: data.accent, fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
-              {data.industry}
-            </p>
-            <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6" style={{ color: data.isLight ? '#0B1A2E' : '#ffffff', fontFamily: 'Sora, sans-serif' }}>
+            <h1 className="font-heading text-2xl sm:text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-4 sm:mb-6" style={{ color: data.isLight ? '#0B1A2E' : '#ffffff', fontFamily: 'Sora, sans-serif' }}>
               {data.title}
             </h1>
-            <div className="flex flex-wrap items-center gap-2 mb-10">
+            <div className="flex flex-wrap items-center gap-2 mb-6 sm:mb-10">
               {data.services.map((s) => (
-                <span key={s} className="text-xs px-3 py-1 rounded-full font-semibold" style={{ background: data.isLight ? '#EBF4FF' : 'rgba(255,255,255,0.08)', color: data.isLight ? '#1860D4' : '#E2EBF5', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                <span key={s} className="text-[11px] sm:text-xs px-2.5 sm:px-3 py-1 rounded-full font-semibold" style={{ background: data.isLight ? '#EBF4FF' : 'rgba(255,255,255,0.08)', color: data.isLight ? '#1860D4' : '#E2EBF5', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   {s}
                 </span>
               ))}
@@ -122,10 +119,10 @@ export default function CaseStudy() {
 
             {/* KPI Stats Row in Hero */}
             {data.stats && (
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 border-t" style={{ borderColor: data.isLight ? '#CBD5E1' : 'rgba(255,255,255,0.1)' }}>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-4 sm:pt-8 border-t" style={{ borderColor: data.isLight ? '#CBD5E1' : 'rgba(255,255,255,0.1)' }}>
                 {data.stats.map((st) => (
-                  <div key={st.label} className="p-4 rounded-2xl" style={{ background: data.isLight ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.04)', border: data.isLight ? '1px solid #E2EBF5' : '1px solid rgba(255,255,255,0.06)' }}>
-                    <div className="text-2xl sm:text-3xl font-bold num-display" style={{ color: data.accent, letterSpacing: '-0.03em' }}>
+                  <div key={st.label} className="p-3 sm:p-4 rounded-2xl" style={{ background: data.isLight ? 'rgba(255,255,255,0.8)' : 'rgba(255,255,255,0.04)', border: data.isLight ? '1px solid #E2EBF5' : '1px solid rgba(255,255,255,0.06)' }}>
+                    <div className="text-xl sm:text-3xl font-bold num-display" style={{ color: data.accent, letterSpacing: '-0.03em' }}>
                       {st.value}
                     </div>
                     <div className="text-[10px] font-bold tracking-wider uppercase mt-1" style={{ color: data.isLight ? '#64748B' : '#94A3B8', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
@@ -142,8 +139,8 @@ export default function CaseStudy() {
       {/* Content */}
       <section className="page-section bg-white">
         <div className="container-wide">
-          <div className="grid lg:grid-cols-[2fr_1fr] gap-16">
-            <div className="space-y-14">
+          <div className="grid lg:grid-cols-[2fr_1fr] gap-8 lg:gap-16">
+            <div className="space-y-8 sm:space-y-14">
               <FadeUp>
                 <p className="section-label">The challenge</p>
                 <p className="text-base leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: '1.05rem' }}>

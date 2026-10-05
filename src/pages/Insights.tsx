@@ -123,7 +123,7 @@ export default function Insights() {
       {/* ═══════════════════════════════════════════════════════
           DARK HERO
       ═══════════════════════════════════════════════════════ */}
-      <section className="relative pt-32 pb-20 overflow-hidden grain-overlay" style={{ background: 'var(--void)' }}>
+      <section className="relative pt-[74px] pb-8 sm:pt-24 sm:pb-14 md:pt-32 md:pb-20 overflow-hidden grain-overlay" style={{ background: 'var(--void)' }}>
         <div className="absolute inset-0 hero-grid opacity-100" />
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="orb-1 absolute" style={{ width: 700, height: 700, borderRadius: '50%', background: 'radial-gradient(circle, rgba(21,88,212,0.18) 0%, transparent 68%)', top: '-15%', right: '0%', filter: 'blur(80px)' }} />
@@ -136,7 +136,7 @@ export default function Insights() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="flex items-center gap-2 mb-10"
+            className="flex items-center gap-2 mb-4 sm:mb-8"
           >
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ background: 'rgba(21,88,212,0.12)', border: '1px solid rgba(21,88,212,0.22)' }}>
               <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
@@ -145,7 +145,7 @@ export default function Insights() {
             </div>
           </motion.div>
 
-          <div className="grid lg:grid-cols-[1fr_1fr] gap-14 items-end">
+          <div className="grid lg:grid-cols-[1fr_1fr] gap-6 sm:gap-10 lg:gap-14 items-end">
             <div>
               <div className="overflow-hidden mb-1">
                 <motion.h1
@@ -176,7 +176,7 @@ export default function Insights() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
-              className="text-lg leading-relaxed self-end"
+              className="text-sm sm:text-lg leading-relaxed self-end"
               style={{ color: 'rgba(160,175,194,0.88)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
             >
               Practical articles on software development, CRM, automation and digital technology for businesses.
@@ -188,16 +188,16 @@ export default function Insights() {
       {/* ═══════════════════════════════════════════════════════
           FILTER TABS
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-8 border-b sticky top-16 z-30" style={{ borderColor: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(20px)', background: 'rgba(3, 8, 15, 0.9)' }}>
+      <section className="py-3 sm:py-5 border-b sticky top-16 z-30" style={{ borderColor: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(20px)', background: 'rgba(3, 8, 15, 0.9)' }}>
         <div className="container-wide">
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {categories.map((cat) => (
               <motion.button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
-                className="px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 relative overflow-hidden"
+                className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full font-semibold transition-all duration-300 relative overflow-hidden text-[11px]"
                 style={{
                   background: activeCategory === cat ? '#1558D4' : 'rgba(255,255,255,0.03)',
                   color: activeCategory === cat ? '#ffffff' : '#94A3B8',
@@ -205,7 +205,6 @@ export default function Insights() {
                   letterSpacing: '0.04em',
                   border: '1px solid',
                   borderColor: activeCategory === cat ? '#1558D4' : 'rgba(255,255,255,0.08)',
-                  fontSize: '11px',
                 }}
               >
                 {cat}
@@ -218,7 +217,7 @@ export default function Insights() {
       {/* ═══════════════════════════════════════════════════════
           ARTICLES
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28" style={{ background: 'var(--void)' }}>
+      <section className="py-10 sm:py-16 md:py-24" style={{ background: 'var(--void)' }}>
         <div className="container-wide">
           <AnimatePresence mode="wait">
             <motion.div
@@ -230,14 +229,14 @@ export default function Insights() {
             >
               {/* Featured (2-column large cards) */}
               {featured.length > 0 && (
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                   {featured.map((article, i) => {
                     const color = categoryColors[article.category] || '#1558D4'
                     return (
                       <FadeUp key={article.slug} delay={i * 0.08}>
                         <Link to={`/insights/${article.slug}`} className="block group h-full">
                           <article
-                            className="h-full flex flex-col p-8 rounded-3xl border transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
+                            className="h-full flex flex-col p-5 sm:p-8 rounded-3xl border transition-all duration-500 hover:-translate-y-2 relative overflow-hidden"
                             style={{ borderColor: 'rgba(255,255,255,0.08)', background: 'linear-gradient(145deg, rgba(7, 19, 34, 0.7) 0%, rgba(3, 8, 15, 0.9) 100%)', boxShadow: '0 8px 30px rgba(0,0,0,0.4)' }}
                           >
                             {/* Corner glow */}

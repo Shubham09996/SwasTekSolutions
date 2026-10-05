@@ -3,10 +3,10 @@ import PageTransition from '../components/PageTransition'
 export default function Terms() {
   return (
     <PageTransition title="Terms of Use | SwasTek Solutions" description="SwasTek Solutions terms of use for our website and services.">
-      <section className="pt-32 pb-20 bg-white">
+      <section className="pt-[74px] pb-10 sm:pt-24 sm:pb-16 md:pt-32 md:pb-20 bg-white">
         <div className="container-tight">
-          <h1 className="font-heading text-4xl font-bold mb-4" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>Terms of Use</h1>
-          <p className="text-sm mb-12" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Last updated: September 2026</p>
+          <h1 className="font-heading text-3xl sm:text-4xl font-bold mb-3 sm:mb-4" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>Terms of Use</h1>
+          <p className="text-xs sm:text-sm mb-6 sm:mb-12" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Last updated: September 2026</p>
           <div className="space-y-8 text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
             <div>
               <h2 className="font-heading text-xl font-bold mb-3" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>1. Use of this website</h2>

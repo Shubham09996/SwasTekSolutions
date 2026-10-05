@@ -72,7 +72,7 @@ export default function ItStrategyConsulting() {
         {/* ═══════════════════════════════════════════════════════
             HERO SECTION — ULTRA-PREMIUM DARK
         ═══════════════════════════════════════════════════════ */}
-        <section className="relative pt-36 pb-20 md:pt-40 md:pb-28 overflow-hidden grain-overlay">
+        <section className="relative pt-[74px] pb-8 sm:pt-24 sm:pb-14 md:pt-32 md:pb-20 overflow-hidden grain-overlay">
           {/* Ambient Glows & Grid */}
           <div className="absolute inset-0 hero-grid opacity-100 pointer-events-none" />
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -112,7 +112,7 @@ export default function ItStrategyConsulting() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="flex items-center gap-2 mb-6"
+                  className="flex items-center gap-2 mb-4"
                 >
                   <div
                     className="flex items-center gap-2 px-3.5 py-1.5 rounded-full"

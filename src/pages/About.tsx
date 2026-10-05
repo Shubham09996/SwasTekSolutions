@@ -117,7 +117,7 @@ export default function About() {
         {/* ═══════════════════════════════════════════════════════
             HERO SECTION — MINIMAL, CLEAN & EXECUTIVE
         ═══════════════════════════════════════════════════════ */}
-        <section className="relative pt-36 pb-20 md:pt-40 md:pb-28 overflow-hidden grain-overlay">
+        <section className="relative pt-[74px] pb-8 sm:pt-24 sm:pb-14 md:pt-32 md:pb-20 overflow-hidden grain-overlay">
           {/* Ambient Glows & Grid */}
           <div className="absolute inset-0 hero-grid opacity-100 pointer-events-none" />
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -155,7 +155,7 @@ export default function About() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="flex items-center gap-2 mb-6"
+                className="flex items-center gap-2 mb-3 sm:mb-4"
               >
                 <div
                   className="flex items-center gap-2 px-3 py-1.5 rounded-full"
@@ -230,11 +230,11 @@ export default function About() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-16 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6"
+              className="mt-8 sm:mt-16 pt-6 sm:pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6"
             >
               {stats.map((s) => (
                 <div key={s.label}>
-                  <p className="text-2xl sm:text-3xl font-extrabold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
+                  <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>
                     {s.value}
                   </p>
                   <p className="text-xs sm:text-sm font-bold text-slate-200 mt-1" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{s.label}</p>
@@ -248,42 +248,42 @@ export default function About() {
         {/* ═══════════════════════════════════════════════════════
             SECTION 2 — OUR 3 CORE BUSINESS PILLARS (CLEAN CRISP LIGHT)
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 md:py-28 relative border-t" style={{ background: '#F8FAFC', borderColor: '#E2EBF5' }}>
+        <section className="py-10 sm:py-16 md:py-24 relative border-t" style={{ background: '#F8FAFC', borderColor: '#E2EBF5' }}>
           <div className="container-wide">
             <FadeUp>
-              <div className="max-w-2xl mb-14">
+              <div className="max-w-2xl mb-8 sm:mb-14">
                 <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-blue-600 mb-3 block" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Our Engineering Philosophy
                 </span>
                 <h2
                   className="font-bold leading-tight"
-                  style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
+                  style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.75rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
                 >
                   Built for measurable business outcomes.
                 </h2>
               </div>
             </FadeUp>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-5 sm:gap-6">
               {pillars.map((item, i) => {
                 const Icon = item.icon
                 return (
                   <FadeUp key={item.num} delay={i * 0.1}>
                     <div
-                      className="p-8 rounded-3xl border relative overflow-hidden group transition-all duration-300 hover:-translate-y-1 bg-white hover:border-blue-400 hover:shadow-xl h-full flex flex-col justify-between"
+                      className="p-6 sm:p-8 rounded-3xl border relative overflow-hidden group transition-all duration-300 hover:-translate-y-1 bg-white hover:border-blue-400 hover:shadow-xl h-full flex flex-col justify-between"
                       style={{
                         borderColor: '#E2EBF5',
                         boxShadow: '0 4px 20px rgba(7, 17, 31, 0.04)',
                       }}
                     >
                       <div>
-                        <div className="flex items-center justify-between mb-6">
-                          <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
-                            <Icon size={22} />
+                        <div className="flex items-center justify-between mb-5 sm:mb-6">
+                          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
+                            <Icon size={20} />
                           </div>
                           <span className="text-xs font-bold text-blue-600" style={{ fontFamily: 'Sora, sans-serif' }}>{item.num}</span>
                         </div>
-                        <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors" style={{ fontFamily: 'Sora, sans-serif' }}>
+                        <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 sm:mb-3 group-hover:text-blue-600 transition-colors" style={{ fontFamily: 'Sora, sans-serif' }}>
                           {item.title}
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -301,42 +301,42 @@ export default function About() {
         {/* ═══════════════════════════════════════════════════════
             SECTION 3 — WHAT WE BUILD (4 CORE SPECIALIZATIONS — SOLID WHITE)
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 md:py-28 relative border-t" style={{ background: '#FFFFFF', borderColor: '#E2EBF5' }}>
+        <section className="py-10 sm:py-16 md:py-24 relative border-t" style={{ background: '#FFFFFF', borderColor: '#E2EBF5' }}>
           <div className="container-wide">
             <FadeUp>
-              <div className="max-w-2xl mb-14">
+              <div className="max-w-2xl mb-8 sm:mb-14">
                 <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-blue-600 mb-3 block">
                   Core Specializations
                 </span>
                 <h2
                   className="font-bold leading-tight"
-                  style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
+                  style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.75rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
                 >
                   Software tailored around how your company works.
                 </h2>
               </div>
             </FadeUp>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-5 sm:gap-6">
               {coreCapabilities.map((cap, i) => {
                 const Icon = cap.icon
                 return (
                   <FadeUp key={cap.title} delay={i * 0.1}>
                     <div
-                      className="p-8 rounded-3xl border relative overflow-hidden group transition-all duration-300 hover:border-blue-400 hover:shadow-xl bg-white h-full flex flex-col justify-between"
+                      className="p-6 sm:p-8 rounded-3xl border relative overflow-hidden group transition-all duration-300 hover:border-blue-400 hover:shadow-xl bg-white h-full flex flex-col justify-between"
                       style={{
                         borderColor: '#E2EBF5',
                         boxShadow: '0 4px 20px rgba(7, 17, 31, 0.04)',
                       }}
                     >
                       <div>
-                        <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                          <Icon size={22} />
+                        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center mb-5 sm:mb-6 group-hover:scale-110 transition-transform">
+                          <Icon size={20} />
                         </div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors" style={{ fontFamily: 'Sora, sans-serif' }}>
+                        <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2 sm:mb-3 group-hover:text-blue-600 transition-colors" style={{ fontFamily: 'Sora, sans-serif' }}>
                           {cap.title}
                         </h3>
-                        <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 sm:mb-6">
                           {cap.desc}
                         </p>
                       </div>
@@ -345,7 +345,7 @@ export default function About() {
                         {cap.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="text-[11px] font-semibold px-3 py-1 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-700"
+                            className="text-[11px] font-semibold px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200/80 text-slate-700"
                           >
                             {tag}
                           </span>
@@ -362,31 +362,31 @@ export default function About() {
         {/* ═══════════════════════════════════════════════════════
             SECTION 4 — 4-STEP PREDICTABLE DELIVERY
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 md:py-28 relative border-t border-white/10" style={{ background: '#050D1C' }}>
+        <section className="py-10 sm:py-16 md:py-24 relative border-t border-white/10" style={{ background: '#050D1C' }}>
           <div className="container-wide">
             <FadeUp>
-              <div className="max-w-2xl mb-14">
+              <div className="max-w-2xl mb-8 sm:mb-14">
                 <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-cyan-400 mb-3 block">
                   Execution Process
                 </span>
                 <h2
                   className="font-bold text-white leading-tight"
-                  style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
+                  style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.75rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
                 >
                   From requirements to production scale.
                 </h2>
               </div>
             </FadeUp>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {deliverySteps.map((step, i) => (
                 <FadeUp key={step.num} delay={i * 0.08}>
-                  <div className="p-7 rounded-3xl border bg-white/5 border-white/10 h-full flex flex-col justify-between">
+                  <div className="p-6 sm:p-7 rounded-3xl border bg-white/5 border-white/10 h-full flex flex-col justify-between">
                     <div>
-                      <span className="text-2xl font-bold text-cyan-400 mb-4 block" style={{ fontFamily: 'Sora, sans-serif' }}>
+                      <span className="text-xl sm:text-2xl font-bold text-cyan-400 mb-3 sm:mb-4 block" style={{ fontFamily: 'Sora, sans-serif' }}>
                         {step.num}
                       </span>
-                      <h4 className="font-bold text-base text-white mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
+                      <h4 className="font-bold text-sm sm:text-base text-white mb-2" style={{ fontFamily: 'Sora, sans-serif' }}>
                         {step.title}
                       </h4>
                       <p className="text-xs text-slate-300 leading-relaxed">
@@ -400,13 +400,13 @@ export default function About() {
 
             {/* Global Reach Bar */}
             <FadeUp delay={0.2}>
-              <div className="mt-10 p-6 sm:p-8 rounded-3xl border border-white/10 bg-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-blue-600/20 text-blue-400 flex items-center justify-center flex-shrink-0">
-                    <Globe size={24} />
+              <div className="mt-8 sm:mt-10 p-5 sm:p-8 rounded-3xl border border-white/10 bg-white/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-blue-600/20 text-blue-400 flex items-center justify-center flex-shrink-0">
+                    <Globe size={20} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-base text-white mb-0.5" style={{ fontFamily: 'Sora, sans-serif' }}>
+                    <h4 className="font-bold text-sm sm:text-base text-white mb-0.5" style={{ fontFamily: 'Sora, sans-serif' }}>
                       Headquartered in Delhi, India · Global Delivery
                     </h4>
                     <p className="text-xs text-slate-400">
@@ -414,7 +414,7 @@ export default function About() {
                     </p>
                   </div>
                 </div>
-                <Link to="/contact" className="btn-primary text-xs px-6 py-3 shadow-lg whitespace-nowrap">
+                <Link to="/contact" className="btn-primary text-xs px-5 sm:px-6 py-2.5 sm:py-3 shadow-lg whitespace-nowrap self-stretch sm:self-auto text-center justify-center">
                   <span>Contact Our Team</span>
                   <ArrowRight size={13} />
                 </Link>
@@ -426,42 +426,42 @@ export default function About() {
         {/* ═══════════════════════════════════════════════════════
             SECTION 5 — MINIMAL BOTTOM CTA BANNER
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 md:py-28 relative border-t border-white/10" style={{ background: 'var(--void)' }}>
+        <section className="py-10 sm:py-16 md:py-24 relative border-t border-white/10" style={{ background: 'var(--void)' }}>
           <div className="container-tight">
             <FadeUp>
               <div
-                className="relative rounded-3xl p-10 sm:p-16 overflow-hidden text-center shadow-2xl border"
+                className="relative rounded-3xl p-6 sm:p-12 md:p-16 overflow-hidden text-center shadow-2xl border"
                 style={{
                   background: 'linear-gradient(135deg, rgba(16, 42, 85, 0.7) 0%, rgba(5, 13, 26, 0.95) 100%)',
                   borderColor: 'rgba(21, 88, 212, 0.3)',
                 }}
               >
                 <div className="relative z-10">
-                  <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-cyan-400 mb-3 block">
+                  <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-cyan-400 mb-2 sm:mb-3 block">
                     Ready to build?
                   </span>
                   <h2
-                    className="font-bold text-white mb-4 leading-tight"
-                    style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
+                    className="font-bold text-white mb-3 sm:mb-4 leading-tight"
+                    style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.75rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
                   >
                     Let's engineer software around your business goals.
                   </h2>
-                  <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto mb-8 leading-relaxed">
+                  <p className="text-xs sm:text-sm md:text-base text-slate-300 max-w-xl mx-auto mb-6 sm:mb-8 leading-relaxed">
                     Tell us what operational challenges you want to solve. We will review your requirements and outline a technical roadmap within 24 hours.
                   </p>
 
-                  <div className="flex flex-wrap justify-center items-center gap-4">
-                    <Link to="/contact" data-cta className="btn-primary text-sm shadow-xl shadow-blue-600/30">
-                      <Zap size={15} />
+                  <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4">
+                    <Link to="/contact" data-cta className="btn-primary text-xs sm:text-sm shadow-xl shadow-blue-600/30">
+                      <Zap size={14} />
                       <span>Start a Project</span>
-                      <ArrowRight size={15} />
+                      <ArrowRight size={14} />
                     </Link>
                     <Link
                       to="/work"
-                      className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3.5 rounded-full transition-all bg-white/5 hover:bg-white/10 text-white border border-white/15"
+                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-5 sm:px-6 py-3 sm:py-3.5 rounded-full transition-all bg-white/5 hover:bg-white/10 text-white border border-white/15"
                     >
                       <span>Explore Case Studies</span>
-                      <ArrowUpRight size={15} className="text-cyan-400" />
+                      <ArrowUpRight size={14} className="text-cyan-400" />
                     </Link>
                   </div>
                 </div>

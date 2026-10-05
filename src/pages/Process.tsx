@@ -194,7 +194,7 @@ export default function Process() {
         {/* ═══════════════════════════════════════════════════════
             HERO SECTION — MINIMAL, CLEAN & CONFIDENT
         ═══════════════════════════════════════════════════════ */}
-        <section className="relative pt-36 pb-20 md:pt-40 md:pb-24 overflow-hidden grain-overlay">
+        <section className="relative pt-[74px] pb-8 sm:pt-24 sm:pb-14 md:pt-32 md:pb-20 overflow-hidden grain-overlay">
           {/* Ambient Glows & Grid */}
           <div className="absolute inset-0 hero-grid opacity-100 pointer-events-none" />
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -232,7 +232,7 @@ export default function Process() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="flex items-center gap-2 mb-6"
+                className="flex items-center gap-2 mb-3 sm:mb-6"
               >
                 <div
                   className="flex items-center gap-2 px-3 py-1.5 rounded-full"
@@ -285,10 +285,10 @@ export default function Process() {
         {/* ═══════════════════════════════════════════════════════
             SECTION 2 — INTERACTIVE 7-STAGE PROCESS SPOTLIGHT
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-12 md:py-20 relative border-t border-white/10" style={{ background: '#050D1C' }}>
+        <section className="py-8 sm:py-14 md:py-20 relative border-t border-white/10" style={{ background: '#050D1C' }}>
           <div className="container-wide">
             
-            <div className="grid lg:grid-cols-[360px_1fr] xl:grid-cols-[380px_1fr] gap-8 lg:gap-10 items-start">
+            <div className="grid lg:grid-cols-[360px_1fr] xl:grid-cols-[380px_1fr] gap-6 sm:gap-8 lg:gap-10 items-start">
               
               {/* Left Column: 7 Stage Navigation List */}
               <div className="space-y-2.5">
@@ -442,39 +442,39 @@ export default function Process() {
         {/* ═══════════════════════════════════════════════════════
             SECTION 3 — CLIENT PEACE OF MIND GUARANTEES (CLEAN SOLID WHITE)
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 md:py-28 relative border-t" style={{ background: '#FFFFFF', borderColor: '#E2EBF5' }}>
+        <section className="py-10 sm:py-16 md:py-24 relative border-t" style={{ background: '#FFFFFF', borderColor: '#E2EBF5' }}>
           <div className="container-wide">
             <FadeUp>
-              <div className="max-w-2xl mb-14">
+              <div className="max-w-2xl mb-8 sm:mb-14">
                 <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-blue-600 mb-3 block" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Delivery Guarantees
                 </span>
                 <h2
                   className="font-bold leading-tight"
-                  style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
+                  style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.75rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
                 >
                   Built for confidence at every step.
                 </h2>
               </div>
             </FadeUp>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-5 sm:gap-6">
               {deliveryGuarantees.map((item, i) => {
                 const Icon = item.icon
                 return (
                   <FadeUp key={item.title} delay={i * 0.1}>
                     <div
-                      className="p-8 rounded-3xl border relative overflow-hidden group transition-all duration-300 hover:border-blue-400 hover:shadow-xl bg-white h-full flex flex-col justify-between"
+                      className="p-6 sm:p-8 rounded-3xl border relative overflow-hidden group transition-all duration-300 hover:border-blue-400 hover:shadow-xl bg-white h-full flex flex-col justify-between"
                       style={{
                         borderColor: '#E2EBF5',
                         boxShadow: '0 4px 20px rgba(7, 17, 31, 0.04)',
                       }}
                     >
                       <div>
-                        <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 mb-6 group-hover:scale-110 transition-transform">
-                          <Icon size={22} />
+                        <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 mb-5 sm:mb-6 group-hover:scale-110 transition-transform">
+                          <Icon size={20} />
                         </div>
-                        <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors" style={{ fontFamily: 'Sora, sans-serif' }}>
+                        <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors" style={{ fontFamily: 'Sora, sans-serif' }}>
                           {item.title}
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -492,42 +492,42 @@ export default function Process() {
         {/* ═══════════════════════════════════════════════════════
             SECTION 4 — NEXT-LEVEL MINIMAL BOTTOM CTA
         ═══════════════════════════════════════════════════════ */}
-        <section className="py-20 md:py-28 relative border-t border-white/10" style={{ background: '#050D1C' }}>
+        <section className="py-10 sm:py-16 md:py-24 relative border-t border-white/10" style={{ background: '#050D1C' }}>
           <div className="container-tight">
             <FadeUp>
               <div
-                className="relative rounded-3xl p-10 sm:p-16 overflow-hidden text-center shadow-2xl border"
+                className="relative rounded-3xl p-6 sm:p-12 md:p-16 overflow-hidden text-center shadow-2xl border"
                 style={{
                   background: 'linear-gradient(135deg, rgba(16, 42, 85, 0.7) 0%, rgba(5, 13, 26, 0.95) 100%)',
                   borderColor: 'rgba(21, 88, 212, 0.3)',
                 }}
               >
                 <div className="relative z-10">
-                  <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-cyan-400 mb-3 block">
+                  <span className="text-[11px] font-bold tracking-[0.18em] uppercase text-cyan-400 mb-2 sm:mb-3 block">
                     Ready to begin?
                   </span>
                   <h2
-                    className="font-bold text-white mb-4 leading-tight"
-                    style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(2rem, 3.5vw, 3rem)', letterSpacing: '-0.04em' }}
+                    className="font-bold text-white mb-3 sm:mb-4 leading-tight"
+                    style={{ fontFamily: 'Sora, sans-serif', fontSize: 'clamp(1.75rem, 3.5vw, 3rem)', letterSpacing: '-0.03em' }}
                   >
                     The first step is a 30-minute discovery conversation.
                   </h2>
-                  <p className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto mb-8 leading-relaxed">
+                  <p className="text-xs sm:text-sm md:text-base text-slate-300 max-w-xl mx-auto mb-6 sm:mb-8 leading-relaxed">
                     Tell us what you are trying to build. We'll outline a clear technical scope, architecture blueprint, and milestone timeline within 24 hours.
                   </p>
 
-                  <div className="flex flex-wrap justify-center items-center gap-4">
-                    <Link to="/contact" data-cta className="btn-primary text-sm shadow-xl shadow-blue-600/30">
-                      <Zap size={15} />
+                  <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4">
+                    <Link to="/contact" data-cta className="btn-primary text-xs sm:text-sm shadow-xl shadow-blue-600/30">
+                      <Zap size={14} />
                       <span>Start a Project</span>
-                      <ArrowRight size={15} />
+                      <ArrowRight size={14} />
                     </Link>
                     <Link
                       to="/work"
-                      className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3.5 rounded-full transition-all bg-white/5 hover:bg-white/10 text-white border border-white/15"
+                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold px-5 sm:px-6 py-3 sm:py-3.5 rounded-full transition-all bg-white/5 hover:bg-white/10 text-white border border-white/15"
                     >
                       <span>View Proven Work</span>
-                      <ArrowUpRight size={15} className="text-cyan-400" />
+                      <ArrowUpRight size={14} className="text-cyan-400" />
                     </Link>
                   </div>
                 </div>

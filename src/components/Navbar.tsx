@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react"
-import { Link, NavLink, useLocation } from "react-router-dom"
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom"
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion"
 import {
+  ArrowLeft,
   ArrowUpRight,
   ChevronDown,
   X,
@@ -168,6 +169,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen]       = useState(false)
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null)
   const location   = useLocation()
+  const navigate   = useNavigate()
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const { scrollY } = useScroll()
@@ -203,6 +205,18 @@ export default function Navbar() {
     if (closeTimer.current) clearTimeout(closeTimer.current)
   }
 
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1)
+    } else {
+      if (location.pathname.startsWith('/services/')) navigate('/services')
+      else if (location.pathname.startsWith('/industries/')) navigate('/industries')
+      else if (location.pathname.startsWith('/work/')) navigate('/work')
+      else if (location.pathname.startsWith('/insights/')) navigate('/insights')
+      else navigate('/')
+    }
+  }
+
   // When not scrolled and mega menu is closed, keep transparent for dark hero.
   // When scrolled OR when mega menu is open, show the crisp white glass navbar.
   const transparent = !scrolled && !megaOpen
@@ -230,7 +244,7 @@ export default function Navbar() {
         <div className="container-wide">
           <div className="flex items-center justify-between h-[68px] lg:h-[72px]">
 
-            {/* Logo (White at top, Dark when scrolled) */}
+            {/* Logo */}
             <Link to="/" className="relative flex items-center h-10 transition-all duration-300 group">
               <div className="relative flex items-center h-10 transition-transform duration-200 hover:scale-[1.03]">
                 <img
@@ -317,38 +331,58 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* CTA */}
-            <div className="hidden lg:flex items-center gap-3">
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
-                <Link to="/contact" data-cta className="btn-primary text-sm shadow-md">
-                  <Zap size={14} />
-                  <span>Start a Project</span>
-                  <ArrowUpRight size={14} />
-                </Link>
-              </motion.div>
-            </div>
+            {/* Right side controls */}
+            <div className="flex items-center gap-1.5 sm:gap-2.5">
+              {/* Desktop CTA */}
+              <div className="hidden lg:flex items-center gap-3">
+                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+                  <Link to="/contact" data-cta className="btn-primary text-sm shadow-md">
+                    <Zap size={14} />
+                    <span>Start a Project</span>
+                    <ArrowUpRight size={14} />
+                  </Link>
+                </motion.div>
+              </div>
 
-            {/* Mobile toggle */}
-            <motion.button
-              className={`lg:hidden p-2 rounded-xl transition-colors ${
-                transparent ? "text-white hover:bg-white/10" : "text-[#07111F] hover:bg-slate-100"
-              }`}
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle navigation"
-              whileTap={{ scale: 0.92 }}
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={mobileOpen ? "close" : "open"}
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0,   opacity: 1 }}
-                  exit={{  rotate:  90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+              {/* Minimal Right-Side Back Arrow (visible on all non-home pages) */}
+              {location.pathname !== "/" && (
+                <motion.button
+                  onClick={handleBack}
+                  whileTap={{ scale: 0.88 }}
+                  className={`flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl transition-all cursor-pointer ${
+                    transparent
+                      ? "text-slate-200 hover:text-white bg-white/10 hover:bg-white/20 border border-white/15 hover:border-cyan-400/40 shadow-xs"
+                      : "text-[#1E293B] hover:text-[#0A1828] bg-slate-100 hover:bg-slate-200 border border-slate-200 shadow-xs"
+                  }`}
+                  aria-label="Go back"
+                  title="Go back"
                 >
-                  {mobileOpen ? <X size={21} /> : <Menu size={21} />}
-                </motion.span>
-              </AnimatePresence>
-            </motion.button>
+                  <ArrowLeft size={16} className="text-cyan-400" />
+                </motion.button>
+              )}
+
+              {/* Mobile toggle */}
+              <motion.button
+                className={`lg:hidden p-2 rounded-xl transition-colors ${
+                  transparent ? "text-white hover:bg-white/10" : "text-[#07111F] hover:bg-slate-100"
+                }`}
+                onClick={() => setMobileOpen(!mobileOpen)}
+                aria-label="Toggle navigation"
+                whileTap={{ scale: 0.92 }}
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={mobileOpen ? "close" : "open"}
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0,   opacity: 1 }}
+                    exit={{  rotate:  90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {mobileOpen ? <X size={21} /> : <Menu size={21} />}
+                  </motion.span>
+                </AnimatePresence>
+              </motion.button>
+            </div>
           </div>
         </div>
 
