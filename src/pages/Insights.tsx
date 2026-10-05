@@ -139,7 +139,7 @@ export default function Insights() {
             className="flex items-center gap-2 mb-10"
           >
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ background: 'rgba(21,88,212,0.12)', border: '1px solid rgba(21,88,212,0.22)' }}>
-              <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'DM Mono, monospace' }}>
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                 Insights
               </span>
             </div>
@@ -201,7 +201,7 @@ export default function Insights() {
                 style={{
                   background: activeCategory === cat ? '#1558D4' : 'transparent',
                   color: activeCategory === cat ? '#ffffff' : '#536880',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Plus Jakarta Sans, sans-serif',
                   letterSpacing: '0.04em',
                   border: '1px solid',
                   borderColor: activeCategory === cat ? '#1558D4' : '#E2EBF5',
@@ -246,11 +246,11 @@ export default function Insights() {
                             <div className="flex items-center justify-between mb-6">
                               <span
                                 className="text-[10px] font-bold px-3 py-1.5 rounded-full tracking-wider uppercase"
-                                style={{ background: `${color}14`, color, fontFamily: 'DM Mono, monospace', border: `1px solid ${color}20` }}
+                                style={{ background: `${color}14`, color, fontFamily: 'Plus Jakarta Sans, sans-serif', border: `1px solid ${color}20` }}
                               >
                                 {article.category}
                               </span>
-                              <div className="flex items-center gap-1.5 text-xs" style={{ color: '#8DA3B8', fontFamily: 'DM Mono, monospace' }}>
+                              <div className="flex items-center gap-1.5 text-xs" style={{ color: '#8DA3B8', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                                 <Clock size={11} />
                                 {article.readTime} read
                               </div>
@@ -267,7 +267,7 @@ export default function Insights() {
                             </p>
 
                             <div className="flex items-center justify-between pt-5 border-t" style={{ borderColor: '#E2EBF5' }}>
-                              <span className="text-xs" style={{ color: '#8DA3B8', fontFamily: 'DM Mono, monospace' }}>{article.date}</span>
+                              <span className="text-xs" style={{ color: '#8DA3B8', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{article.date}</span>
                               <motion.div
                                 className="flex items-center gap-1.5 text-xs font-semibold"
                                 animate={{ x: 0 }}
@@ -301,9 +301,9 @@ export default function Insights() {
 
                             <div className="flex items-center gap-2 mb-5">
                               <Tag size={11} style={{ color }} />
-                              <span className="text-[10px] font-bold tracking-wider uppercase" style={{ color, fontFamily: 'DM Mono, monospace' }}>{article.category}</span>
+                              <span className="text-[10px] font-bold tracking-wider uppercase" style={{ color, fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{article.category}</span>
                               <div className="flex-1" />
-                              <span className="text-[10px]" style={{ color: '#8DA3B8', fontFamily: 'DM Mono, monospace' }}>{article.readTime}</span>
+                              <span className="text-[10px]" style={{ color: '#8DA3B8', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{article.readTime}</span>
                             </div>
 
                             <h2
@@ -317,7 +317,7 @@ export default function Insights() {
                             </p>
 
                             <div className="flex items-center justify-between mt-auto pt-4 border-t" style={{ borderColor: '#E2EBF5' }}>
-                              <span className="text-xs" style={{ color: '#8DA3B8', fontFamily: 'DM Mono, monospace' }}>{article.date}</span>
+                              <span className="text-xs" style={{ color: '#8DA3B8', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{article.date}</span>
                               <ArrowUpRight size={14} className="transition-all duration-200 opacity-25 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style={{ color: '#1558D4' }} />
                             </div>
                           </article>

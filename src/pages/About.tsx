@@ -108,7 +108,7 @@ export default function About() {
                     <span className="pulse-ring absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: 'var(--blue-600)' }} />
                     <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: 'var(--blue-500)' }} />
                   </span>
-                  <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'DM Mono, monospace' }}>
+                  <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                     About SwasTek
                   </span>
                 </div>
@@ -192,7 +192,7 @@ export default function About() {
                   >
                     {s.value}
                   </div>
-                  <div className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#536880', fontFamily: 'DM Mono, monospace' }}>
+                  <div className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#536880', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                     {s.label}
                   </div>
                   <div className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, #1558D4, transparent)' }} />
@@ -243,7 +243,7 @@ export default function About() {
                       </div>
                       <div>
                         <div className="flex items-center gap-3 mb-2">
-                          <span className="text-[10px] font-bold tracking-[0.2em]" style={{ color: '#1558D4', fontFamily: 'DM Mono, monospace' }}>{item.num}</span>
+                          <span className="text-[10px] font-bold tracking-[0.2em]" style={{ color: '#1558D4', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.num}</span>
                           <h3 className="font-bold text-base leading-snug" style={{ color: '#07111F', fontFamily: 'Sora, sans-serif', letterSpacing: '-0.02em' }}>{item.title}</h3>
                         </div>
                         <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.desc}</p>

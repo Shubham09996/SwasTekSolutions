@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import PageTransition from '../../components/PageTransition'
@@ -21,7 +21,7 @@ export default function Ecommerce() {
             <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
               Storefronts built around the way you sell.
             </h1>
-            <p className="text-lg leading-relaxed mb-8 max-w-2xl" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+            <p className="text-lg leading-relaxed mb-8 max-w-2xl" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               Custom e-commerce platforms, product catalogs, checkout experiences and order management systems built to fit your exact commercial model â€” not a template's limitations.
             </p>
             <Link to="/contact" data-cta className="btn-primary">Build My Store <ArrowUpRight size={14} /></Link>
@@ -48,7 +48,7 @@ export default function Ecommerce() {
               <FadeUp key={item.title} delay={i * 0.06}>
                 <div className="p-5 bg-white rounded-xl border" style={{ borderColor: '#E4EDF7' }}>
                   <h3 className="font-heading font-bold text-sm mb-2" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>{item.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>{item.desc}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.desc}</p>
                 </div>
               </FadeUp>
             ))}
@@ -58,7 +58,7 @@ export default function Ecommerce() {
       <section className="page-section-sm" style={{ background: 'linear-gradient(135deg, #060E1C 0%, #0B1A2E 100%)' }}>
         <div className="container-tight text-center">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>Ready to build your store?</h2>
-          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>Tell us about your products, your customers and your commercial model.</p>
+          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Tell us about your products, your customers and your commercial model.</p>
           <Link to="/contact" data-cta className="btn-primary-white">Start the Conversation <ArrowUpRight size={14} /></Link>
         </div>
       </section>

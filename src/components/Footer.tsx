@@ -59,7 +59,7 @@ export default function Footer() {
                   <span className="pulse-ring absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: "#0BC4E3" }} />
                   <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: "#0BC4E3" }} />
                 </span>
-                <span className="text-[11px] font-bold tracking-[0.2em] uppercase font-mono-accent" style={{ color: "#0BC4E3" }}>
+                <span className="text-[11px] font-bold tracking-[0.16em] uppercase" style={{ color: "#0BC4E3", fontFamily: "Plus Jakarta Sans, sans-serif" }}>
                   Ready to Start?
                 </span>
               </div>
@@ -150,7 +150,7 @@ export default function Footer() {
                 style={{ maxWidth: 190 }}
               />
             </Link>
-            <p className="text-xs font-bold tracking-[0.16em] uppercase mb-3" style={{ color: "#0BC4E3", fontFamily: "DM Mono, monospace" }}>
+            <p className="text-xs font-bold tracking-[0.16em] uppercase mb-3" style={{ color: "#0BC4E3", fontFamily: "Plus Jakarta Sans, sans-serif" }}>
               From Ideas to Digital Solutions
             </p>
             <p className="text-sm leading-relaxed mb-6 max-w-sm" style={{ color: "#8FA3BF" }}>
@@ -184,7 +184,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.07 }}
           >
-            <p className="text-[11px] font-bold tracking-[0.22em] uppercase mb-5" style={{ color: "#E2EBF5", fontFamily: "DM Mono, monospace" }}>Services</p>
+            <p className="text-[11px] font-bold tracking-[0.18em] uppercase mb-5" style={{ color: "#E2EBF5", fontFamily: "Plus Jakarta Sans, sans-serif" }}>Services</p>
             <ul className="space-y-2.5">
               {footerServices.map((s) => (
                 <li key={s.href}>
@@ -207,7 +207,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.14 }}
           >
-            <p className="text-[11px] font-bold tracking-[0.22em] uppercase mb-5" style={{ color: "#E2EBF5", fontFamily: "DM Mono, monospace" }}>Company</p>
+            <p className="text-[11px] font-bold tracking-[0.18em] uppercase mb-5" style={{ color: "#E2EBF5", fontFamily: "Plus Jakarta Sans, sans-serif" }}>Company</p>
             <ul className="space-y-2.5">
               {footerNav.map((n) => (
                 <li key={n.href}>
@@ -230,7 +230,7 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.21 }}
           >
-            <p className="text-[11px] font-bold tracking-[0.22em] uppercase mb-5" style={{ color: "#E2EBF5", fontFamily: "DM Mono, monospace" }}>Get in Touch</p>
+            <p className="text-[11px] font-bold tracking-[0.18em] uppercase mb-5" style={{ color: "#E2EBF5", fontFamily: "Plus Jakarta Sans, sans-serif" }}>Get in Touch</p>
             <p className="text-sm leading-relaxed mb-4" style={{ color: "#8FA3BF" }}>
               Have a project in mind? We'd like to hear about it.
             </p>
@@ -243,7 +243,7 @@ export default function Footer() {
               <ArrowUpRight size={13} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <div className="p-4 rounded-xl transition-all duration-300 hover:border-[#1558D4]/40" style={{ background: "rgba(21,88,212,0.08)", border: "1px solid rgba(21,136,255,0.18)" }}>
-              <p className="text-[10px] font-bold uppercase tracking-wider mb-1 font-mono-accent" style={{ color: "#0BC4E3" }}>Email us</p>
+              <p className="text-[11px] font-bold uppercase tracking-wider mb-1" style={{ color: "#0BC4E3", fontFamily: "Plus Jakarta Sans, sans-serif" }}>Email us</p>
               <a
                 href="mailto:hello@swastek.com"
                 className="text-sm font-semibold transition-colors hover:text-white block"
@@ -260,7 +260,7 @@ export default function Footer() {
       <div className="border-t relative z-10" style={{ borderColor: "rgba(255,255,255,0.06)", background: "rgba(1, 4, 10, 0.6)" }}>
         <div className="container-wide py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-4">
-            <p className="text-xs font-mono-accent" style={{ color: "#64748B" }}>
+            <p className="text-xs" style={{ color: "#64748B", fontFamily: "Plus Jakarta Sans, sans-serif" }}>
               © 2026 SwasTek Solutions Ltd. All rights reserved.
             </p>
             {/* Live status badge */}
@@ -269,7 +269,7 @@ export default function Footer() {
                 <span className="absolute inline-flex h-full w-full rounded-full opacity-75 hero-ping" style={{ background: '#0BC4E3' }} />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5" style={{ background: '#0BC4E3' }} />
               </span>
-              <span className="text-[10px] font-bold tracking-wider uppercase font-mono-accent" style={{ color: '#0BC4E3' }}>Accepting projects</span>
+              <span className="text-[10px] font-bold tracking-wider uppercase" style={{ color: '#0BC4E3', fontFamily: "Plus Jakarta Sans, sans-serif" }}>Accepting projects</span>
             </div>
           </div>
           <div className="flex items-center gap-6">

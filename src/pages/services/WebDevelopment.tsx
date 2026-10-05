@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import PageTransition from '../../components/PageTransition'
@@ -25,7 +25,7 @@ function BrowserMockup({ children }: { children: React.ReactNode }) {
         <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/60"></span>
         <span className="w-2.5 h-2.5 rounded-full bg-green-400/60"></span>
         <div className="flex-1 mx-4">
-          <div className="bg-white rounded-md px-3 py-1 text-xs flex items-center gap-2" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>
+          <div className="bg-white rounded-md px-3 py-1 text-xs flex items-center gap-2" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
             <span className="w-2 h-2 rounded-full" style={{ background: '#22c55e' }}></span>
             swastek.com/client-preview
           </div>
@@ -57,7 +57,7 @@ export default function WebDevelopment() {
               <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
                 Websites that do more than look good.
               </h1>
-              <p className="text-lg leading-relaxed mb-8" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+              <p className="text-lg leading-relaxed mb-8" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                 Fast, responsive and thoughtfully designed websites built around your brand, audience and business goals.
               </p>
               <Link to="/contact" data-cta className="btn-primary">
@@ -72,7 +72,7 @@ export default function WebDevelopment() {
                     <div className="font-bold text-sm" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>ClientCo</div>
                     <div className="flex gap-6">
                       {['About', 'Services', 'Work', 'Contact'].map(n => (
-                        <span key={n} className="text-xs" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>{n}</span>
+                        <span key={n} className="text-xs" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{n}</span>
                       ))}
                     </div>
                   </div>
@@ -81,12 +81,12 @@ export default function WebDevelopment() {
                     <div className="text-2xl font-bold mb-3" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
                       The simplest way to <span style={{ color: '#1860D4' }}>grow.</span>
                     </div>
-                    <p className="text-xs mb-5 max-w-xs mx-auto" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>
+                    <p className="text-xs mb-5 max-w-xs mx-auto" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                       A clear, focused website for a growing business.
                     </p>
                     <div className="flex justify-center gap-3">
-                      <div className="px-4 py-2 rounded-full text-xs font-semibold text-white" style={{ background: '#1860D4', fontFamily: 'Manrope, sans-serif' }}>Get Started</div>
-                      <div className="px-4 py-2 rounded-full text-xs font-semibold border" style={{ borderColor: '#E4EDF7', color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>Learn more</div>
+                      <div className="px-4 py-2 rounded-full text-xs font-semibold text-white" style={{ background: '#1860D4', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Get Started</div>
+                      <div className="px-4 py-2 rounded-full text-xs font-semibold border" style={{ borderColor: '#E4EDF7', color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Learn more</div>
                     </div>
                   </div>
                 </div>
@@ -110,7 +110,7 @@ export default function WebDevelopment() {
               <FadeUp key={t.name} delay={i * 0.07}>
                 <div className="p-6 bg-white rounded-xl border" style={{ borderColor: '#E4EDF7' }}>
                   <h3 className="font-heading font-bold text-base mb-2" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>{t.name}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>{t.desc}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{t.desc}</p>
                 </div>
               </FadeUp>
             ))}
@@ -138,9 +138,9 @@ export default function WebDevelopment() {
             ].map((item, i) => (
               <FadeUp key={item.step} delay={i * 0.07}>
                 <div className="border-l-2 pl-5 py-2" style={{ borderColor: '#1860D4' }}>
-                  <p className="text-xs font-semibold mb-1" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>{item.step}</p>
+                  <p className="text-xs font-semibold mb-1" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.step}</p>
                   <h3 className="font-heading font-bold text-base mb-1.5" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>{item.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>{item.desc}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.desc}</p>
                 </div>
               </FadeUp>
             ))}
@@ -154,7 +154,7 @@ export default function WebDevelopment() {
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
             Ready to build your website?
           </h2>
-          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>
+          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
             Tell us about your business, your audience and your goals. We'll design and build a website that works.
           </p>
           <Link to="/contact" data-cta className="btn-primary-white">

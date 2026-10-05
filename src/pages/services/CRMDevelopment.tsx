@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, Users, BarChart2, CheckSquare, TrendingUp } from 'lucide-react'
@@ -31,7 +31,7 @@ function LeadsTab() {
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-sm font-bold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>Leads</h3>
         <div className="flex gap-2">
-          <div className="text-xs px-2 py-1 rounded" style={{ background: 'rgba(22,141,255,0.12)', color: '#1860D4', fontFamily: 'Manrope, sans-serif' }}>All leads (12)</div>
+          <div className="text-xs px-2 py-1 rounded" style={{ background: 'rgba(22,141,255,0.12)', color: '#1860D4', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>All leads (12)</div>
         </div>
       </div>
       <div className="space-y-2">
@@ -41,13 +41,13 @@ function LeadsTab() {
               {l.hot && <span className="w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0"></span>}
               {!l.hot && <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: 'rgba(255,255,255,0.15)' }}></span>}
               <div>
-                <p className="text-xs font-semibold text-white" style={{ fontFamily: 'Manrope, sans-serif' }}>{l.name}</p>
-                <p className="text-[10px]" style={{ color: '#6B7A8D', fontFamily: 'Manrope, sans-serif' }}>{l.contact}</p>
+                <p className="text-xs font-semibold text-white" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{l.name}</p>
+                <p className="text-[10px]" style={{ color: '#6B7A8D', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{l.contact}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-xs font-semibold" style={{ color: '#0EAFD4', fontFamily: 'Manrope, sans-serif' }}>{l.value}</span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(255,255,255,0.06)', color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>{l.stage}</span>
+              <span className="text-xs font-semibold" style={{ color: '#0EAFD4', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{l.value}</span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ background: 'rgba(255,255,255,0.06)', color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{l.stage}</span>
             </div>
           </div>
         ))}
@@ -74,10 +74,10 @@ function PipelineTab() {
               <div className="absolute bottom-0 left-0 right-0 rounded-b-lg" style={{ height: `${(s.count / 5) * 100}%`, background: `${s.color}30`, borderTop: `2px solid ${s.color}` }} />
               <div className="absolute inset-0 flex flex-col items-center justify-center">
                 <span className="text-sm font-bold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>{s.count}</span>
-                <span className="text-[10px]" style={{ color: s.color, fontFamily: 'Manrope, sans-serif' }}>{s.value}</span>
+                <span className="text-[10px]" style={{ color: s.color, fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{s.value}</span>
               </div>
             </div>
-            <p className="text-[9px] text-center mt-1" style={{ color: '#6B7A8D', fontFamily: 'Manrope, sans-serif' }}>{s.name}</p>
+            <p className="text-[9px] text-center mt-1" style={{ color: '#6B7A8D', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{s.name}</p>
           </div>
         ))}
       </div>
@@ -99,13 +99,13 @@ function CustomersTab() {
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold text-white" style={{ background: '#1860D4' }}>{c.name[0]}</div>
             <div>
-              <p className="text-xs font-semibold text-white" style={{ fontFamily: 'Manrope, sans-serif' }}>{c.name}</p>
-              <p className="text-[10px]" style={{ color: '#6B7A8D', fontFamily: 'Manrope, sans-serif' }}>Since {c.since}</p>
+              <p className="text-xs font-semibold text-white" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{c.name}</p>
+              <p className="text-[10px]" style={{ color: '#6B7A8D', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Since {c.since}</p>
             </div>
           </div>
           <div className="text-right">
-            <p className="text-xs font-bold" style={{ color: '#0EAFD4', fontFamily: 'Manrope, sans-serif' }}>{c.value}</p>
-            <span className="text-[9px]" style={{ color: '#22c55e', fontFamily: 'Manrope, sans-serif' }}>{c.status}</span>
+            <p className="text-xs font-bold" style={{ color: '#0EAFD4', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{c.value}</p>
+            <span className="text-[9px]" style={{ color: '#22c55e', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{c.status}</span>
           </div>
         </div>
       ))}
@@ -126,8 +126,8 @@ function TasksTab() {
       {tasks.map((t) => (
         <div key={t.label} className="flex items-center gap-3 p-2.5 mb-1.5 rounded-lg" style={{ background: 'rgba(255,255,255,0.03)' }}>
           <div className="w-3.5 h-3.5 rounded border flex-shrink-0" style={{ background: t.done ? '#1860D4' : 'transparent', borderColor: t.done ? '#1860D4' : 'rgba(255,255,255,0.2)' }} />
-          <p className="text-xs flex-1" style={{ color: t.done ? '#3A4A5C' : '#7A8FA3', textDecoration: t.done ? 'line-through' : 'none', fontFamily: 'Manrope, sans-serif' }}>{t.label}</p>
-          <span className="text-[10px]" style={{ color: t.due === 'Today' ? '#ef4444' : '#6B7A8D', fontFamily: 'Manrope, sans-serif' }}>{t.due}</span>
+          <p className="text-xs flex-1" style={{ color: t.done ? '#3A4A5C' : '#7A8FA3', textDecoration: t.done ? 'line-through' : 'none', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{t.label}</p>
+          <span className="text-[10px]" style={{ color: t.due === 'Today' ? '#ef4444' : '#6B7A8D', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{t.due}</span>
         </div>
       ))}
     </div>
@@ -146,13 +146,13 @@ function AnalyticsTab() {
           { label: 'Avg close time', value: '32 days', positive: false },
         ].map((m) => (
           <div key={m.label} className="p-3 rounded-lg" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}>
-            <p className="text-[10px] mb-1" style={{ color: '#6B7A8D', fontFamily: 'Manrope, sans-serif' }}>{m.label}</p>
+            <p className="text-[10px] mb-1" style={{ color: '#6B7A8D', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{m.label}</p>
             <p className="text-base font-bold text-white" style={{ fontFamily: 'Sora, sans-serif' }}>{m.value}</p>
           </div>
         ))}
       </div>
       <div className="p-3 rounded-lg" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}>
-        <p className="text-[10px] mb-2" style={{ color: '#6B7A8D', fontFamily: 'Manrope, sans-serif' }}>Monthly revenue</p>
+        <p className="text-[10px] mb-2" style={{ color: '#6B7A8D', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Monthly revenue</p>
         <div className="flex items-end gap-1 h-12">
           {[30, 45, 38, 60, 52, 70, 65, 80, 75, 90, 85, 100].map((h, i) => (
             <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: i >= 10 ? '#1860D4' : 'rgba(22,141,255,0.2)' }} />
@@ -198,7 +198,7 @@ export default function CRMDevelopment() {
               <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
                 Your workflow.<br />Your CRM.
               </h1>
-              <p className="text-lg leading-relaxed mb-8" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+              <p className="text-lg leading-relaxed mb-8" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                 Build a CRM around your sales process instead of changing your process to fit someone else's software. Custom-built to match exactly how your team sells.
               </p>
               <Link to="/contact" data-cta className="btn-primary">
@@ -214,7 +214,7 @@ export default function CRMDevelopment() {
                   <span className="w-2.5 h-2.5 rounded-full bg-red-500/70"></span>
                   <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70"></span>
                   <span className="w-2.5 h-2.5 rounded-full bg-green-500/70"></span>
-                  <span className="ml-3 text-xs" style={{ color: '#6B7A8D', fontFamily: 'Manrope, sans-serif' }}>CRM Platform</span>
+                  <span className="ml-3 text-xs" style={{ color: '#6B7A8D', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>CRM Platform</span>
                 </div>
                 {/* Tabs */}
                 <div className="flex border-b" style={{ borderColor: 'rgba(255,255,255,0.06)', background: '#0A1118' }}>
@@ -224,7 +224,7 @@ export default function CRMDevelopment() {
                       onClick={() => setActiveTab(tab)}
                       className="px-4 py-2.5 text-xs transition-all duration-200"
                       style={{
-                        fontFamily: 'Manrope, sans-serif',
+                        fontFamily: 'Plus Jakarta Sans, sans-serif',
                         color: activeTab === tab ? '#1860D4' : '#6B7A8D',
                         fontWeight: activeTab === tab ? '600' : '400',
                         borderBottom: activeTab === tab ? '2px solid #1860D4' : '2px solid transparent',
@@ -263,12 +263,12 @@ export default function CRMDevelopment() {
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
                 Everything your team needs. Nothing they don't.
               </h2>
-              <p className="text-base leading-relaxed mb-8" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+              <p className="text-base leading-relaxed mb-8" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                 We build CRM features around your actual sales workflow. Every field, every stage, every report â€” designed around the way your team works.
               </p>
               <div className="grid grid-cols-2 gap-2">
                 {features.map((f) => (
-                  <div key={f} className="flex items-center gap-2 text-sm" style={{ color: '#0B1A2E', fontFamily: 'Manrope, sans-serif' }}>
+                  <div key={f} className="flex items-center gap-2 text-sm" style={{ color: '#0B1A2E', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                     <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#1860D4' }} />
                     {f}
                   </div>
@@ -289,7 +289,7 @@ export default function CRMDevelopment() {
                     </div>
                     <div>
                       <h3 className="font-heading font-bold text-sm mb-1" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>{item.title}</h3>
-                      <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>{item.desc}</p>
+                      <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.desc}</p>
                     </div>
                   </div>
                 </FadeUp>
@@ -305,7 +305,7 @@ export default function CRMDevelopment() {
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
             Software that fits the way you sell.
           </h2>
-          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>
+          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
             Tell us about your sales process and we'll design a CRM around it.
           </p>
           <Link to="/contact" data-cta className="btn-primary-white">

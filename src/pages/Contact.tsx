@@ -109,7 +109,7 @@ export default function Contact() {
                     <span className="pulse-ring absolute inline-flex h-full w-full rounded-full opacity-75" style={{ background: 'var(--blue-600)' }} />
                     <span className="relative inline-flex rounded-full h-2 w-2" style={{ background: 'var(--blue-500)' }} />
                   </span>
-                  <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'DM Mono, monospace' }}>
+                  <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                     Get in Touch
                   </span>
                 </div>
@@ -168,7 +168,7 @@ export default function Contact() {
                         <Icon size={15} style={{ color: '#4A8FF5' }} />
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold tracking-wider uppercase mb-0.5" style={{ color: '#536880', fontFamily: 'DM Mono, monospace' }}>{item.label}</p>
+                        <p className="text-[10px] font-bold tracking-wider uppercase mb-0.5" style={{ color: '#536880', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.label}</p>
                         {item.href ? (
                           <a href={item.href} className="text-sm font-semibold transition-colors hover:text-blue-400" style={{ color: 'rgba(255,255,255,0.8)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                             {item.value}
@@ -196,7 +196,7 @@ export default function Contact() {
                         style={{
                           background: step > s ? 'linear-gradient(135deg, #1558D4, #0BC4E3)' : step === s ? 'rgba(21,88,212,0.3)' : 'rgba(255,255,255,0.05)',
                           color: step >= s ? '#ffffff' : '#536880',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Plus Jakarta Sans, sans-serif',
                           border: `1px solid ${step >= s ? 'rgba(21,88,212,0.5)' : 'rgba(255,255,255,0.08)'}`,
                         }}
                       >
@@ -211,7 +211,7 @@ export default function Contact() {
                     </div>
                   ))}
                 </div>
-                <p className="text-xs" style={{ color: '#536880', fontFamily: 'DM Mono, monospace' }}>
+                <p className="text-xs" style={{ color: '#536880', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                   Step {step} of 3 —{' '}
                   {step === 1 && 'What are you looking to build?'}
                   {step === 2 && 'Tell us about it'}
@@ -291,7 +291,7 @@ export default function Contact() {
                     {/* Selected types summary */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {selectedTypes.map(t => (
-                        <span key={t} className="text-xs px-3 py-1 rounded-full font-semibold" style={{ background: 'rgba(21,88,212,0.2)', color: '#4A8FF5', border: '1px solid rgba(21,88,212,0.3)', fontFamily: 'DM Mono, monospace' }}>
+                        <span key={t} className="text-xs px-3 py-1 rounded-full font-semibold" style={{ background: 'rgba(21,88,212,0.2)', color: '#4A8FF5', border: '1px solid rgba(21,88,212,0.3)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                           {t}
                         </span>
                       ))}
@@ -365,7 +365,7 @@ export default function Contact() {
                           { id: 'contact-country', label: 'Country', field: 'country', type: 'text', required: false },
                         ].map((f) => (
                           <div key={f.id}>
-                            <label htmlFor={f.id} className="block text-xs font-semibold mb-2" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'DM Mono, monospace', letterSpacing: '0.08em' }}>
+                            <label htmlFor={f.id} className="block text-xs font-semibold mb-2" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'Plus Jakarta Sans, sans-serif', letterSpacing: '0.08em' }}>
                               {f.label}{f.required ? ' *' : ''}
                             </label>
                             <input
@@ -387,7 +387,7 @@ export default function Contact() {
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold mb-3" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'DM Mono, monospace', letterSpacing: '0.08em' }}>
+                        <label className="block text-xs font-semibold mb-3" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: 'Plus Jakarta Sans, sans-serif', letterSpacing: '0.08em' }}>
                           Budget range (optional)
                         </label>
                         <div className="flex flex-wrap gap-2">
@@ -402,7 +402,7 @@ export default function Contact() {
                                 color: form.budget === b ? '#4A8FF5' : 'rgba(255,255,255,0.4)',
                                 border: '1px solid',
                                 borderColor: form.budget === b ? 'rgba(21,88,212,0.5)' : 'rgba(255,255,255,0.07)',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Plus Jakarta Sans, sans-serif',
                               }}
                             >
                               {b}

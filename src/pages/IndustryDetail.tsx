@@ -1,4 +1,4 @@
-﻿import { useParams, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, ArrowLeft } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
@@ -254,17 +254,17 @@ export default function IndustryDetail() {
       <section className="pt-32 pb-20 bg-white border-b" style={{ borderColor: '#E4EDF7' }}>
         <div className="container-wide">
           <FadeUp>
-            <Link to="/industries" className="inline-flex items-center gap-2 text-sm mb-8 transition-colors hover:text-blue-600" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>
+            <Link to="/industries" className="inline-flex items-center gap-2 text-sm mb-8 transition-colors hover:text-blue-600" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               <ArrowLeft size={14} /> Industries
             </Link>
             <p className="section-label">{data.name}</p>
             <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
               {data.headline}
             </h1>
-            <p className="text-lg leading-relaxed max-w-2xl mb-4" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+            <p className="text-lg leading-relaxed max-w-2xl mb-4" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               {data.intro}
             </p>
-            <p className="text-base leading-relaxed max-w-2xl" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>
+            <p className="text-base leading-relaxed max-w-2xl" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               {data.context}
             </p>
           </FadeUp>
@@ -282,7 +282,7 @@ export default function IndustryDetail() {
               </h2>
               <ul className="space-y-3">
                 {data.challenges.map((c) => (
-                  <li key={c} className="flex items-start gap-3 text-sm" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+                  <li key={c} className="flex items-start gap-3 text-sm" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                     <span className="w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0" style={{ background: '#1860D4' }} />
                     {c}
                   </li>
@@ -301,7 +301,7 @@ export default function IndustryDetail() {
                   <FadeUp key={s.title} delay={i * 0.07}>
                     <div className="p-5 bg-white rounded-xl border" style={{ borderColor: '#E4EDF7' }}>
                       <h3 className="font-heading font-bold text-base mb-1.5" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>{s.title}</h3>
-                      <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>{s.desc}</p>
+                      <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{s.desc}</p>
                     </div>
                   </FadeUp>
                 ))}
@@ -322,7 +322,7 @@ export default function IndustryDetail() {
           </FadeUp>
           <div className="flex flex-wrap gap-3">
             {data.services.map((s) => (
-              <div key={s} className="px-5 py-2.5 rounded-full border text-sm font-semibold" style={{ borderColor: '#E4EDF7', color: '#0B1A2E', fontFamily: 'Manrope, sans-serif' }}>
+              <div key={s} className="px-5 py-2.5 rounded-full border text-sm font-semibold" style={{ borderColor: '#E4EDF7', color: '#0B1A2E', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                 {s}
               </div>
             ))}
@@ -336,7 +336,7 @@ export default function IndustryDetail() {
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
             {data.cta}.
           </h2>
-          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>
+          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
             Tell us about your business and what you're trying to build.
           </p>
           <Link to="/contact" data-cta className="btn-primary-white">

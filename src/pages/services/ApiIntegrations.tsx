@@ -21,7 +21,7 @@ export default function ApiIntegrations() {
             <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
               Connect your systems. Simplify your operations.
             </h1>
-            <p className="text-lg leading-relaxed mb-8 max-w-2xl" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+            <p className="text-lg leading-relaxed mb-8 max-w-2xl" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               Most businesses run on multiple tools that don't talk to each other. We build the integrations and APIs that connect them â€” reliably, securely and without manual copying.
             </p>
             <Link to="/contact" data-cta className="btn-primary">Discuss Integrations <ArrowUpRight size={14} /></Link>
@@ -47,7 +47,7 @@ export default function ApiIntegrations() {
                     <span className="w-1 flex-shrink-0 rounded-full" style={{ background: '#1860D4' }}></span>
                     <div>
                       <h3 className="font-heading font-bold text-sm mb-1" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>{item.title}</h3>
-                      <p className="text-sm" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>{item.desc}</p>
+                      <p className="text-sm" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -58,12 +58,12 @@ export default function ApiIntegrations() {
               <h2 className="font-heading text-3xl font-bold mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>Platforms we integrate with.</h2>
               <div className="grid grid-cols-3 gap-3">
                 {['Stripe', 'Xero', 'QuickBooks', 'Salesforce', 'HubSpot', 'Mailchimp', 'Twilio', 'SendGrid', 'Slack', 'Google APIs', 'Microsoft 365', 'Shopify'].map((p) => (
-                  <div key={p} className="p-3 bg-white rounded-xl border text-center text-sm font-semibold" style={{ borderColor: '#E4EDF7', color: '#0B1A2E', fontFamily: 'Manrope, sans-serif' }}>
+                  <div key={p} className="p-3 bg-white rounded-xl border text-center text-sm font-semibold" style={{ borderColor: '#E4EDF7', color: '#0B1A2E', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                     {p}
                   </div>
                 ))}
               </div>
-              <p className="text-sm mt-4" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>And any system with a documented API or webhook capability.</p>
+              <p className="text-sm mt-4" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>And any system with a documented API or webhook capability.</p>
             </FadeUp>
           </div>
         </div>
@@ -71,7 +71,7 @@ export default function ApiIntegrations() {
       <section className="page-section-sm" style={{ background: 'linear-gradient(135deg, #060E1C 0%, #0B1A2E 100%)' }}>
         <div className="container-tight text-center">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>Need to connect your systems?</h2>
-          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>Tell us about the tools you're using and what data needs to move between them.</p>
+          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Tell us about the tools you're using and what data needs to move between them.</p>
           <Link to="/contact" data-cta className="btn-primary-white">Start the Conversation <ArrowUpRight size={14} /></Link>
         </div>
       </section>

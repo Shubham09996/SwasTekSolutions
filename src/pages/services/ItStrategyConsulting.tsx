@@ -60,7 +60,7 @@ export default function ItStrategyConsulting() {
                     <Target size={18} className="text-blue-400" />
                     <span className="text-sm font-semibold text-white">Strategic IT Framework</span>
                   </div>
-                  <span className="text-xs px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-300 font-mono">Q3 Roadmap</span>
+                  <span className="text-xs px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-300 font-semibold">Q3 Roadmap</span>
                 </div>
                 <div className="space-y-3">
                   <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">

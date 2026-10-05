@@ -55,7 +55,7 @@ export default function ScrollProgress() {
               alignItems: 'center',
               justifyContent: 'center',
               zIndex: 99990,
-              cursor: 'none',
+              cursor: 'pointer',
               border: 'none',
               color: '#fff',
             }}

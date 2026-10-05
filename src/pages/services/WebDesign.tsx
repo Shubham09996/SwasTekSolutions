@@ -59,7 +59,7 @@ export default function WebDesign() {
                   <span className="w-3 h-3 rounded-full bg-red-400/80" />
                   <span className="w-3 h-3 rounded-full bg-yellow-400/80" />
                   <span className="w-3 h-3 rounded-full bg-green-400/80" />
-                  <span className="text-xs font-mono ml-2 text-slate-400">swastek.design/preview</span>
+                  <span className="text-xs font-semibold ml-2 text-slate-400">swastek.design/preview</span>
                 </div>
                 <div className="space-y-4">
                   <div className="h-6 w-1/3 rounded-md bg-blue-500/20 border border-blue-400/30" />

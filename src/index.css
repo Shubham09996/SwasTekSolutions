@@ -95,13 +95,21 @@
   }
 
   /* Premium Scrollbar */
-  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
   ::-webkit-scrollbar-track { background: var(--void); }
   ::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, var(--blue-600), var(--cyan));
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover { background: var(--blue-400); }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
   :focus-visible {
     outline: 2px solid var(--blue-400);
@@ -176,10 +184,10 @@
 
   /* ── SECTION LABEL ── */
   .section-label {
-    @apply text-[10px] font-bold tracking-[0.28em] uppercase mb-3;
+    @apply text-[11px] font-bold tracking-[0.18em] uppercase mb-3;
     color: var(--blue-600);
-    font-family: 'DM Mono', monospace;
-    letter-spacing: 0.28em;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: 0.18em;
   }
 
   /* ── TEXT GRADIENT ── */
@@ -227,7 +235,7 @@
   .font-800 { font-weight: 800; }
   .tracking-tight-xl { letter-spacing: -0.05em; }
   .text-balance { text-wrap: balance; }
-  .font-mono-accent { font-family: 'DM Mono', monospace; }
+  .font-mono-accent { font-family: 'Plus Jakarta Sans', sans-serif; }
 }
 
 
@@ -486,8 +494,8 @@
   border-radius: 999px;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.04em;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   background: rgba(21,88,212,0.08);
   color: var(--blue-600);
   border: 1px solid rgba(21,88,212,0.14);
@@ -589,12 +597,6 @@ input:focus, textarea:focus, select:focus {
   transition: max-height 0.45s var(--ease-out-expo);
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   GLOBAL CURSOR OVERRIDE (for custom cursor)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-@media (pointer: fine) {
-  *, *::before, *::after { cursor: none !important; }
-}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    ANIMATED GRADIENT BORDER

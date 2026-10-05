@@ -60,7 +60,7 @@ export default function MobileAppDevelopment() {
                     <Smartphone size={18} className="text-cyan-400" />
                     <span className="text-sm font-semibold text-white">Cross-Platform App Suite</span>
                   </div>
-                  <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-mono">iOS & Android</span>
+                  <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-semibold">iOS & Android</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="p-4 rounded-xl bg-white/5 border border-white/10">

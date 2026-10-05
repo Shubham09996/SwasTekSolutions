@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import PageTransition from '../../components/PageTransition'
@@ -41,12 +41,12 @@ function DashboardPreview() {
         <span className="w-2 h-2 rounded-full bg-red-500/60"></span>
         <span className="w-2 h-2 rounded-full bg-yellow-500/60"></span>
         <span className="w-2 h-2 rounded-full bg-green-500/60"></span>
-        <span className="ml-2 text-xs" style={{ color: '#6B7A8D', fontFamily: 'Manrope' }}>Operations Platform</span>
+        <span className="ml-2 text-xs" style={{ color: '#6B7A8D', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Operations Platform</span>
       </div>
       <div className="flex h-64">
         <div className="w-36 border-r p-3" style={{ background: '#0A1118', borderColor: 'rgba(255,255,255,0.06)' }}>
           {['Dashboard', 'Operations', 'Team', 'Reports', 'Settings'].map((item, i) => (
-            <div key={item} className="flex items-center gap-2 px-2.5 py-2 rounded-md mb-0.5 text-xs" style={{ background: i === 0 ? '#1860D4' : 'transparent', color: i === 0 ? '#fff' : '#4B5A6B', fontFamily: 'Manrope' }}>
+            <div key={item} className="flex items-center gap-2 px-2.5 py-2 rounded-md mb-0.5 text-xs" style={{ background: i === 0 ? '#1860D4' : 'transparent', color: i === 0 ? '#fff' : '#4B5A6B', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: i === 0 ? '#fff' : '#3A4A5C' }}></span>
               {item}
             </div>
@@ -57,7 +57,7 @@ function DashboardPreview() {
           <div className="grid grid-cols-3 gap-2 mb-3">
             {[{ l: 'Tasks today', v: '14' }, { l: 'Pending', v: '8' }, { l: 'Done', v: '32' }].map((s) => (
               <div key={s.l} className="p-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <p className="text-[10px] mb-1" style={{ color: '#6B7A8D', fontFamily: 'Manrope' }}>{s.l}</p>
+                <p className="text-[10px] mb-1" style={{ color: '#6B7A8D', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{s.l}</p>
                 <p className="text-sm font-bold text-white" style={{ fontFamily: 'Sora' }}>{s.v}</p>
               </div>
             ))}
@@ -98,7 +98,7 @@ export default function CustomSoftware() {
               <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
                 Software that fits the way you work.
               </h1>
-              <p className="text-lg leading-relaxed mb-8" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+              <p className="text-lg leading-relaxed mb-8" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                 Internal tools, operations platforms and workflow systems built around how your team actually works â€” not around off-the-shelf assumptions.
               </p>
               <Link to="/contact" data-cta className="btn-primary">
@@ -123,12 +123,12 @@ export default function CustomSoftware() {
                     <h2 className="font-heading text-3xl md:text-4xl font-bold mb-5" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
                       {s.title}
                     </h2>
-                    <p className="text-base leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+                    <p className="text-base leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                       {s.desc}
                     </p>
                   </div>
                   <div className="rounded-xl h-48" style={{ background: 'linear-gradient(135deg, #EBF4FF, #EFF4FA)', border: '1px solid #E4EDF7', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <p className="text-sm font-semibold" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>[ {s.visual} preview ]</p>
+                    <p className="text-sm font-semibold" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>[ {s.visual} preview ]</p>
                   </div>
                 </div>
               </FadeUp>
@@ -146,7 +146,7 @@ export default function CustomSoftware() {
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
                 Built to handle the complexity of real business.
               </h2>
-              <p className="text-base leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+              <p className="text-base leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                 Real businesses have edge cases, compliance requirements, integrations and internal logic that generic software never accounts for. We build software that handles them all.
               </p>
             </FadeUp>
@@ -155,7 +155,7 @@ export default function CustomSoftware() {
                 <FadeUp key={c} delay={i * 0.06}>
                   <div className="flex items-start gap-2.5 p-4 bg-white rounded-xl border" style={{ borderColor: '#E4EDF7' }}>
                     <span className="w-1.5 h-1.5 rounded-full mt-1 flex-shrink-0" style={{ background: '#1860D4' }} />
-                    <span className="text-sm" style={{ color: '#0B1A2E', fontFamily: 'Manrope, sans-serif' }}>{c}</span>
+                    <span className="text-sm" style={{ color: '#0B1A2E', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{c}</span>
                   </div>
                 </FadeUp>
               ))}
@@ -170,7 +170,7 @@ export default function CustomSoftware() {
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
             Your business is unique. Your software should be too.
           </h2>
-          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>
+          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
             Tell us about your operations and what you need to improve. We'll build the software around it.
           </p>
           <Link to="/contact" data-cta className="btn-primary-white">

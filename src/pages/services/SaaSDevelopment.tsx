@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import PageTransition from '../../components/PageTransition'
@@ -21,7 +21,7 @@ export default function SaaSDevelopment() {
             <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
               From product idea<br />to scalable SaaS.
             </h1>
-            <p className="text-lg leading-relaxed mb-8 max-w-2xl" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+            <p className="text-lg leading-relaxed mb-8 max-w-2xl" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               We build SaaS products from the ground up â€” from MVP validation through to production-ready platforms with billing, authentication and multi-tenant architecture.
             </p>
             <Link to="/contact" data-cta className="btn-primary">Build My SaaS <ArrowUpRight size={14} /></Link>
@@ -48,7 +48,7 @@ export default function SaaSDevelopment() {
               <FadeUp key={item.title} delay={i * 0.06}>
                 <div className="p-5 bg-white rounded-xl border" style={{ borderColor: '#E4EDF7' }}>
                   <h3 className="font-heading font-bold text-base mb-2" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>{item.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>{item.desc}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{item.desc}</p>
                 </div>
               </FadeUp>
             ))}
@@ -58,7 +58,7 @@ export default function SaaSDevelopment() {
       <section className="page-section-sm" style={{ background: 'linear-gradient(135deg, #060E1C 0%, #0B1A2E 100%)' }}>
         <div className="container-tight text-center">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>Have a product idea?</h2>
-          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>Let's talk through your product vision and plan the right architecture from the start.</p>
+          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Let's talk through your product vision and plan the right architecture from the start.</p>
           <Link to="/contact" data-cta className="btn-primary-white">Start the Conversation <ArrowUpRight size={14} /></Link>
         </div>
       </section>

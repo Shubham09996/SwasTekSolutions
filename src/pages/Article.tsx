@@ -110,13 +110,13 @@ export default function Article() {
       <section className="pt-32 pb-16 bg-white border-b" style={{ borderColor: '#E4EDF7' }}>
         <div className="container-tight">
           <FadeUp>
-            <Link to="/insights" className="inline-flex items-center gap-2 text-sm mb-8 transition-colors hover:text-blue-600" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>
+            <Link to="/insights" className="inline-flex items-center gap-2 text-sm mb-8 transition-colors hover:text-blue-600" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               <ArrowLeft size={14} /> Insights
             </Link>
             <div className="flex items-center gap-3 mb-5">
-              <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: '#EBF4FF', color: '#1860D4', fontFamily: 'Manrope, sans-serif' }}>{data.category}</span>
-              <span className="text-xs" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>{data.date}</span>
-              <span className="text-xs" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>{data.readTime}</span>
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: '#EBF4FF', color: '#1860D4', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{data.category}</span>
+              <span className="text-xs" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{data.date}</span>
+              <span className="text-xs" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{data.readTime}</span>
             </div>
             <h1 className="font-heading text-4xl md:text-5xl font-bold leading-tight tracking-tight" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
               {data.title}
@@ -130,7 +130,7 @@ export default function Article() {
         <div className="container-tight">
           <div className="max-w-2xl">
             <FadeUp>
-              <p className="text-lg leading-relaxed mb-12" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+              <p className="text-lg leading-relaxed mb-12" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                 {data.intro}
               </p>
             </FadeUp>
@@ -139,7 +139,7 @@ export default function Article() {
                 <div className="mb-10">
                   <h2 className="font-heading text-2xl font-bold mb-4" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>{section.heading}</h2>
                   {section.body.split('\n\n').map((para, j) => (
-                    <p key={j} className="text-base leading-relaxed mb-4" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>{para}</p>
+                    <p key={j} className="text-base leading-relaxed mb-4" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{para}</p>
                   ))}
                 </div>
               </FadeUp>
@@ -147,7 +147,7 @@ export default function Article() {
             <FadeUp>
               <div className="mt-14 p-8 rounded-2xl" style={{ background: '#EFF4FA', border: '1px solid #E4EDF7' }}>
                 <p className="font-heading font-bold text-lg mb-2" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>Have a question about this topic?</p>
-                <p className="text-sm mb-4" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>We're happy to talk through how this applies to your specific business or project.</p>
+                <p className="text-sm mb-4" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>We're happy to talk through how this applies to your specific business or project.</p>
                 <Link to="/contact" data-cta className="btn-primary text-sm inline-flex">
                   Get in touch <ArrowUpRight size={13} />
                 </Link>

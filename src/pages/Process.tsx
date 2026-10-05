@@ -159,7 +159,7 @@ export default function Process() {
             className="flex justify-center mb-10"
           >
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ background: 'rgba(21,88,212,0.12)', border: '1px solid rgba(21,88,212,0.22)' }}>
-              <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'DM Mono, monospace' }}>
+              <span className="text-[11px] font-bold tracking-[0.22em] uppercase" style={{ color: 'rgba(74,143,245,0.9)', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
                 How We Work
               </span>
             </div>
@@ -214,7 +214,7 @@ export default function Process() {
                 style={{
                   background: activeStep === i ? s.gradient : 'rgba(255,255,255,0.06)',
                   color: activeStep === i ? '#fff' : '#536880',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Plus Jakarta Sans, sans-serif',
                   border: '1px solid',
                   borderColor: activeStep === i ? 'transparent' : 'rgba(255,255,255,0.08)',
                 }}
@@ -257,7 +257,7 @@ export default function Process() {
                         </motion.div>
                         <span
                           className="text-[10px] font-bold tracking-wider"
-                          style={{ color: activeStep === i ? step.color : '#94A3B8', fontFamily: 'DM Mono, monospace' }}
+                          style={{ color: activeStep === i ? step.color : '#94A3B8', fontFamily: 'Plus Jakarta Sans, sans-serif' }}
                         >
                           {step.num}
                         </span>

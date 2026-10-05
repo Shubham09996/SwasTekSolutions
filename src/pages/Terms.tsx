@@ -1,4 +1,4 @@
-﻿import PageTransition from '../components/PageTransition'
+import PageTransition from '../components/PageTransition'
 
 export default function Terms() {
   return (
@@ -6,8 +6,8 @@ export default function Terms() {
       <section className="pt-32 pb-20 bg-white">
         <div className="container-tight">
           <h1 className="font-heading text-4xl font-bold mb-4" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>Terms of Use</h1>
-          <p className="text-sm mb-12" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>Last updated: September 2026</p>
-          <div className="space-y-8 text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+          <p className="text-sm mb-12" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Last updated: September 2026</p>
+          <div className="space-y-8 text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
             <div>
               <h2 className="font-heading text-xl font-bold mb-3" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>1. Use of this website</h2>
               <p>By accessing this website, you agree to these terms. This website is operated by SwasTek Solutions. The content is for general information purposes. We reserve the right to modify or discontinue any part of this website without notice.</p>

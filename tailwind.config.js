@@ -33,7 +33,8 @@ export default {
       fontFamily: {
         heading: ['Sora', 'sans-serif'],
         body:    ['Plus Jakarta Sans', 'sans-serif'],
-        mono:    ['DM Mono', 'monospace'],
+        sans:    ['Plus Jakarta Sans', 'sans-serif'],
+        mono:    ['Plus Jakarta Sans', 'sans-serif'],
       },
       fontSize: {
         '2xs': ['0.65rem', { lineHeight: '1rem' }],

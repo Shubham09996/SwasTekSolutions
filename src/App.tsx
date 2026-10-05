@@ -3,7 +3,6 @@ import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
-import CustomCursor from './components/CustomCursor'
 import ScrollProgress from './components/ScrollProgress'
 
 // Pages
@@ -43,7 +42,6 @@ export default function App() {
 
   return (
     <>
-      <CustomCursor />
       <ScrollProgress />
       <ScrollToTop />
       <Navbar />

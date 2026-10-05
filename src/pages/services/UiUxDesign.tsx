@@ -60,7 +60,7 @@ export default function UiUxDesign() {
                     <div className="w-3 h-3 rounded-full bg-cyan-400" />
                     <span className="text-sm font-semibold text-white">UX Workflow Studio</span>
                   </div>
-                  <span className="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 font-mono">Figma · Tokens</span>
+                  <span className="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 font-semibold">Figma · Tokens</span>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-4 rounded-xl bg-white/5 border border-white/10">
@@ -82,7 +82,7 @@ export default function UiUxDesign() {
                   </div>
                 </div>
                 <div className="mt-4 p-4 rounded-xl bg-blue-600/10 border border-blue-500/20">
-                  <p className="text-xs font-mono text-blue-300">Design System: 120+ Components, 48 Token Variables</p>
+                  <p className="text-xs font-semibold text-blue-300">Design System: 120+ Components, 48 Token Variables</p>
                 </div>
               </div>
             </FadeUp>

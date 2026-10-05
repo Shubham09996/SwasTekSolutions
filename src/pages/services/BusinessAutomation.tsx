@@ -1,4 +1,4 @@
-﻿import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import PageTransition from '../../components/PageTransition'
@@ -29,7 +29,7 @@ export default function BusinessAutomation() {
             <h1 className="font-heading text-5xl md:text-6xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>
               Remove repetitive work from your workflow.
             </h1>
-            <p className="text-lg leading-relaxed mb-8 max-w-2xl" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+            <p className="text-lg leading-relaxed mb-8 max-w-2xl" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
               Automate the steps your team does manually today. Connect your systems, trigger the right actions automatically and free your team for the work that actually requires human thinking.
             </p>
             <Link to="/contact" data-cta className="btn-primary">Talk about automation <ArrowUpRight size={14} /></Link>
@@ -51,8 +51,8 @@ export default function BusinessAutomation() {
                 <div className="bg-white rounded-xl border p-5" style={{ borderColor: '#E4EDF7' }}>
                   <div className="grid md:grid-cols-[1fr_auto_1fr] gap-4 items-center">
                     <div>
-                      <p className="text-xs font-semibold tracking-wide uppercase mb-1" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>Trigger</p>
-                      <p className="text-sm font-semibold" style={{ color: '#0B1A2E', fontFamily: 'Manrope, sans-serif' }}>{a.trigger}</p>
+                      <p className="text-xs font-semibold tracking-wide uppercase mb-1" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Trigger</p>
+                      <p className="text-sm font-semibold" style={{ color: '#0B1A2E', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{a.trigger}</p>
                     </div>
                     <div className="hidden md:flex items-center justify-center">
                       <div className="flex items-center gap-1">
@@ -61,8 +61,8 @@ export default function BusinessAutomation() {
                       </div>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold tracking-wide uppercase mb-1" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>Action</p>
-                      <p className="text-sm" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>{a.action}</p>
+                      <p className="text-xs font-semibold tracking-wide uppercase mb-1" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Action</p>
+                      <p className="text-sm" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>{a.action}</p>
                     </div>
                   </div>
                 </div>
@@ -77,7 +77,7 @@ export default function BusinessAutomation() {
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'Sora, sans-serif' }}>
             What are you automating away?
           </h2>
-          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>Tell us about the manual processes costing your team time and we'll build the automation.</p>
+          <p className="text-base mb-8" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Tell us about the manual processes costing your team time and we'll build the automation.</p>
           <Link to="/contact" data-cta className="btn-primary-white">Start the Conversation <ArrowUpRight size={14} /></Link>
         </div>
       </section>

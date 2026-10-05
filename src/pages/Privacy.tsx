@@ -1,4 +1,4 @@
-﻿import PageTransition from '../components/PageTransition'
+import PageTransition from '../components/PageTransition'
 
 export default function Privacy() {
   return (
@@ -6,8 +6,8 @@ export default function Privacy() {
       <section className="pt-32 pb-20 bg-white">
         <div className="container-tight">
           <h1 className="font-heading text-4xl font-bold mb-4" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>Privacy Policy</h1>
-          <p className="text-sm mb-12" style={{ color: '#7A8FA3', fontFamily: 'Manrope, sans-serif' }}>Last updated: September 2026</p>
-          <div className="space-y-8 text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Manrope, sans-serif' }}>
+          <p className="text-sm mb-12" style={{ color: '#7A8FA3', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>Last updated: September 2026</p>
+          <div className="space-y-8 text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
             <div>
               <h2 className="font-heading text-xl font-bold mb-3" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>1. Who we are</h2>
               <p>SwasTek Solutions is a software development and digital solutions company. Our website address is swastek.com. If you have questions about this policy, contact us at hello@swastek.com.</p>
