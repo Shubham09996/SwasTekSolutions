@@ -30,7 +30,7 @@ export default function Terms() {
             </div>
             <div>
               <h2 className="font-heading text-xl font-bold mb-3" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>6. Contact</h2>
-              <p>For questions about these terms, contact us at hello@swastek.com.</p>
+              <p>For questions about these terms, contact us at info@swasteksolutions.com or swasteksolutions@gmail.com.</p>
             </div>
           </div>
         </div>

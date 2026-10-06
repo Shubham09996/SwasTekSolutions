@@ -38,13 +38,13 @@ const footerCompany = [
 ]
 
 export default function Footer() {
-  const [copied, setCopied] = useState(false)
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null)
 
-  const handleCopyEmail = (e: React.MouseEvent) => {
+  const handleCopyEmail = (e: React.MouseEvent, email: string) => {
     e.preventDefault()
-    navigator.clipboard.writeText("hello@swastek.com")
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    navigator.clipboard.writeText(email)
+    setCopiedEmail(email)
+    setTimeout(() => setCopiedEmail(null), 2000)
   }
 
   return (
@@ -208,7 +208,7 @@ export default function Footer() {
             {/* Social Touchpoints */}
             <div className="flex items-center gap-2.5">
               {[
-                { icon: <Mail size={15} />, label: "Email Us", href: "mailto:hello@swastek.com" },
+                { icon: <Mail size={15} />, label: "Email Us", href: "mailto:info@swasteksolutions.com" },
                 { icon: <Globe size={15} />, label: "Case Studies", href: "/work" },
                 { icon: <MessageSquare size={15} />, label: "Contact", href: "/contact" },
               ].map((s) => (
@@ -305,46 +305,55 @@ export default function Footer() {
               Have a project in mind? We'd love to hear about it.
             </p>
 
-            {/* Sleek Interactive Email Card with 1-Click Copy */}
-            <div
-              className="p-3.5 sm:p-4 rounded-2xl mb-4 transition-all duration-300 relative overflow-hidden group border"
-              style={{
-                background: "linear-gradient(145deg, rgba(8, 26, 52, 0.75) 0%, rgba(4, 13, 28, 0.95) 100%)",
-                borderColor: "rgba(11, 196, 227, 0.35)",
-                boxShadow: "0 10px 25px -10px rgba(0,0,0,0.5)",
-              }}
-            >
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-400" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
-                  Official Email
-                </span>
-                <button
-                  onClick={handleCopyEmail}
-                  className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-md bg-white/10 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 transition-colors"
-                  title="Copy email to clipboard"
+            {/* Sleek Interactive Email Cards with 1-Click Copy */}
+            <div className="space-y-2.5 mb-4">
+              {[
+                { email: "info@swasteksolutions.com", label: "Official Inquiry" },
+                { email: "swasteksolutions@gmail.com", label: "Direct & Support" },
+              ].map((item) => (
+                <div
+                  key={item.email}
+                  className="p-3 rounded-2xl transition-all duration-300 relative overflow-hidden group border"
+                  style={{
+                    background: "linear-gradient(145deg, rgba(8, 26, 52, 0.75) 0%, rgba(4, 13, 28, 0.95) 100%)",
+                    borderColor: "rgba(11, 196, 227, 0.35)",
+                    boxShadow: "0 10px 25px -10px rgba(0,0,0,0.5)",
+                  }}
                 >
-                  {copied ? (
-                    <>
-                      <Check size={11} className="text-emerald-400" />
-                      <span className="text-emerald-300">Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy size={11} />
-                      <span>Copy</span>
-                    </>
-                  )}
-                </button>
-              </div>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-cyan-400" style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}>
+                      {item.label}
+                    </span>
+                    <button
+                      onClick={(e) => handleCopyEmail(e, item.email)}
+                      className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-md bg-white/10 hover:bg-cyan-500/20 text-slate-300 hover:text-cyan-300 transition-colors"
+                      title="Copy email to clipboard"
+                      type="button"
+                    >
+                      {copiedEmail === item.email ? (
+                        <>
+                          <Check size={11} className="text-emerald-400" />
+                          <span className="text-emerald-300">Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy size={11} />
+                          <span>Copy</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
 
-              <a
-                href="mailto:hello@swastek.com"
-                className="text-sm sm:text-base font-extrabold text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between gap-1 break-all sm:break-normal"
-                style={{ fontFamily: "Sora, sans-serif" }}
-              >
-                <span>hello@swastek.com</span>
-                <ArrowUpRight size={16} className="text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform flex-shrink-0" />
-              </a>
+                  <a
+                    href={`mailto:${item.email}`}
+                    className="text-xs sm:text-sm font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between gap-1 break-all"
+                    style={{ fontFamily: "Sora, sans-serif" }}
+                  >
+                    <span>{item.email}</span>
+                    <ArrowUpRight size={15} className="text-cyan-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform flex-shrink-0" />
+                  </a>
+                </div>
+              ))}
             </div>
 
             {/* Direct Consultation Link */}

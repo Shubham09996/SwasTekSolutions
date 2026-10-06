@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:zip": "tsc && vite build && tar.exe -a -c -f swastek-build.zip -C dist .",
     "preview": "vite preview"
   },
   "devDependencies": {

@@ -222,6 +222,45 @@ export default function Navbar() {
   const transparent = !scrolled && !megaOpen
   const linkBase = transparent ? "text-white/80 hover:text-white" : "text-[#3D5168] hover:text-[#0A1828]"
 
+  const isNavActive = (link: (typeof navLinks)[0]) => {
+    // If mega menu is open, highlight the active mega tab
+    if (megaOpen) {
+      return megaOpen === link.hasMega
+    }
+
+    if (link.label === "Services") {
+      if (location.pathname === "/services") return true
+      const coreServicePaths = [
+        "/services/web-design",
+        "/services/ui-ux-design",
+        "/services/it-strategy-consulting",
+        "/services/web-development",
+        "/services/mobile-app-development",
+        "/services/ecommerce",
+      ]
+      return coreServicePaths.some((p) => location.pathname.startsWith(p))
+    }
+
+    if (link.label === "Solutions") {
+      const solutionPaths = [
+        "/services/crm-development",
+        "/services/web-applications",
+        "/services/custom-software",
+        "/services/saas-development",
+        "/services/business-automation",
+        "/services/ai-solutions",
+        "/services/api-integrations",
+      ]
+      return solutionPaths.some((p) => location.pathname.startsWith(p))
+    }
+
+    if (link.href === "/") {
+      return location.pathname === "/"
+    }
+
+    return location.pathname === link.href || location.pathname.startsWith(`${link.href}/`)
+  }
+
   return (
     <>
       <nav
@@ -264,71 +303,70 @@ export default function Navbar() {
 
             {/* Desktop Nav */}
             <div className="hidden lg:flex items-center gap-0.5">
-              {navLinks.map((link) => (
-                <div
-                  key={link.label}
-                  className="relative"
-                  onMouseEnter={() => link.hasMega ? openMega(link.hasMega) : setMegaOpen(null)}
-                  onMouseLeave={closeMega}
-                >
-                  <NavLink
-                    to={link.href}
-                    end={link.href === "/services"}
-                    onClick={() => {
-                      if (link.hasMega) {
-                        setMegaOpen(megaOpen === link.hasMega ? null : link.hasMega)
-                      } else {
-                        setMegaOpen(null)
-                      }
-                    }}
-                    className={({ isActive }) =>
-                      `relative flex items-center gap-1.5 px-3.5 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 ${
+              {navLinks.map((link) => {
+                const isActive = isNavActive(link)
+                return (
+                  <div
+                    key={link.label}
+                    className="relative"
+                    onMouseEnter={() => link.hasMega ? openMega(link.hasMega) : setMegaOpen(null)}
+                    onMouseLeave={closeMega}
+                  >
+                    <Link
+                      to={link.href}
+                      onClick={(e) => {
+                        if (link.hasMega) {
+                          if (link.label === "Solutions" && location.pathname === "/services") {
+                            e.preventDefault()
+                          }
+                          setMegaOpen(megaOpen === link.hasMega ? null : link.hasMega)
+                        } else {
+                          setMegaOpen(null)
+                        }
+                      }}
+                      className={`relative flex items-center gap-1.5 px-3.5 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 ${
                         isActive
                           ? transparent ? "text-white" : "text-[#1558D4]"
                           : linkBase
-                      }`
-                    }
-                  >
-                    {({ isActive }) => (
-                      <>
-                        <span>{link.label}</span>
-                        {link.hasMega && (
-                          <ChevronDown
-                            size={12}
-                            className={`transition-transform duration-200 ${
-                              megaOpen === link.hasMega
-                                ? "rotate-180 text-blue-500"
-                                : transparent ? "text-white/70" : "text-slate-400"
-                            }`}
-                          />
-                        )}
-                        {isActive && (
-                          <motion.span
-                            layoutId="nav-pill"
-                            className="absolute inset-0 rounded-xl -z-10"
-                            style={{
-                              background: transparent ? "rgba(255,255,255,0.08)" : "rgba(21,88,212,0.07)",
-                              border: transparent ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(21,88,212,0.12)"
-                            }}
-                            transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
-                          />
-                        )}
-                        {isActive && (
-                          <motion.span
-                            layoutId="nav-dot"
-                            className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
-                            style={{
-                              background: transparent ? "#38bdf8" : "#1558D4",
-                              boxShadow: transparent ? "0 0 6px rgba(56,189,248,0.8)" : "0 0 6px rgba(21,88,212,0.5)"
-                            }}
-                            transition={{ type: "spring", bounce: 0.3, duration: 0.4 }}
-                          />
-                        )}
-                      </>
-                    )}
-                  </NavLink>
-                </div>
-              ))}
+                      }`}
+                    >
+                      <span>{link.label}</span>
+                      {link.hasMega && (
+                        <ChevronDown
+                          size={12}
+                          className={`transition-transform duration-200 ${
+                            megaOpen === link.hasMega
+                              ? "rotate-180 text-blue-500"
+                              : transparent ? "text-white/70" : "text-slate-400"
+                          }`}
+                        />
+                      )}
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-pill"
+                          className="absolute inset-0 rounded-xl -z-10"
+                          style={{
+                            background: transparent ? "rgba(255,255,255,0.08)" : "rgba(21,88,212,0.07)",
+                            border: transparent ? "1px solid rgba(255,255,255,0.12)" : "1px solid rgba(21,88,212,0.12)"
+                          }}
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
+                        />
+                      )}
+                      {isActive && (
+                        <motion.span
+                          layoutId="nav-dot"
+                          className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
+                          style={{
+                            background: transparent ? "#38bdf8" : "#1558D4",
+                            boxShadow: transparent ? "0 0 6px rgba(56,189,248,0.8)" : "0 0 6px rgba(21,88,212,0.5)"
+                          }}
+                          transition={{ type: "spring", bounce: 0.3, duration: 0.4 }}
+                        />
+                      )}
+                    </Link>
+                  </div>
+                )
+              })}
             </div>
 
             {/* Right side controls */}

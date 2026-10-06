@@ -10,7 +10,7 @@ export default function Privacy() {
           <div className="space-y-8 text-sm leading-relaxed" style={{ color: '#3D5168', fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
             <div>
               <h2 className="font-heading text-xl font-bold mb-3" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>1. Who we are</h2>
-              <p>SwasTek Solutions is a software development and digital solutions company. Our website address is swastek.com. If you have questions about this policy, contact us at hello@swastek.com.</p>
+              <p>SwasTek Solutions is a software development and digital solutions company. Our website address is swasteksolutions.com. If you have questions about this policy, contact us at info@swasteksolutions.com or swasteksolutions@gmail.com.</p>
             </div>
             <div>
               <h2 className="font-heading text-xl font-bold mb-3" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>2. What information we collect</h2>
@@ -36,7 +36,7 @@ export default function Privacy() {
             </div>
             <div>
               <h2 className="font-heading text-xl font-bold mb-3" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>5. Your rights</h2>
-              <p>You have the right to request access to, correction of, or deletion of any personal data we hold about you. To make such a request, contact us at hello@swastek.com.</p>
+              <p>You have the right to request access to, correction of, or deletion of any personal data we hold about you. To make such a request, contact us at info@swasteksolutions.com or swasteksolutions@gmail.com.</p>
             </div>
             <div>
               <h2 className="font-heading text-xl font-bold mb-3" style={{ color: '#0B1A2E', fontFamily: 'Sora, sans-serif' }}>6. Updates to this policy</h2>

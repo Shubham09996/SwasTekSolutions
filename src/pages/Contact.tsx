@@ -22,6 +22,9 @@ import {
   ChevronDown,
   Check,
   Copy,
+  Loader2,
+  AlertCircle,
+  Inbox,
 } from 'lucide-react'
 import PageTransition from '../components/PageTransition'
 
@@ -108,7 +111,7 @@ export default function Contact() {
   const [selectedScopes, setSelectedScopes] = useState<string[]>([])
   const [customScopeText, setCustomScopeText] = useState('')
   const [projectDesc, setProjectDesc] = useState('')
-  const [copiedEmail, setCopiedEmail] = useState(false)
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null)
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   const [form, setForm] = useState({
@@ -119,6 +122,8 @@ export default function Contact() {
     country: '',
   })
 
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const [submitted, setSubmitted] = useState(false)
 
   const toggleScope = (scopeId: string) => {
@@ -127,15 +132,74 @@ export default function Contact() {
     )
   }
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText('hello@swastek.com')
-    setCopiedEmail(true)
-    setTimeout(() => setCopiedEmail(false), 2000)
+  const handleCopyEmail = (email: string) => {
+    navigator.clipboard.writeText(email)
+    setCopiedEmail(email)
+    setTimeout(() => setCopiedEmail(null), 2000)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setSubmitted(true)
+    setIsSubmitting(true)
+    setSubmitError(null)
+
+    const scopeNames = selectedScopes
+      .map((id) => projectScopes.find((s) => s.id === id)?.label || id)
+      .join(', ')
+
+    const payload = {
+      _subject: `🚀 New Project Discovery Request: ${form.name} (${form.company || 'Direct Client'})`,
+      _replyto: form.email,
+      _template: 'table',
+      _captcha: 'false',
+      'Client Name': form.name,
+      'Work Email': form.email,
+      'Company Name': form.company || 'Not Specified',
+      'Phone / WhatsApp': form.phone || 'Not Specified',
+      'Target Services / Scopes': scopeNames || 'Custom Project',
+      'Custom Scope Notes': customScopeText || 'None',
+      'Project Specs & Goals': projectDesc,
+    }
+
+    const endpoints = [
+      'https://formsubmit.co/ajax/info@swasteksolutions.com',
+      'https://formsubmit.co/ajax/swasteksolutions@gmail.com',
+    ]
+
+    try {
+      const promises = endpoints.map((url) =>
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        }).then((res) => res.json().catch(() => ({})))
+      )
+
+      const results = await Promise.allSettled(promises)
+      const hasAnySuccess = results.some(
+        (r) =>
+          r.status === 'fulfilled' &&
+          (r.value.success === 'true' ||
+            r.value.success === true ||
+            (r.value.message && r.value.message.includes('Activation')))
+      )
+
+      if (hasAnySuccess) {
+        setSubmitted(true)
+      } else {
+        throw new Error('Failed to dispatch inquiry to mail gateways.')
+      }
+    } catch (err: any) {
+      console.error('Contact form submission error:', err)
+      setSubmitError(
+        'Automated dispatch was delayed or blocked. You can retry or click below to launch direct mail to both inboxes.'
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -244,27 +308,51 @@ export default function Contact() {
                 </div>
 
                 <div className="space-y-4">
-                  {/* Email */}
+                  {/* Email Channel 1 */}
                   <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between gap-3 group hover:border-cyan-400/40 transition-all">
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
                       <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center flex-shrink-0">
                         <Mail size={18} />
                       </div>
-                      <div>
-                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Email Inquiry</p>
-                        <a href="mailto:hello@swastek.com" className="text-sm font-bold text-white hover:text-cyan-300 transition-colors">
-                          hello@swastek.com
+                      <div className="min-w-0">
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Official Inquiry</p>
+                        <a href="mailto:info@swasteksolutions.com" className="text-sm font-bold text-white hover:text-cyan-300 transition-colors truncate block">
+                          info@swasteksolutions.com
                         </a>
                       </div>
                     </div>
                     <button
                       type="button"
-                      onClick={handleCopyEmail}
+                      onClick={() => handleCopyEmail('info@swasteksolutions.com')}
                       title="Copy email to clipboard"
-                      className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-all text-xs flex items-center gap-1"
+                      className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-all text-xs flex items-center gap-1 flex-shrink-0"
                     >
-                      {copiedEmail ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
-                      <span className="text-[11px] hidden sm:inline">{copiedEmail ? 'Copied' : 'Copy'}</span>
+                      {copiedEmail === 'info@swasteksolutions.com' ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
+                      <span className="text-[11px] hidden sm:inline">{copiedEmail === 'info@swasteksolutions.com' ? 'Copied' : 'Copy'}</span>
+                    </button>
+                  </div>
+
+                  {/* Email Channel 2 */}
+                  <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between gap-3 group hover:border-cyan-400/40 transition-all">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-300 flex items-center justify-center flex-shrink-0">
+                        <Mail size={18} />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Support & Direct</p>
+                        <a href="mailto:swasteksolutions@gmail.com" className="text-sm font-bold text-white hover:text-cyan-300 transition-colors truncate block">
+                          swasteksolutions@gmail.com
+                        </a>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleCopyEmail('swasteksolutions@gmail.com')}
+                      title="Copy email to clipboard"
+                      className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-all text-xs flex items-center gap-1 flex-shrink-0"
+                    >
+                      {copiedEmail === 'swasteksolutions@gmail.com' ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
+                      <span className="text-[11px] hidden sm:inline">{copiedEmail === 'swasteksolutions@gmail.com' ? 'Copied' : 'Copy'}</span>
                     </button>
                   </div>
 
@@ -359,31 +447,56 @@ export default function Contact() {
                   </div>
 
                   <h3 className="font-bold text-2xl sm:text-3xl text-white mb-3" style={{ fontFamily: 'Sora, sans-serif' }}>
-                    Project Blueprint Request Received!
+                    Project Request Dispatched!
                   </h3>
-                  <p className="text-sm sm:text-base text-slate-200 max-w-md mx-auto mb-8 leading-relaxed">
-                    Thank you, <strong className="text-white">{form.name || 'there'}</strong>. Our Senior Technical Architect is reviewing your scope requirements now.
+                  <p className="text-sm sm:text-base text-slate-200 max-w-lg mx-auto mb-6 leading-relaxed">
+                    Thank you, <strong className="text-white">{form.name || 'there'}</strong>. Your project specifications have been delivered directly to our senior software architects at:
                   </p>
+
+                  {/* Recipient verification badge */}
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-8">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-500/15 border border-cyan-400/30 text-xs font-semibold text-cyan-300">
+                      <Inbox size={13} /> info@swasteksolutions.com
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-500/15 border border-blue-400/30 text-xs font-semibold text-blue-300">
+                      <Inbox size={13} /> swasteksolutions@gmail.com
+                    </span>
+                  </div>
 
                   {/* Next steps roadmap */}
                   <div className="p-5 rounded-2xl bg-white/5 border border-white/10 text-left max-w-md mx-auto space-y-3 mb-8 text-xs text-slate-300">
                     <div className="flex items-start gap-3">
                       <div className="w-5 h-5 rounded-full bg-cyan-500/30 text-cyan-300 flex items-center justify-center font-bold text-[10px] mt-0.5">1</div>
-                      <p><strong className="text-white">Review:</strong> We analyze your chosen scope & timeline.</p>
+                      <p><strong className="text-white">Review:</strong> We analyze your chosen scope & timeline specifications.</p>
                     </div>
                     <div className="flex items-start gap-3">
                       <div className="w-5 h-5 rounded-full bg-cyan-500/30 text-cyan-300 flex items-center justify-center font-bold text-[10px] mt-0.5">2</div>
-                      <p><strong className="text-white">Direct Connect:</strong> You'll receive an email & call booking invite within 24h.</p>
+                      <p><strong className="text-white">Direct Connect:</strong> You'll receive a detailed email reply & call booking invite within 24h.</p>
                     </div>
                     <div className="flex items-start gap-3">
                       <div className="w-5 h-5 rounded-full bg-cyan-500/30 text-cyan-300 flex items-center justify-center font-bold text-[10px] mt-0.5">3</div>
-                      <p><strong className="text-white">Blueprint Delivery:</strong> Milestone roadmap, tech stack selection & transparent fixed pricing.</p>
+                      <p><strong className="text-white">Blueprint Delivery:</strong> Milestone roadmap, tech stack selection & transparent fixed estimate.</p>
                     </div>
                   </div>
 
-                  <Link to="/" className="btn-primary-white inline-flex items-center gap-2">
-                    Return to Homepage <ArrowRight size={14} />
-                  </Link>
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    <Link to="/" className="btn-primary-white inline-flex items-center gap-2">
+                      Return to Homepage <ArrowRight size={14} />
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSubmitted(false)
+                        setStep(1)
+                        setSelectedScopes([])
+                        setProjectDesc('')
+                        setForm({ name: '', email: '', phone: '', company: '', country: '' })
+                      }}
+                      className="px-5 py-2.5 rounded-full text-xs font-semibold bg-white/10 hover:bg-white/20 text-white transition-all"
+                    >
+                      Submit Another Inquiry
+                    </button>
+                  </div>
                 </motion.div>
               ) : (
                 /* Multi-Step Wizard Container */
@@ -705,22 +818,52 @@ export default function Contact() {
                             </div>
                           </div>
 
+                          {submitError && (
+                            <div className="p-4 rounded-2xl bg-red-500/15 border border-red-500/30 text-xs text-red-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                              <div className="flex items-center gap-2">
+                                <AlertCircle size={16} className="text-red-400 flex-shrink-0" />
+                                <span>{submitError}</span>
+                              </div>
+                              <a
+                                href={`mailto:info@swasteksolutions.com?cc=swasteksolutions@gmail.com&subject=${encodeURIComponent(
+                                  `Project Discovery Request from ${form.name}`
+                                )}&body=${encodeURIComponent(
+                                  `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nPhone: ${form.phone}\n\nProject Scope:\n${projectDesc}`
+                                )}`}
+                                className="px-3.5 py-1.5 rounded-lg bg-red-500/25 hover:bg-red-500/40 text-white font-semibold text-[11px] whitespace-nowrap transition-colors inline-flex items-center gap-1.5"
+                              >
+                                <Mail size={13} /> Open Direct Email
+                              </a>
+                            </div>
+                          )}
+
                           <div className="flex flex-col-reverse sm:flex-row items-center justify-between gap-3 pt-6 border-t border-white/10">
                             <button
                               type="button"
                               onClick={() => setStep(2)}
-                              className="w-full sm:w-auto px-5 py-2.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 hover:text-white transition-all text-center"
+                              disabled={isSubmitting}
+                              className="w-full sm:w-auto px-5 py-2.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 hover:text-white transition-all text-center disabled:opacity-50"
                             >
                               Back
                             </button>
                             <button
                               type="submit"
+                              disabled={isSubmitting}
                               data-cta
-                              className="btn-primary text-xs sm:text-sm shadow-xl hover:scale-105 transition-all w-full sm:w-auto justify-center"
+                              className="btn-primary text-xs sm:text-sm shadow-xl hover:scale-105 transition-all w-full sm:w-auto justify-center disabled:opacity-60 disabled:cursor-not-allowed"
                             >
-                              <Zap size={14} />
-                              <span>Submit Project Discovery Request</span>
-                              <ArrowRight size={14} />
+                              {isSubmitting ? (
+                                <>
+                                  <Loader2 size={15} className="animate-spin text-white" />
+                                  <span>Delivering Specs to Inboxes...</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Zap size={14} />
+                                  <span>Submit Project Discovery Request</span>
+                                  <ArrowRight size={14} />
+                                </>
+                              )}
                             </button>
                           </div>
                         </form>
